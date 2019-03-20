@@ -9,10 +9,17 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
-const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
+let accessLogStream;
+const isProductionMode = process.env.mode === 'prod';
 
-app.use(logger('dev', { stream: accessLogStream }));
-// app.use(logger('dev'));
+if (isProductionMode) {
+  accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
+}
+
+const loggerOptions = isProductionMode ? { stream: accessLogStream } : null;
+
+app.use(logger('dev', loggerOptions));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

@@ -3,14 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "serve_dev": "mode=dev node ./bin/www",
+    "serve_prod": "mode=prod node ./bin/www"
   },
   "dependencies": {
     "bcrypt": "^3.0.4",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
+    "jsonwebtoken": "^8.5.1",
     "morgan": "~1.9.0",
+    "pg-promise": "^8.6.4",
     "uuid": "^3.3.2"
   }
 }

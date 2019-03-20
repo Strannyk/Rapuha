@@ -1,3 +1,4 @@
 node_modules/
 .idea/
 rapuha-backend.iml
+access.log
