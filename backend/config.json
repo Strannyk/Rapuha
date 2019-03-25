@@ -1,0 +1,8 @@
+{
+  "database": {
+    "host": "localhost:5432/",
+    "databaseName": "rapuha",
+    "username": "admin",
+    "password": "viktorkram"
+  }
+}
