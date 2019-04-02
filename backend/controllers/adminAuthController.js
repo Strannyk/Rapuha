@@ -1,6 +1,7 @@
 const pgp = require("pg-promise")(/*options*/);
 const bcrypt = require('bcrypt');
-const options = require('../options');
+const options = require('../options').storageConfig;
+const jwt = require('./jwtController').controller;
 
 const adminAuthController = (() => {
   const databaseName = 'admins';
@@ -23,7 +24,8 @@ const adminAuthController = (() => {
         db.one(query).then(data => {
           bcrypt.compare(password, data[passwordField], (err, res) => {
             const result = err || res;
-            resolve(result);
+            const response = result ? service.getSuccessResponse() : service.getErrorResponse();
+            resolve(response);
           });
         }).catch(err => reject(err));
       });
@@ -34,15 +36,20 @@ const adminAuthController = (() => {
 const service = {
   getDatabaseOptions() {
     return {
-      host: options.storageConfig.database.host,
-      databaseName: options.storageConfig.database.databaseName,
-      user: options.storageConfig.database.username,
-      password: options.storageConfig.database.password
+      host: options.database.host,
+      databaseName: options.database.databaseName,
+      user: options.database.username,
+      password: options.database.password
     };
   },
 
-  generateToken() {
+  getSuccessResponse() {
+    const token = jwt.signToken();
+    return { token: token };
+  },
 
+  getErrorResponse() {
+    return { error: true };
   }
 };
 
