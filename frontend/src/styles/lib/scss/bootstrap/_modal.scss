@@ -73,7 +73,7 @@
   outline: 0;
 }
 
-// Modal background
+// AdminAuthModal background
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -88,7 +88,7 @@
   &.show { opacity: $modal-backdrop-opacity; }
 }
 
-// Modal header
+// AdminAuthModal header
 // Top section of the modal w/ title and dismiss
 .modal-header {
   display: flex;
@@ -111,7 +111,7 @@
   line-height: $modal-title-line-height;
 }
 
-// Modal body
+// AdminAuthModal body
 // Where all modal content resides (sibling of .modal-header and .modal-footer)
 .modal-body {
   position: relative;

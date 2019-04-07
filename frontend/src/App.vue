@@ -8,4 +8,4 @@
   </div>
 </template>
 
-<style src="./lib/scss/index.scss" lang="scss"></style>
+<style src="./styles/index.scss" lang="scss"></style>
