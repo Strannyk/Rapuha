@@ -2,6 +2,7 @@ const pgp = require("pg-promise")(/*options*/);
 const bcrypt = require('bcrypt');
 const options = require('../options').storageConfig;
 const jwt = require('./jwtController').controller;
+const ResponseMessage = require('../objects/response-message').class;
 
 const adminAuthController = (() => {
   const databaseName = 'admins';
@@ -27,7 +28,9 @@ const adminAuthController = (() => {
             const response = result ? service.getSuccessResponse() : service.getErrorResponse();
             resolve(response);
           });
-        }).catch(err => reject(err));
+        }).catch(() => {
+          reject(service.getErrorResponse());
+        });
       });
     }
   };
@@ -45,11 +48,17 @@ const service = {
 
   getSuccessResponse() {
     const token = jwt.signToken();
-    return { token: token };
+    const response = new ResponseMessage();
+    response.addToken(token);
+
+    return response;
   },
 
   getErrorResponse() {
-    return { error: true };
+    const error = new ResponseMessage();
+    error.createErrorMessage('Ошибка авторизации');
+
+    return error;
   }
 };
 
