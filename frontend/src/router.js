@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import home from './components/home/home.vue';
-import admin from './components/admin/admin.vue'
+
+const admin = () => import(/* webpackChunkName: "admin" */ './components/admin/admin.vue');
 
 Vue.use(Router);
 
