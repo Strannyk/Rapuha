@@ -8,7 +8,7 @@ export default {
   data() {
     return {
       sendingAuthRequest: false,
-      authError: false
+      authError: null
     };
   },
 
@@ -19,8 +19,16 @@ export default {
       }
     },
 
+    writeToken: function (token) {
+      localStorage.setItem('token', token);
+    },
+
     openAuthModal: function () {
       this.$refs.modal.open();
+    },
+
+    closeAuthModal: function () {
+      this.$refs.modal.close();
     },
 
     sendCredentials: function (data) {
@@ -28,15 +36,29 @@ export default {
       this.$http.post(this.baseUrl + 'admin/auth', {
         login: data.login,
         password: data.password
-      }).then(res => console.log(res),
-        err => console.log(err));
+      }).then(res => this.handleAuthResponse(res.body),
+        () => this.handleAuthError());
+    },
 
-      // setTimeout(() => {
-      //   this.$data.authError = true;
-      //   this.$data.sendingAuthRequest = false;
-      // }, 5000);
+    handleAuthResponse: function (response) {
+      const token = response.token;
+      const error = response.error;
 
-      console.log(data);
+      if (token) {
+        this.writeToken(token);
+        this.closeAuthModal();
+      }
+      else if (error) {
+        this.$data.authError = error;
+      }
+
+      this.$data.sendingAuthRequest = false;
+    },
+
+    handleAuthError: function () {
+      this.$data.sendingAuthRequest = false;
+      alert('Ошибка сети.');
+      this.goToHome();
     },
 
     goToHome: function () {

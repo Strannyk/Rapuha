@@ -5,7 +5,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Войти, как Администратор</h5>
-                        <button v-on:click="close"
+                        <button v-on:click="close(true)"
                                 type="button"
                                 class="close"
                                 :disabled="disabled"
@@ -22,7 +22,7 @@
                                        placeholder="Логин"
                                        v-model="credentials.login"
                                        class="form-control"
-                                       :class="isError ? 'is-invalid' : ''"
+                                       :class="errorMessage ? 'is-invalid' : ''"
                                        v-on:focus="onFocus"
                                        id="r-login"
                                        autocomplete="off">
@@ -35,7 +35,7 @@
                                        placeholder="Пароль"
                                        v-model="credentials.password"
                                        class="form-control"
-                                       :class="isError ? 'is-invalid' : ''"
+                                       :class="errorMessage ? 'is-invalid' : ''"
                                        v-on:focus="onFocus"
                                        id="r-password"
                                        autocomplete="off">
@@ -49,7 +49,7 @@
                                  aria-valuemax="100"
                                  style="width: 100%"></div>
                         </div>
-                        <p class="text-danger" v-if="isError">Ошибка авторизации</p>
+                        <p class="text-danger" v-if="errorMessage">{{errorMessage}}</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button"
@@ -60,7 +60,7 @@
                         </button>
                         <button type="button"
                                 :disabled="disabled"
-                                v-on:click="close"
+                                v-on:click="close(true)"
                                 class="btn btn-secondary"
                                 data-dismiss="modal">Отмена
                         </button>

@@ -11,7 +11,7 @@ export default {
 
   props: {
     'disabled': Boolean,
-    'isError': Boolean
+    'errorMessage': String
   },
 
   methods: {
@@ -19,9 +19,12 @@ export default {
       this.active = true;
     },
 
-    close: function () {
+    close: function (selfClosing) {
       this.active = false;
-      this.$emit('close');
+
+      if (selfClosing) {
+        this.$emit('close');
+      }
     },
 
     submit: function () {

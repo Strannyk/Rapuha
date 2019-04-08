@@ -3,9 +3,9 @@
         <div>Admin</div>
         <admin-auth-modal ref="modal"
                           :disabled="sendingAuthRequest"
-                          :isError="authError"
+                          :errorMessage="authError"
                           @submit="sendCredentials"
-                          @onFocus="authError = false"
+                          @onFocus="authError = null"
                           @close="goToHome"></admin-auth-modal>
     </div>
 </template>
