@@ -30,4 +30,4 @@ const jwtController = (() => {
   };
 })();
 
-exports.controller = jwtController;
+module.exports = jwtController;

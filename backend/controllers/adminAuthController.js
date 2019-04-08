@@ -1,8 +1,8 @@
 const pgp = require("pg-promise")(/*options*/);
 const bcrypt = require('bcrypt');
-const options = require('../options').storageConfig;
-const jwt = require('./jwtController').controller;
-const ResponseMessage = require('../objects/response-message').class;
+const options = require('../options');
+const jwt = require('./jwtController');
+const ResponseMessage = require('../objects/response-message');
 
 const adminAuthController = (() => {
   const databaseName = 'admins';
@@ -62,4 +62,4 @@ const service = {
   }
 };
 
-exports.controller = adminAuthController;
+module.exports = adminAuthController;

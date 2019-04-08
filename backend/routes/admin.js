@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const adminAuthController = require('../controllers/adminAuthController').controller;
+const adminAuthController = require('../controllers/adminAuthController');
 const jwt = require('../controllers/jwtController').controller;
 
 router.post('/', function (req, res) {

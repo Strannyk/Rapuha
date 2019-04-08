@@ -1,7 +1,4 @@
 class ResponseMessage {
-  constructor() {
-  }
-
   createErrorMessage(msg) {
     this.error = msg;
   }
@@ -11,4 +8,4 @@ class ResponseMessage {
   }
 }
 
-exports.class = ResponseMessage;
+module.exports = ResponseMessage;
