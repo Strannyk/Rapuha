@@ -2,3 +2,10 @@ button:focus,
 a:focus {
   outline: none;
 }
+
+.main-link {
+  a:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+}
