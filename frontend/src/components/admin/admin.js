@@ -1,4 +1,4 @@
-import AdminAuthModal from '../admin-auth-modal/admin-auth-modal.vue';
+import AdminAuthModal from './admin-auth-modal/admin-auth-modal.vue';
 
 export default {
   components: {
@@ -16,6 +16,9 @@ export default {
     checkToken: function () {
       if (!localStorage.getItem('token')) {
         this.openAuthModal();
+      }
+      else if (this.$router.history.current.name === 'admin') {
+        this.routeAdminPage();
       }
     },
 
@@ -47,6 +50,7 @@ export default {
       if (token) {
         this.writeToken(token);
         this.closeAuthModal();
+        this.routeAdminPage();
       }
       else if (error) {
         this.$data.authError = error;
@@ -58,11 +62,21 @@ export default {
     handleAuthError: function () {
       this.$data.sendingAuthRequest = false;
       alert('Ошибка сети.');
-      this.goToHome();
+      this.goToHomePage();
     },
 
-    goToHome: function () {
-      this.$router.push('/');
+    goToHomePage: function () {
+      this.$router.push({ name: 'home' });
+    },
+
+    routeAdminPage: function () {
+      if (this.$router.history.current.name === 'admin') {
+        this.goToCreationPage();
+      }
+    },
+
+    goToCreationPage: function () {
+      this.$router.push({ name: 'creation' });
     }
   },
 
