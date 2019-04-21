@@ -3,8 +3,12 @@ class ResponseMessage {
     this.error = msg;
   }
 
-  addToken(token) {
+  createAccessTokenMessage(token) {
     this.token = token;
+  }
+
+  createSuccessMessage() {
+    this.ok = true;
   }
 }
 

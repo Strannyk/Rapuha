@@ -1,21 +1,32 @@
-const pgp = require("pg-promise")(/*options*/);
 const bcrypt = require('bcrypt');
-const options = require('../options');
 const jwt = require('./jwtController');
 const ResponseMessage = require('../objects/response-message');
+const dbService = require('../services/dbService');
 
 const adminAuthController = (() => {
   const databaseName = 'admins';
   const loginField = 'admin_login';
   const passwordField = 'admin_password';
+  const authService = {
+    getSuccessResponse() {
+      const token = jwt.signToken();
+      const response = new ResponseMessage();
+      response.createAccessTokenMessage(token);
+
+      return response;
+    },
+
+    getErrorResponse() {
+      const error = new ResponseMessage();
+      error.createErrorMessage('Ошибка авторизации');
+
+      return error;
+    }
+  };
 
   return {
     logIn(login, password) {
-      const dbOptions = service.getDatabaseOptions();
-      const db = pgp('postgres://' +
-        dbOptions.user + ':' +
-        dbOptions.password + '@'
-        + dbOptions.host + dbOptions.databaseName);
+      const db = dbService.getDb();
       const query = "SELECT " + passwordField +
         " FROM " + databaseName +
         " WHERE " + loginField +
@@ -25,41 +36,15 @@ const adminAuthController = (() => {
         db.one(query).then(data => {
           bcrypt.compare(password, data[passwordField], (err, res) => {
             const result = err || res;
-            const response = result ? service.getSuccessResponse() : service.getErrorResponse();
+            const response = result ? authService.getSuccessResponse() : authService.getErrorResponse();
             resolve(response);
           });
         }).catch(() => {
-          reject(service.getErrorResponse());
+          reject(authService.getErrorResponse());
         });
       });
     }
   };
 })();
-
-const service = {
-  getDatabaseOptions() {
-    return {
-      host: options.database.host,
-      databaseName: options.database.databaseName,
-      user: options.database.username,
-      password: options.database.password
-    };
-  },
-
-  getSuccessResponse() {
-    const token = jwt.signToken();
-    const response = new ResponseMessage();
-    response.addToken(token);
-
-    return response;
-  },
-
-  getErrorResponse() {
-    const error = new ResponseMessage();
-    error.createErrorMessage('Ошибка авторизации');
-
-    return error;
-  }
-};
 
 module.exports = adminAuthController;
