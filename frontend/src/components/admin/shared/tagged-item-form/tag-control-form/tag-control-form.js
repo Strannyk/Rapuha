@@ -1,4 +1,5 @@
 import AddTagModal from './add-tag-modal/add-tag-modal.vue';
+import adminService from '../../../services/admin-service';
 
 export default {
   components: {
@@ -16,8 +17,11 @@ export default {
     },
 
     onAddTag: function (tag) {
+      adminService.addTag(this, tag)
+        .then(res => console.log(res.body))
+        .catch(err => console.log(err));
+
       this.$refs.modal.close();
-      console.log(tag);
     },
 
     onClose: function () {

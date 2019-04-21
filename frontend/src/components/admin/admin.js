@@ -1,4 +1,5 @@
 import AdminAuthModal from './admin-auth-modal/admin-auth-modal.vue';
+import adminService from './services/admin-service';
 
 export default {
   components: {
@@ -36,11 +37,11 @@ export default {
 
     sendCredentials: function (data) {
       this.$data.sendingAuthRequest = true;
-      this.$http.post('admin/auth', {
-        login: data.login,
-        password: data.password
-      }).then(res => this.handleAuthResponse(res.body),
-        () => this.handleAuthError());
+
+      adminService.authAdmin(this, data.login, data.password)
+        .then(res => this.handleAuthResponse(res.body),
+          () => this.handleAuthError())
+        .catch(err => console.log(err));
     },
 
     handleAuthResponse: function (response) {

@@ -23,6 +23,7 @@
             <label>Тег(и)</label>
             <multi-select :options="allTags"
                           :selectedOptions="data.tags"
+                          :isDisabled="!allTags.length"
                           @select="onSelectTags"
                           placeholder="Не выбрано">
             </multi-select>
