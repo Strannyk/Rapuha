@@ -36,7 +36,7 @@ export default {
 
     sendCredentials: function (data) {
       this.$data.sendingAuthRequest = true;
-      this.$http.post(this.baseUrl + 'admin/auth', {
+      this.$http.post('admin/auth', {
         login: data.login,
         password: data.password
       }).then(res => this.handleAuthResponse(res.body),

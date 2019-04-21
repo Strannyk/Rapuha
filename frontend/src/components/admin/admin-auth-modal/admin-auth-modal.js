@@ -1,7 +1,10 @@
+import mixin from '../shared/modal-mixin/modal-mixin';
+
 export default {
+  mixins: [mixin],
+
   data() {
     return {
-      active: false,
       credentials: {
         login: null,
         password: null
@@ -9,18 +12,10 @@ export default {
     };
   },
 
-  props: {
-    'disabled': Boolean,
-    'errorMessage': String
-  },
-
   methods: {
-    open: function () {
-      this.active = true;
-    },
-
     close: function (selfClosing) {
       this.active = false;
+      document.body.classList.remove(this.$data.frozenBodyClassName);
 
       if (selfClosing) {
         this.$emit('close');
@@ -30,10 +25,6 @@ export default {
     submit: function () {
       this.$emit('submit', this.$data.credentials);
       this.$refs.submitButton.blur();
-    },
-
-    onFocus: function () {
-      this.$emit('onFocus');
     }
   }
 }

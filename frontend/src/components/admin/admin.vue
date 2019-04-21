@@ -6,7 +6,7 @@
                           :disabled="sendingAuthRequest"
                           :errorMessage="authError"
                           @submit="sendCredentials"
-                          @onFocus="authError = null"
+                          @focus="authError = null"
                           @close="goToHomePage"></admin-auth-modal>
     </div>
 </template>

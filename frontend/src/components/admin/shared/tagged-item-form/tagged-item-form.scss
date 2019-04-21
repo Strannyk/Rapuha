@@ -1,0 +1,63 @@
+.tag-items {
+  margin-top: 10px;
+
+  &.full-form {
+    margin-bottom: 25px;
+  }
+}
+
+.tag-edit-input {
+  display: inline-block;
+  width: auto;
+  margin-right: 20px;
+}
+
+.tag-edit-button {
+  margin: 0 5px;
+  vertical-align: initial;
+
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.multiple.search {
+  .delete.icon {
+    display: inline-block;
+    position: relative;
+    width: 12px;
+    height: 12px;
+
+    &:before {
+      content: '×';
+      font-size: 18px;
+      position: absolute;
+      left: 2px;
+      top: -3px;
+      cursor: pointer;
+    }
+  }
+}
+
+.ui.dropdown .menu > .item {
+  color: #52575C !important;
+}
+
+.ui.multiple.dropdown > .label,
+.ui.multiple.dropdown > .label:hover {
+  color: #fff;
+  background-color: #3A3F44;
+}
+
+.ui.dropdown .menu > .item:hover {
+  color: #fff !important;
+  background: #52575C !important;
+}
+
+.ui.search.dropdown {
+  padding: 7px 16px !important;
+}
+
+.ui.selection.dropdown > .dropdown.icon {
+  top: 16px !important;
+}

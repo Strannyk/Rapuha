@@ -4,8 +4,8 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Войти, как Администратор</h5>
-                        <button v-on:click="close(true)"
+                        <h5 class="modal-title">Добавить тег</h5>
+                        <button v-on:click="close"
                                 type="button"
                                 class="close"
                                 :disabled="disabled"
@@ -17,30 +17,18 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <fieldset :disabled="disabled">
-                                <label class="col-form-label" for="r-login">Логин</label>
+                                <label class="col-form-label" for="r-new-tag">Новый тег</label>
                                 <input type="text"
-                                       placeholder="Логин"
-                                       v-model="credentials.login"
+                                       placeholder="Новый тег"
+                                       v-model="newTag"
                                        class="form-control"
                                        :class="errorMessage ? 'is-invalid' : ''"
                                        v-on:focus="onFocus"
-                                       id="r-login"
+                                       id="r-new-tag"
                                        autocomplete="off">
                             </fieldset>
                         </div>
-                        <div class="form-group">
-                            <fieldset :disabled="disabled">
-                                <label class="col-form-label" for="r-password">Пароль</label>
-                                <input type="password"
-                                       placeholder="Пароль"
-                                       v-model="credentials.password"
-                                       class="form-control"
-                                       :class="errorMessage ? 'is-invalid' : ''"
-                                       v-on:focus="onFocus"
-                                       id="r-password"
-                                       autocomplete="off">
-                            </fieldset>
-                        </div>
+
                         <div v-if="disabled" class="progress">
                             <div class="progress-bar progress-bar-striped progress-bar-animated"
                                  role="progressbar"
@@ -54,13 +42,13 @@
                     <div class="modal-footer">
                         <button type="button"
                                 ref="submitButton"
-                                :disabled="!credentials.login || !credentials.password || disabled"
+                                :disabled="!newTag || disabled"
                                 v-on:click="submit"
-                                class="btn btn-primary">Войти
+                                class="btn btn-primary">Добавить
                         </button>
                         <button type="button"
                                 :disabled="disabled"
-                                v-on:click="close(true)"
+                                v-on:click="close"
                                 class="btn btn-secondary"
                                 data-dismiss="modal">Отмена
                         </button>
@@ -72,4 +60,4 @@
     </div>
 </template>
 
-<script src="./admin-auth-modal.js"></script>
+<script src="./add-tag-modal.js"></script>

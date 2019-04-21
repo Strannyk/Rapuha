@@ -5,7 +5,7 @@ import VueResource from 'vue-resource';
 
 Vue.use(VueResource);
 Vue.config.productionTip = false;
-Vue.prototype.baseUrl = 'http://127.0.0.1:3000/';
+Vue.http.options.root = 'http://127.0.0.1:3000/';
 
 new Vue({
   router,

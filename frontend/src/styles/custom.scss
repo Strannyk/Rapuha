@@ -1,0 +1,58 @@
+.r-block {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 10px;
+}
+
+.r-block-separate {
+  overflow: hidden;
+  border: solid 1px;
+  border-radius: 4px;
+  padding: 10px;
+
+  h4 {
+    display: inline-block;
+    padding-bottom: 10px;
+  }
+}
+
+.r-button {
+  margin-top: 16px;
+}
+
+.form-button {
+  overflow: hidden;
+
+  button:not(:first-child) {
+    margin-left: 10px;
+  }
+}
+
+.modal {
+  display: block;
+  z-index: 10000;
+}
+
+.r-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.frozen-body {
+  height: 100%;
+  overflow: hidden;
+}
+
+.form-control {
+  &.is-invalid {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23ee5f5b' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23ee5f5b' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center right calc(0.375em + 0.375rem);
+    background-size: calc(0.75em + 0.75rem) calc(0.75em + 0.75rem);
+  }
+}
