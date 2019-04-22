@@ -1,4 +1,8 @@
 export default {
+  getToken() {
+    return localStorage.token || null;
+  },
+
   authAdmin(instance, login, password) {
     const credentials = {
       login: login,
@@ -9,6 +13,9 @@ export default {
   },
 
   addTag(instance, tag) {
-    return instance.$http.post('admin/tag', { tag: tag });
+    return instance.$http.post('admin/tag', {
+      tag: tag,
+      token: this.getToken()
+    });
   }
 }

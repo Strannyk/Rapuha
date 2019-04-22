@@ -16,16 +16,13 @@ const jwtController = (() => {
 
     verifyToken(token) {
       const cert = fs.readFileSync('./public.key');
-      let result;
 
       try {
-        result = jwt.verify(token, cert);
+        return jwt.verify(token, cert);
       }
       catch (e) {
-        result = e;
+        return null;
       }
-
-      return result;
     }
   };
 })();

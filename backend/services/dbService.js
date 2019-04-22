@@ -28,6 +28,11 @@ const dbService = (() => {
     tagExists(tag) {
       const query = 'SELECT EXISTS (SELECT 1 FROM tags WHERE tag_name = $1)';
       return getDb().one(query, tag);
+    },
+
+    createTag(tag) {
+      const query = 'INSERT INTO tags (tag_name) VALUES ($1)';
+      return getDb().none(query, tag);
     }
   };
 })();
