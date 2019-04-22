@@ -18,8 +18,9 @@ router.post('/auth', function (req, res) {
 });
 
 router.post('/tag', function (req, res) {
-  res.send('ok');
-  console.log(req.body);
+  restController.addTag(req.body.tag)
+    .then(result => res.send(result))
+    .catch(err => res.send(err));
 });
 
 module.exports = router;

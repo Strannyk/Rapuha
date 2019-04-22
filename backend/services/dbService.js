@@ -11,13 +11,23 @@ const dbService = (() => {
     };
   };
 
+  const getDb = () => {
+    const dbOptions = getDatabaseOptions();
+    return pgp('postgres://' +
+      dbOptions.user + ':' +
+      dbOptions.password + '@' +
+      dbOptions.host + dbOptions.databaseName);
+  };
+
   return {
-    getDb() {
-      const dbOptions = getDatabaseOptions();
-      return pgp('postgres://' +
-        dbOptions.user + ':' +
-        dbOptions.password + '@' +
-        dbOptions.host + dbOptions.databaseName);
+    getPasswordHash(login) {
+      const query = 'SELECT admin_password FROM admins WHERE admin_login = $1';
+      return getDb().one(query, login);
+    },
+
+    tagExists(tag) {
+      const query = 'SELECT EXISTS (SELECT 1 FROM tags WHERE tag_name = $1)';
+      return getDb().one(query, tag);
     }
   };
 })();
