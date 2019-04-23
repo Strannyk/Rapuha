@@ -11,8 +11,8 @@
             </button>
         </div>
         <add-tag-modal ref="modal"
-                       :disabled="false"
-                       :errorMessage="addTagErrorMessage"
+                       :disabled="sendingAddTagRequest"
+                       :errorMessage="addTagError"
                        @addTag="onAddTag"
                        @focus="addTagErrorMessage = null">
         </add-tag-modal>

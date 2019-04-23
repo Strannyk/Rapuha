@@ -8,7 +8,8 @@ export default {
 
   data() {
     return {
-      addTagErrorMessage: null
+      sendingAddTagRequest: false,
+      addTagError: null
     };
   },
   methods: {
@@ -16,12 +17,28 @@ export default {
       this.$refs.modal.open();
     },
 
-    onAddTag: function (tag) {
-      adminService.addTag(this, tag)
-        .then(res => console.log(res.body))
-        .catch(err => console.log(err));
-
+    closeAddTagModal: function () {
       this.$refs.modal.close();
+    },
+
+    onAddTag: function (tag) {
+      this.$data.sendingAddTagRequest = true;
+
+      adminService.addTag(this, tag)
+        .then(res => this.handleAddTagResponse(res.body),
+          () => this.handleAddTagError())
+        .catch(err => console.log(err));
+    },
+
+    handleAddTagResponse: function (response) {
+      this.$data.sendingAddTagRequest = false;
+      console.log(response);
+      this.closeAddTagModal();
+    },
+
+    handleAddTagError: function () {
+      this.$data.sendingAddTagRequest = false;
+      alert('Ошибка сети.');
     },
 
     onClose: function () {
