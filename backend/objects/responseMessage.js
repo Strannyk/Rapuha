@@ -7,6 +7,10 @@ class ResponseMessage {
     this.token = token;
   }
 
+  createTokenExpiredMessage() {
+    this.tokenExpired = true;
+  }
+
   createSuccessMessage() {
     this.ok = true;
   }

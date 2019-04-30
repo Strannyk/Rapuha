@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('./jwtController');
 const dbService = require('../services/dbService');
-const ResponseMessage = require('../objects/response-message');
+const ResponseMessage = require('../objects/responseMessage');
 
 const adminAuthController = (() => {
   const authService = {
