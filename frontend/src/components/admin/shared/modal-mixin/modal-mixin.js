@@ -2,7 +2,8 @@ export default {
   data() {
     return {
       active: false,
-      frozenBodyClassName: 'frozen-body'
+      frozenBodyClassName: 'frozen-body',
+      isSingleModal: true
     };
   },
 
@@ -12,8 +13,9 @@ export default {
   },
 
   methods: {
-    open: function () {
-      this.active = true;
+    open: function (single = true) {
+      this.$data.active = true;
+      this.$data.isSingleModal = single;
       document.body.classList.add(this.$data.frozenBodyClassName);
     },
 

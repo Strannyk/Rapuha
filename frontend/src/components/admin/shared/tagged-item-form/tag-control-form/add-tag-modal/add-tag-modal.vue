@@ -37,6 +37,7 @@
                                  aria-valuemax="100"
                                  style="width: 100%"></div>
                         </div>
+                        <p class="text-success" v-if="successMessage">{{successMessage}}</p>
                         <p class="text-danger" v-if="errorMessage">{{errorMessage}}</p>
                     </div>
                     <div class="modal-footer">

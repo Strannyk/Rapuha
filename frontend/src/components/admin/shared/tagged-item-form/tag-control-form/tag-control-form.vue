@@ -12,9 +12,11 @@
         </div>
         <add-tag-modal ref="modal"
                        :disabled="sendingAddTagRequest"
+                       :successMessage="addTagSuccess"
                        :errorMessage="addTagError"
                        @addTag="onAddTag"
-                       @focus="addTagErrorMessage = null">
+                       @close="clearAddTagResults"
+                       @focus="clearAddTagResults">
         </add-tag-modal>
     </div>
 </template>

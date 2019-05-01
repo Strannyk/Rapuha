@@ -27,12 +27,16 @@ export default {
       localStorage.setItem('token', token);
     },
 
-    openAuthModal: function () {
-      this.$refs.modal.open();
+    openAuthModal: function (singleMode = true) {
+      this.$refs.modal.open(singleMode);
     },
 
     closeAuthModal: function () {
       this.$refs.modal.close();
+    },
+
+    clearAuthModalValues: function () {
+      this.$refs.modal.clearCredentials();
     },
 
     sendCredentials: function (data) {
@@ -52,6 +56,8 @@ export default {
         this.writeToken(token);
         this.closeAuthModal();
         this.routeAdminPage();
+
+        this.clearAuthModalValues();
       }
       else if (error) {
         this.$data.authError = error;
@@ -64,6 +70,11 @@ export default {
       this.$data.sendingAuthRequest = false;
       alert('Ошибка сети.');
       this.goToHomePage();
+    },
+
+    selectPath: function () {
+      // add condition
+      // this.goToHomePage();
     },
 
     goToHomePage: function () {
@@ -83,5 +94,6 @@ export default {
 
   mounted() {
     this.checkToken();
+    this.eventHub.$on('tokenExpired', () => this.openAuthModal(false));
   }
 }

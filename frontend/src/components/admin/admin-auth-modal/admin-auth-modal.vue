@@ -68,7 +68,7 @@
                 </div>
             </div>
         </div>
-        <div class="r-overlay"></div>
+        <div v-if="isSingleModal" class="r-overlay"></div>
     </div>
 </template>
 

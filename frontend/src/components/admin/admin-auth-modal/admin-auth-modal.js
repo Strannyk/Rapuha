@@ -15,7 +15,10 @@ export default {
   methods: {
     close: function (selfClosing) {
       this.active = false;
-      document.body.classList.remove(this.$data.frozenBodyClassName);
+
+      if (this.$data.isSingleModal) {
+        document.body.classList.remove(this.$data.frozenBodyClassName);
+      }
 
       if (selfClosing) {
         this.$emit('close');
@@ -25,6 +28,11 @@ export default {
     submit: function () {
       this.$emit('submit', this.$data.credentials);
       this.$refs.submitButton.blur();
+    },
+
+    clearCredentials: function () {
+      this.$data.credentials.login = null;
+      this.$data.credentials.password = null;
     }
   }
 }

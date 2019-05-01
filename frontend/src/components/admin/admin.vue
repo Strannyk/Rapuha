@@ -7,7 +7,7 @@
                           :errorMessage="authError"
                           @submit="sendCredentials"
                           @focus="authError = null"
-                          @close="goToHomePage"></admin-auth-modal>
+                          @close="selectPath"></admin-auth-modal>
     </div>
 </template>
 

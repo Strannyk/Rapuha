@@ -9,6 +9,7 @@ export default {
   data() {
     return {
       sendingAddTagRequest: false,
+      addTagSuccess: null,
       addTagError: null
     };
   },
@@ -17,8 +18,8 @@ export default {
       this.$refs.modal.open();
     },
 
-    closeAddTagModal: function () {
-      this.$refs.modal.close();
+    clearAddTagModalValue: function () {
+      this.$refs.modal.clearNewTagValue();
     },
 
     onAddTag: function (tag) {
@@ -32,13 +33,29 @@ export default {
 
     handleAddTagResponse: function (response) {
       this.$data.sendingAddTagRequest = false;
+
+      if (response.ok) {
+        this.$data.addTagSuccess = 'Тег успешно добавлен';
+        this.clearAddTagModalValue();
+      }
+      else if (response.error) {
+        this.$data.addTagError = response.error;
+      }
+      else if (response.tokenExpired) {
+        localStorage.removeItem('token');
+        this.eventHub.$emit('tokenExpired');
+      }
       console.log(response);
-      this.closeAddTagModal();
     },
 
     handleAddTagError: function () {
       this.$data.sendingAddTagRequest = false;
       alert('Ошибка сети.');
+    },
+
+    clearAddTagResults: function () {
+      this.$data.addTagSuccess = null;
+      this.$data.addTagError = null;
     },
 
     onClose: function () {
