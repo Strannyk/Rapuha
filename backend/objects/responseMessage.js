@@ -1,4 +1,12 @@
 class ResponseMessage {
+  createSuccessMessage() {
+    this.ok = true;
+  }
+
+  createDataMessage(data) {
+    this.data = data;
+  }
+
   createErrorMessage(msg) {
     this.error = msg;
   }
@@ -9,10 +17,6 @@ class ResponseMessage {
 
   createTokenExpiredMessage() {
     this.tokenExpired = true;
-  }
-
-  createSuccessMessage() {
-    this.ok = true;
   }
 }
 

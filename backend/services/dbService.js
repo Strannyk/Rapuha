@@ -33,6 +33,11 @@ const dbService = (() => {
     createTag(tag) {
       const query = 'INSERT INTO tags (tag_name) VALUES ($1)';
       return getDb().none(query, tag);
+    },
+
+    getTags() {
+      const query = 'SELECT * FROM tags LIMIT 100';
+      return getDb().any(query);
     }
   };
 })();

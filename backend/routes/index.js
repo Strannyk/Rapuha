@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const restController = require('../controllers/restController');
 
-router.get('/', function (req, res, next) {
-  res.send('respond with a index');
+router.get('/tags', function (req, res) {
+  restController.getTags()
+    .then(result => res.send(result))
+    .catch(err => res.send(err));
 });
 
 module.exports = router;

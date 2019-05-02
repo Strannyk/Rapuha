@@ -4,6 +4,7 @@ const ResponseMessage = require('../objects/responseMessage');
 
 const restController = (() => {
   const tokenIsValid = token => jwt.verifyToken(token);
+  const defaultErrorMessage = 'Произошла ошибка';
 
   return {
     addTag(token, tag) {
@@ -35,12 +36,27 @@ const restController = (() => {
                   response.createSuccessMessage();
                   resolve(response);
                 }).catch(() => {
-                response.createErrorMessage('Произошла SQL ошибка');
+                response.createErrorMessage(defaultErrorMessage);
                 reject(response);
               });
             }
           }).catch(() => {
-          response.createErrorMessage('Произошла ошибка');
+          response.createErrorMessage(defaultErrorMessage);
+          reject(response);
+        });
+      });
+    },
+
+    getTags() {
+      const response = new ResponseMessage();
+
+      return new Promise((resolve, reject) => {
+        dbService.getTags()
+          .then(data => {
+            response.createDataMessage(data);
+            resolve(response);
+          }).catch(() => {
+          response.createErrorMessage(defaultErrorMessage);
           reject(response);
         });
       });
