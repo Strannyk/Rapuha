@@ -13,6 +13,7 @@ export default {
       addTagError: null
     };
   },
+
   methods: {
     openAddTagModal: function () {
       this.$refs.modal.open();
@@ -25,9 +26,9 @@ export default {
     onAddTag: function (tag) {
       this.$data.sendingAddTagRequest = true;
 
-      adminService.addTag(this, tag)
-        .then(res => this.handleAddTagResponse(res.body),
-          () => this.handleAddTagError())
+      const addTag = adminService.addTag.bind(this, tag);
+      addTag().then(res => this.handleAddTagResponse(res.body),
+        () => this.handleAddTagError())
         .catch(err => console.log(err));
     },
 

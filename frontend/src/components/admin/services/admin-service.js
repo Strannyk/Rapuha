@@ -1,21 +1,23 @@
-export default {
+const adminService = {
   getToken() {
     return localStorage.token || null;
   },
 
-  authAdmin(instance, login, password) {
+  authAdmin(login, password) {
     const credentials = {
       login: login,
       password: password
     };
 
-    return instance.$http.post('admin/auth', credentials);
+    return this.$http.post('admin/auth', credentials);
   },
 
-  addTag(instance, tag) {
-    return instance.$http.post('admin/tag', {
+  addTag(tag) {
+    return this.$http.post('admin/tag', {
       tag: tag,
-      token: this.getToken()
+      token: adminService.getToken()
     });
   }
-}
+};
+
+module.exports = adminService;

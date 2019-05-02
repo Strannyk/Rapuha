@@ -42,9 +42,9 @@ export default {
     sendCredentials: function (data) {
       this.$data.sendingAuthRequest = true;
 
-      adminService.authAdmin(this, data.login, data.password)
-        .then(res => this.handleAuthResponse(res.body),
-          () => this.handleAuthError())
+      const authAdmin = adminService.authAdmin.bind(this, data.login, data.password);
+      authAdmin().then(res => this.handleAuthResponse(res.body),
+        () => this.handleAuthError())
         .catch(err => console.log(err));
     },
 

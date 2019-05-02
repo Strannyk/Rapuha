@@ -1,5 +1,6 @@
 import { MultiSelect } from 'vue-search-select';
 import TagControlForm from './tag-control-form/tag-control-form.vue';
+import commonService from '@/common/service/common-service';
 
 export default {
   components: {
@@ -40,6 +41,12 @@ export default {
   },
 
   methods: {
+    getAllTags: function () {
+      const getTags = commonService.getTags.bind(this);
+      getTags().then(res => console.log(res.body))
+        .catch(err => console.log(err));
+    },
+
     onSelectTags: function (tags) {
       this.$data.data.tags = tags;
     },
@@ -51,5 +58,9 @@ export default {
     submit: function () {
       this.$emit('submit', this.$data.data);
     }
+  },
+
+  mounted() {
+    this.getAllTags();
   }
 }
