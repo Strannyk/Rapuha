@@ -38,6 +38,7 @@ export default {
       if (response.ok) {
         this.$data.addTagSuccess = 'Тег успешно добавлен';
         this.clearAddTagModalValue();
+        this.$emit('tagAdded');
       }
       else if (response.error) {
         this.$data.addTagError = response.error;
@@ -46,7 +47,6 @@ export default {
         localStorage.removeItem('token');
         this.eventHub.$emit('tokenExpired');
       }
-      console.log(response);
     },
 
     handleAddTagError: function () {

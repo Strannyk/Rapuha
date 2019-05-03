@@ -39,7 +39,10 @@
         <div v-if="tagsEditMode" class="r-block-separate">
             <h4>Управление тегами</h4>
 
-            <tag-control-form @close="closeTagManagePanel"></tag-control-form>
+            <tag-control-form @tagAdded="getAllTags"
+                              @close="closeTagManagePanel"></tag-control-form>
+
+            <div v-if="allTags.length === 0">Нет тегов</div>
 
             <div class="tag-items" :class="allTags.length >= 10 ? 'full-form' : ''">
                 <div v-for="(tag, index) in allTags" class="form-group">
@@ -64,9 +67,12 @@
                 </div>
             </div>
 
-            <tag-control-form v-if="allTags.length >= 10"
-                              @close="closeTagManagePanel">
-            </tag-control-form>
+            <div class="bottom-form-group">
+                <tag-control-form v-if="allTags.length >= 10"
+                                  @tagAdded="getAllTags"
+                                  @close="closeTagManagePanel">
+                </tag-control-form>
+            </div>
         </div>
 
         <div class="form-group form-button">

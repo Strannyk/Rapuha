@@ -1,6 +1,6 @@
 import { MultiSelect } from 'vue-search-select';
 import TagControlForm from './tag-control-form/tag-control-form.vue';
-import commonService from '@/common/service/common-service';
+import commonService from '@/common/services/common-service';
 
 export default {
   components: {
