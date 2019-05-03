@@ -16,20 +16,7 @@ export default {
         tags: []
       },
 
-      allTags: [
-        { value: 1, text: 'Tag 1', changed: false },
-        { value: 2, text: 'Tag 2', changed: false },
-        { value: 3, text: 'Tag 3', changed: false },
-        { value: 4, text: 'Tag 4', changed: false },
-        { value: 5, text: 'Tag 5', changed: false },
-        { value: 6, text: 'Tag 6', changed: false },
-        { value: 7, text: 'Tag 7', changed: false },
-        { value: 8, text: 'Tag 8', changed: false },
-        { value: 9, text: 'Tag 9', changed: false },
-        { value: 10, text: 'Tag 10', changed: false },
-        { value: 11, text: 'Tag 11', changed: false }
-      ],
-
+      allTags: [],
       tagsEditMode: false
     };
   },
@@ -43,8 +30,12 @@ export default {
   methods: {
     getAllTags: function () {
       const getTags = commonService.getTags.bind(this);
-      getTags().then(res => console.log(res.body))
+      getTags().then(res => this.createTagItems(res.body.data))
         .catch(err => console.log(err));
+    },
+
+    createTagItems: function (tags) {
+      this.$data.allTags = tags.map(tag => new TagItem(tag));
     },
 
     onSelectTags: function (tags) {
@@ -62,5 +53,13 @@ export default {
 
   mounted() {
     this.getAllTags();
+  }
+}
+
+class TagItem {
+  constructor(value) {
+    this.value = value;
+    this.text = value;
+    this.changed = false;
   }
 }
