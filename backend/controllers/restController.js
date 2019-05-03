@@ -11,14 +11,14 @@ const restController = (() => {
       const response = new ResponseMessage();
 
       return new Promise((resolve, reject) => {
-        if (!tag || !tag.trim()) {
-          response.createErrorMessage('Пустой тег');
+        if (!tokenIsValid(token)) {
+          response.createTokenExpiredMessage();
           reject(response);
           return;
         }
 
-        if (!tokenIsValid(token)) {
-          response.createTokenExpiredMessage();
+        if (!tag || !tag.trim()) {
+          response.createErrorMessage('Пустой тег');
           reject(response);
           return;
         }
@@ -67,6 +67,27 @@ const restController = (() => {
           response.createErrorMessage(defaultErrorMessage);
           reject(response);
         });
+      });
+    },
+
+    updateTag(token, tag, newTag) {
+      const response = new ResponseMessage();
+
+      return new Promise((resolve, reject) => {
+        if (!tokenIsValid(token)) {
+          response.createTokenExpiredMessage();
+          reject(response);
+          return;
+        }
+
+        dbService.updateTag(tag, newTag)
+          .then(res => {
+            response.createDataMessage(res);
+            resolve(response);
+          }).catch(() => {
+          response.createErrorMessage(defaultErrorMessage);
+          reject(response);
+        })
       });
     }
   };

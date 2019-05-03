@@ -4,13 +4,19 @@ const adminAuthController = require('../controllers/adminAuthController');
 const restController = require('../controllers/restController');
 
 router.post('/auth', function (req, res) {
-  adminAuthController.logIn(req.body['login'], req.body['password'])
+  adminAuthController.logIn(req.body.login, req.body.password)
     .then(result => res.send(result))
     .catch(err => res.send(err));
 });
 
 router.post('/tag', function (req, res) {
   restController.addTag(req.body.token, req.body.tag)
+    .then(result => res.send(result))
+    .catch(err => res.send(err));
+});
+
+router.put('/tag', function (req, res) {
+  restController.updateTag(req.body.token, req.body.tag, req.body.newTag)
     .then(result => res.send(result))
     .catch(err => res.send(err));
 });

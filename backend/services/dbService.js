@@ -38,6 +38,11 @@ const dbService = (() => {
     getTags() {
       const query = 'SELECT * FROM tags LIMIT 100';
       return getDb().any(query);
+    },
+
+    updateTag(tag, newTag) {
+      const query = 'UPDATE tags SET tag_name = $2 WHERE tag_name = $1';
+      return getDb().one(query, tag, newTag);
     }
   };
 })();
