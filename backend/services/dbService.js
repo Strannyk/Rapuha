@@ -42,7 +42,7 @@ const dbService = (() => {
 
     updateTag(tag, newTag) {
       const query = 'UPDATE tags SET tag_name = $2 WHERE tag_name = $1';
-      return getDb().one(query, tag, newTag);
+      return getDb().none(query, [tag, newTag]);
     }
   };
 })();

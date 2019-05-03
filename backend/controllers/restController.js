@@ -81,8 +81,8 @@ const restController = (() => {
         }
 
         dbService.updateTag(tag, newTag)
-          .then(res => {
-            response.createDataMessage(res);
+          .then(() => {
+            response.createSuccessMessage();
             resolve(response);
           }).catch(() => {
           response.createErrorMessage(defaultErrorMessage);
