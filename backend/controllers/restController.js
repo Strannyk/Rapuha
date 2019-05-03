@@ -58,6 +58,7 @@ const restController = (() => {
             for (const row of data) {
               const key = Object.keys(row)[0];
               result.push(row[key]);
+              result.sort();
             }
 
             response.createDataMessage(result);
