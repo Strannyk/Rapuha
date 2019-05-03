@@ -47,18 +47,18 @@
             <div class="tag-items" :class="allTags.length >= 10 ? 'full-form' : ''">
                 <div v-for="(tag, index) in allTags" class="form-group">
                     <input type="text"
-                           :readonly="!tag.changed"
-                           v-model="tag.text"
+                           :readonly="!tag.changing"
+                           v-model="tag.value"
                            class="form-control tag-edit-input"
                            autocomplete="off">
                     <button type="button"
                             class="btn btn-outline-success tag-edit-button"
-                            v-on:click="tag.changed = false"
-                            :disabled="!tag.changed">Сохранить
+                            v-on:click="updateTag(index)"
+                            :disabled="!tag.changing">Сохранить
                     </button>
                     <button type="button"
                             class="btn btn-outline-info tag-edit-button"
-                            v-on:click="tag.changed = true">Переименовать
+                            v-on:click="tag.changing = true">Переименовать
                     </button>
                     <button type="button"
                             class="btn btn-outline-danger tag-edit-button"

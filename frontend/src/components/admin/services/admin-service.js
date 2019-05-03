@@ -17,6 +17,14 @@ const adminService = {
       tag: tag,
       token: adminService.getToken()
     });
+  },
+
+  updateTag(tag, newTag) {
+    return this.$http.put('admin/tag', {
+      tag: tag,
+      newTag: newTag,
+      token: adminService.getToken()
+    });
   }
 };
 
