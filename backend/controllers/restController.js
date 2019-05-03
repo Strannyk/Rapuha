@@ -53,7 +53,14 @@ const restController = (() => {
       return new Promise((resolve, reject) => {
         dbService.getTags()
           .then(data => {
-            response.createDataMessage(data);
+            const result = [];
+
+            for (const row of data) {
+              const key = Object.keys(row)[0];
+              result.push(row[key]);
+            }
+
+            response.createDataMessage(result);
             resolve(response);
           }).catch(() => {
           response.createErrorMessage(defaultErrorMessage);
