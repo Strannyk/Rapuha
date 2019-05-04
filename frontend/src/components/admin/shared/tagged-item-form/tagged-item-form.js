@@ -50,13 +50,21 @@ export default {
 
       if (tag.value !== tag.text) {
         const updateTag = adminService.updateTag.bind(this, tag.text, tag.value);
-        updateTag().then(res => this.handleUpdateTagSuccess(res.body, tag.text),
+        updateTag().then(res => this.handleTagActionSuccess(res.body, tag.text),
           () => this.handleUpdateTagError(tagIndex))
           .catch(err => console.log(err));
       }
     },
 
-    handleUpdateTagSuccess: function (response, tagText) {
+    deleteTag: function (tagIndex) {
+      const tag = this.$data.allTags[tagIndex];
+      const deleteTag = adminService.deleteTag.bind(this, tag.text);
+      deleteTag().then(res => this.handleTagActionSuccess(res.body, tag.text),
+        () => this.handleDeleteTagError())
+        .catch(err => console.log(err));
+    },
+
+    handleTagActionSuccess: function (response, tagText) {
       if (response.tokenExpired) {
         localStorage.removeItem('token');
         this.eventHub.$emit('tokenExpired');
@@ -72,6 +80,10 @@ export default {
     handleUpdateTagError: function (tagIndex) {
       const tag = this.$data.allTags[tagIndex];
       tag.value = tag.text;
+      alert('Ошибка сети');
+    },
+
+    handleDeleteTagError: function () {
       alert('Ошибка сети');
     },
 

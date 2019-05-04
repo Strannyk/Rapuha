@@ -62,7 +62,7 @@
                     </button>
                     <button type="button"
                             class="btn btn-outline-danger tag-edit-button"
-                            v-on:click="allTags.splice(index, 1)">Удалить
+                            v-on:click="deleteTag(index)">Удалить
                     </button>
                 </div>
             </div>

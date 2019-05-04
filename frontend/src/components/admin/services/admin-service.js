@@ -23,6 +23,12 @@ const adminService = {
       tag: newTagValue,
       token: adminService.getToken()
     });
+  },
+
+  deleteTag(tag) {
+    return this.$http.delete('admin/tag/' + tag, {
+      body: { token: adminService.getToken() }
+    });
   }
 };
 
