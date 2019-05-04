@@ -50,13 +50,13 @@ export default {
 
       if (tag.value !== tag.text) {
         const updateTag = adminService.updateTag.bind(this, tag.text, tag.value);
-        updateTag().then(res => this.handleUpdateTagSuccess(res.body),
+        updateTag().then(res => this.handleUpdateTagSuccess(res.body, tag.text),
           () => this.handleUpdateTagError(tagIndex))
           .catch(err => console.log(err));
       }
     },
 
-    handleUpdateTagSuccess: function (response) {
+    handleUpdateTagSuccess: function (response, tagText) {
       if (response.tokenExpired) {
         localStorage.removeItem('token');
         this.eventHub.$emit('tokenExpired');
@@ -64,16 +64,19 @@ export default {
 
       this.getAllTags();
 
-      this.$data.data.tags = this.$data.data.tags.map(tag => {
-        tag.text = tag.value;
-        return tag;
-      });
+      if (response.ok) {
+        this.updateSelectedTags(tagText)
+      }
     },
 
     handleUpdateTagError: function (tagIndex) {
       const tag = this.$data.allTags[tagIndex];
       tag.value = tag.text;
       alert('Ошибка сети');
+    },
+
+    updateSelectedTags: function (itemToDelete) {
+      this.$data.data.tags = this.$data.data.tags.filter(tag => tag.text !== itemToDelete);
     },
 
     closeTagManagePanel: function () {
