@@ -94,6 +94,6 @@ export default {
 
   mounted() {
     this.checkToken();
-    this.eventHub.$on('tokenExpired', () => this.openAuthModal(false));
+    this.eventHub.$on('tokenExpired', (singleMode = true) => this.openAuthModal(singleMode));
   }
 }

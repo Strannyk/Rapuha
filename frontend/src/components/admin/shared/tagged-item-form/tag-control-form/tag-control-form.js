@@ -45,7 +45,7 @@ export default {
       }
       else if (response.tokenExpired) {
         localStorage.removeItem('token');
-        this.eventHub.$emit('tokenExpired');
+        this.eventHub.$emit('tokenExpired', false);
       }
     },
 
