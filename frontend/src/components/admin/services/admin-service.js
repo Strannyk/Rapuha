@@ -13,16 +13,14 @@ const adminService = {
   },
 
   addTag(tag) {
-    return this.$http.post('admin/tag', {
-      tag: tag,
+    return this.$http.put('admin/tag/' + tag, {
       token: adminService.getToken()
     });
   },
 
-  updateTag(tag, newTag) {
-    return this.$http.put('admin/tag', {
-      tag: tag,
-      newTag: newTag,
+  updateTag(tag, newTagValue) {
+    return this.$http.post('admin/tag/' + tag, {
+      tag: newTagValue,
       token: adminService.getToken()
     });
   }

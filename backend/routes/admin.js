@@ -9,14 +9,14 @@ router.post('/auth', function (req, res) {
     .catch(err => res.send(err));
 });
 
-router.post('/tag', function (req, res) {
-  restController.addTag(req.body.token, req.body.tag)
+router.put('/tag/:tag', function (req, res) {
+  restController.addTag(req.body.token, req.params.tag)
     .then(result => res.send(result))
     .catch(err => res.send(err));
 });
 
-router.put('/tag', function (req, res) {
-  restController.updateTag(req.body.token, req.body.tag, req.body.newTag)
+router.post('/tag/:tag', function (req, res) {
+  restController.updateTag(req.body.token, req.params.tag, req.body.tag)
     .then(result => res.send(result))
     .catch(err => res.send(err));
 });
