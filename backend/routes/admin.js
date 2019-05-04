@@ -21,4 +21,10 @@ router.post('/tag/:tag', function (req, res) {
     .catch(err => res.send(err));
 });
 
+router.delete('/tag/:tag', function (req, res) {
+  restController.deleteTag(req.body.token, req.params.tag)
+    .then(result => res.send(result))
+    .catch(err => res.send(err));
+});
+
 module.exports = router;

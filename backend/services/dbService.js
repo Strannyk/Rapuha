@@ -43,6 +43,11 @@ const dbService = (() => {
     updateTag(tag, newTag) {
       const query = 'UPDATE tags SET tag_name = $2 WHERE tag_name = $1';
       return getDb().none(query, [tag, newTag]);
+    },
+
+    deleteTag(tag) {
+      const query = 'DELETE FROM tags WHERE tag_name = $1';
+      return getDb().none(query, tag);
     }
   };
 })();

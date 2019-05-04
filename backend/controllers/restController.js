@@ -87,7 +87,28 @@ const restController = (() => {
           }).catch(() => {
           response.createErrorMessage(defaultErrorMessage);
           reject(response);
-        })
+        });
+      });
+    },
+
+    deleteTag(token, tag) {
+      const response = new ResponseMessage();
+
+      return new Promise((resolve, reject) => {
+        if (!tokenIsValid(token)) {
+          response.createTokenExpiredMessage();
+          reject(response);
+          return;
+        }
+
+        dbService.deleteTag(tag)
+          .then(() => {
+            response.createSuccessMessage();
+            resolve(response);
+          }).catch(() => {
+          response.createErrorMessage(defaultErrorMessage);
+          reject(response);
+        });
       });
     }
   };
