@@ -57,7 +57,7 @@ const dbService = (() => {
 
     addPost(data) {
       const postTagsQuery = 'INSERT INTO posts_tags (title, tag_name) VALUES ($1, $2)';
-      const postQuery = 'INSERT INTO posts (title, body, type) VALUES ($1, $2, $3)';
+      const postQuery = 'INSERT INTO posts (title, body, type, creation_date) VALUES ($1, $2, $3, $4)';
 
       return getDb().tx(t => {
         const queries = [];
@@ -67,7 +67,7 @@ const dbService = (() => {
           queries.push(query);
         }
 
-        queries.push(postQuery, [data.title, data.body, data.type]);
+        queries.push(postQuery, [data.title, data.body, data.type, data.date]);
 
         return t.batch(queries);
       });
