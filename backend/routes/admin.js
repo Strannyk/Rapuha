@@ -10,7 +10,7 @@ router.post('/auth', function (req, res) {
 });
 
 router.put('/tag/:tag', function (req, res) {
-  restController.addTag(req.body.token, req.params.tag)
+  restController.createTag(req.body.token, req.params.tag)
     .then(result => res.send(result))
     .catch(err => res.send(err));
 });

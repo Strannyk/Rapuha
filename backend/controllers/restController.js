@@ -7,7 +7,7 @@ const restController = (() => {
   const defaultErrorMessage = 'Произошла ошибка';
 
   return {
-    addTag(token, tag) {
+    createTag(token, tag) {
       const response = new ResponseMessage();
 
       return new Promise((resolve, reject) => {
@@ -31,7 +31,7 @@ const restController = (() => {
               resolve(response);
             }
             else {
-              dbService.createTag(tag)
+              dbService.addTag(tag)
                 .then(() => {
                   response.createSuccessMessage();
                   resolve(response);

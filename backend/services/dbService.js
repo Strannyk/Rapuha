@@ -30,7 +30,7 @@ const dbService = (() => {
       return getDb().one(query, tag);
     },
 
-    createTag(tag) {
+    addTag(tag) {
       const query = 'INSERT INTO tags (tag_name) VALUES ($1)';
       return getDb().none(query, tag);
     },
@@ -48,6 +48,29 @@ const dbService = (() => {
     deleteTag(tag) {
       const query = 'DELETE FROM tags WHERE tag_name = $1';
       return getDb().none(query, tag);
+    },
+
+    postExists(title) {
+      const query = 'SELECT EXISTS (SELECT 1 FROM posts WHERE title = $1)';
+      return getDb().one(query, title);
+    },
+
+    addPost(data) {
+      const postTagsQuery = 'INSERT INTO posts_tags (title, tag_name) VALUES ($1, $2)';
+      const postQuery = 'INSERT INTO posts (title, body, type) VALUES ($1, $2, $3)';
+
+      return getDb().tx(t => {
+        const queries = [];
+
+        for (const tag of data.tags) {
+          const query = t.none(postTagsQuery, [data.title, tag]);
+          queries.push(query);
+        }
+
+        queries.push(postQuery, [data.title, data.body, data.type]);
+
+        return t.batch(queries);
+      });
     }
   };
 })();
