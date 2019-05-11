@@ -35,15 +35,13 @@ const restController = (() => {
                 .then(() => {
                   response.createSuccessMessage();
                   resolve(response);
-                }).catch(() => {
-                response.createErrorMessage(defaultErrorMessage);
-                reject(response);
-              });
+                });
             }
-          }).catch(() => {
-          response.createErrorMessage(defaultErrorMessage);
-          reject(response);
-        });
+          })
+          .catch(() => {
+            response.createErrorMessage(defaultErrorMessage);
+            reject(response);
+          });
       });
     },
 
@@ -63,10 +61,11 @@ const restController = (() => {
 
             response.createDataMessage(result);
             resolve(response);
-          }).catch(() => {
-          response.createErrorMessage(defaultErrorMessage);
-          reject(response);
-        });
+          })
+          .catch(() => {
+            response.createErrorMessage(defaultErrorMessage);
+            reject(response);
+          });
       });
     },
 
@@ -84,10 +83,11 @@ const restController = (() => {
           .then(() => {
             response.createSuccessMessage();
             resolve(response);
-          }).catch(() => {
-          response.createErrorMessage(defaultErrorMessage);
-          reject(response);
-        });
+          })
+          .catch(() => {
+            response.createErrorMessage(defaultErrorMessage);
+            reject(response);
+          });
       });
     },
 
@@ -105,10 +105,44 @@ const restController = (() => {
           .then(() => {
             response.createSuccessMessage();
             resolve(response);
-          }).catch(() => {
-          response.createErrorMessage(defaultErrorMessage);
+          })
+          .catch(() => {
+            response.createErrorMessage(defaultErrorMessage);
+            reject(response);
+          });
+      });
+    },
+
+    createPost(token, title, data) {
+      const response = new ResponseMessage();
+
+      return new Promise((resolve, reject) => {
+        if (!tokenIsValid(token)) {
+          response.createTokenExpiredMessage();
           reject(response);
-        });
+          return;
+        }
+
+        dbService.postExists(title)
+          .then(res => {
+            if (res.exists) {
+              const message = 'Пост с названием "' + title + '" уже существует';
+              response.createErrorMessage(message);
+              resolve(response);
+            }
+            else {
+              dbService.addPost(title, data)
+                .then(() => {
+                  response.createSuccessMessage();
+                  resolve(response);
+                });
+            }
+          })
+          .catch(err => {
+            console.log(err);
+            response.createErrorMessage(defaultErrorMessage);
+            reject(response);
+          });
       });
     }
   };

@@ -95,6 +95,18 @@ export default {
       this.$data.tagsEditMode = false;
     },
 
+    getData: function () {
+      const formData = this.$data.data;
+      const data = {};
+
+      data.title = formData.title;
+      data.data = {};
+      data.data.body = formData.body;
+      data.data.tags = formData.tags.map(tag => tag.value);
+
+      return data;
+    },
+
     submit: function () {
       this.$emit('submit', this.$data.data);
     }

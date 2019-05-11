@@ -29,6 +29,10 @@ const adminService = {
     return this.$http.delete('admin/tag/' + tag, {
       body: { token: adminService.getToken() }
     });
+  },
+
+  createPost(data) {
+
   }
 };
 

@@ -1,7 +1,9 @@
 <template>
-    <tagged-item-form :newItem="true"
+    <tagged-item-form ref="itemForm"
+                      :newItem="true"
                       :titleWording="'Новое размышление'"
-                      :createButtonWording="'размышление'">
+                      :createButtonWording="'размышление'"
+                      @submit="save">
     </tagged-item-form>
 </template>
 
