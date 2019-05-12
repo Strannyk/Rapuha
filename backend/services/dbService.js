@@ -61,13 +61,14 @@ const dbService = (() => {
 
       return getDb().tx(t => {
         const queries = [];
+        const firstQuery = t.none(postQuery, [title, data.body, data.type, data.date]);
+
+        queries.push(firstQuery);
 
         for (const tag of data.tags) {
           const query = t.none(postTagsQuery, [title, tag]);
           queries.push(query);
         }
-
-        queries.push(postQuery, [title, data.body, data.type, data.date]);
 
         return t.batch(queries);
       });

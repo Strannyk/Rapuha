@@ -35,6 +35,10 @@ const restController = (() => {
                 .then(() => {
                   response.createSuccessMessage();
                   resolve(response);
+                })
+                .catch(() => {
+                  response.createErrorMessage(defaultErrorMessage);
+                  reject(response);
                 });
             }
           })
@@ -123,6 +127,13 @@ const restController = (() => {
           return;
         }
 
+        if (!Array.isArray(data.tags) || !data.tags.length) {
+          response.createErrorMessage(defaultErrorMessage);
+          reject(response);
+          return;
+        }
+
+        title = title.trim();
         dbService.postExists(title)
           .then(res => {
             if (res.exists) {
@@ -135,6 +146,10 @@ const restController = (() => {
                 .then(() => {
                   response.createSuccessMessage();
                   resolve(response);
+                })
+                .catch(() => {
+                  response.createErrorMessage(defaultErrorMessage);
+                  reject(response);
                 });
             }
           })
