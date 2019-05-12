@@ -31,8 +31,11 @@ const adminService = {
     });
   },
 
-  createPost(data) {
-
+  createPost(title, data) {
+    return this.$http.put('admin/post/' + title, {
+      data: data,
+      token: adminService.getToken()
+    });
   }
 };
 
