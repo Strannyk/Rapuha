@@ -109,6 +109,12 @@ export default {
 
     submit: function () {
       this.$emit('submit', this.$data.data);
+    },
+
+    clearData: function () {
+      this.$data.title = null;
+      this.$data.body = null;
+      this.$data.tags = [];
     }
   },
 

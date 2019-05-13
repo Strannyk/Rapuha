@@ -1,9 +1,19 @@
 import TaggedItemForm from '../shared/tagged-item-form/tagged-item-form.vue';
+import ItemCreationResultModal from '../shared/item-creation-result-modal/item-creation-result-modal.vue';
 import adminService from '../services/admin-service';
 
 export default {
   components: {
-    TaggedItemForm
+    TaggedItemForm,
+    ItemCreationResultModal
+  },
+
+  data() {
+    return {
+      createPostSuccess: null,
+      createPostError: null,
+      createPostMessage: null
+    };
   },
 
   methods: {
@@ -23,6 +33,11 @@ export default {
 
     handleSaveSuccess: function (response) {
       console.log(response);
+
+      if (response.tokenExpired) {
+        localStorage.removeItem('token');
+        this.eventHub.$emit('tokenExpired');
+      }
     },
 
     handleSaveError: function () {
@@ -38,6 +53,10 @@ export default {
       month = month.length === 1 ? 0 + month : month;
 
       return year + '-' + month + '-' + date;
+    },
+
+    clearFormData: function () {
+      this.$refs.itemForm.clearData();
     }
   }
 }
