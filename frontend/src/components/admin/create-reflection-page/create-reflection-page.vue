@@ -7,7 +7,10 @@
                           @submit="save">
         </tagged-item-form>
         <item-creation-result-modal ref="modal"
-                                    @close="clearFormData">
+                                    :postType="postType"
+                                    :successResult="createPostSuccess"
+                                    :message="createPostMessage"
+                                    @close="onCloseModal">
         </item-creation-result-modal>
     </div>
 </template>

@@ -112,9 +112,9 @@ export default {
     },
 
     clearData: function () {
-      this.$data.title = null;
-      this.$data.body = null;
-      this.$data.tags = [];
+      this.$data.data.title = null;
+      this.$data.data.body = null;
+      this.$data.data.tags = [];
     }
   },
 

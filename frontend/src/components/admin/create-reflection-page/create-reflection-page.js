@@ -10,8 +10,8 @@ export default {
 
   data() {
     return {
+      postType: 'reflection',
       createPostSuccess: null,
-      createPostError: null,
       createPostMessage: null
     };
   },
@@ -34,7 +34,19 @@ export default {
     handleSaveSuccess: function (response) {
       console.log(response);
 
-      if (response.tokenExpired) {
+      if (response.ok) {
+        this.$data.createPostSuccess = true;
+        this.$data.createPostMessage = this.$data.postType === 'reflection'
+          ? 'Размышление успешно создано'
+          : 'История успешно создана';
+        this.openResultModal();
+      }
+      else if (response.error) {
+        this.$data.createPostSuccess = false;
+        this.$data.createPostMessage = response.error;
+        this.openResultModal();
+      }
+      else if (response.tokenExpired) {
         localStorage.removeItem('token');
         this.eventHub.$emit('tokenExpired');
       }
@@ -42,6 +54,10 @@ export default {
 
     handleSaveError: function () {
       alert('Ошибка сети');
+    },
+
+    openResultModal: function () {
+      this.$refs.modal.open();
     },
 
     getCurrentDate: function () {
@@ -55,8 +71,13 @@ export default {
       return year + '-' + month + '-' + date;
     },
 
-    clearFormData: function () {
-      this.$refs.itemForm.clearData();
+    onCloseModal: function () {
+      if (this.$data.createPostSuccess) {
+        this.$refs.itemForm.clearData();
+      }
+
+      this.$data.createPostSuccess = null;
+      this.$data.createPostMessage = null;
     }
   }
 }

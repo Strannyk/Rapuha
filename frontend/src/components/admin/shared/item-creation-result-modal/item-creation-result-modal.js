@@ -8,12 +8,16 @@ export default {
   },
 
   props: {
-    success: Boolean,
-    error: Boolean,
+    postType: String,
+    successResult: Boolean,
     message: String
   },
 
   methods: {
+    goToAdminPanel: function () {
+
+    },
+
     close: function () {
       this.$data.active = false;
       this.$emit('close');
