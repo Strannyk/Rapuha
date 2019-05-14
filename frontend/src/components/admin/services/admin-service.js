@@ -36,6 +36,13 @@ const adminService = {
       data: data,
       token: adminService.getToken()
     });
+  },
+
+  createQuote(data) {
+    return this.$http.put('admin/quote', {
+      data: data,
+      token: adminService.getToken()
+    });
   }
 };
 

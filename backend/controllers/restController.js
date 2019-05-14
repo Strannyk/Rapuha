@@ -1,3 +1,4 @@
+const uuid = require('uuid/v4');
 const dbService = require('../services/dbService');
 const jwt = require('./jwtController');
 const ResponseMessage = require('../objects/responseMessage');
@@ -155,6 +156,31 @@ const restController = (() => {
           })
           .catch(err => {
             console.log(err);
+            response.createErrorMessage(defaultErrorMessage);
+            reject(response);
+          });
+      });
+    },
+
+    createQuote(token, data) {
+      const response = new ResponseMessage();
+
+      return new Promise((resolve, reject) => {
+        if (!tokenIsValid(token)) {
+          response.createTokenExpiredMessage();
+          reject(response);
+          return;
+        }
+
+        data.id = uuid();
+        data.author = (!data.author || !data.author.trim()) ? null : data.author;
+
+        dbService.addQuote(data)
+          .then(() => {
+            response.createSuccessMessage();
+            resolve(response);
+          })
+          .catch(() => {
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });

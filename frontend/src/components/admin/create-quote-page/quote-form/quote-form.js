@@ -15,6 +15,11 @@ export default {
   methods: {
     submit: function () {
       this.$emit('submit', this.$data.data);
+    },
+
+    clearData: function () {
+      this.$data.data.author = null;
+      this.$data.data.body = null;
     }
   }
 }

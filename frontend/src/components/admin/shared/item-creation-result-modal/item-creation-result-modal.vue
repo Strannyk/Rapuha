@@ -4,7 +4,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 v-text="'Создание ' + (postType === 'reflection' ? 'размышления' : 'истории')"
+                        <h5 v-text="'Создание ' + titleWording"
                             class="modal-title"></h5>
                         <button v-on:click="close"
                                 type="button"

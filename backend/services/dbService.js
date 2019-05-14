@@ -72,6 +72,11 @@ const dbService = (() => {
 
         return t.batch(queries);
       });
+    },
+
+    addQuote(data) {
+      const query = 'INSERT INTO quotes (item_id, author, body) VALUES ($1, $2, $3)';
+      return getDb().none(query, [data.id, data.author, data.body]);
     }
   };
 })();

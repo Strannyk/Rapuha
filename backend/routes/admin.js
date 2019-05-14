@@ -33,4 +33,10 @@ router.put('/post/:post', function (req, res) {
     .catch(err => res.send(err));
 });
 
+router.put('/quote', function (req, res) {
+  restController.createQuote(req.body.token, req.body.data)
+    .then(result => res.send(result))
+    .catch(err => res.send(err));
+});
+
 module.exports = router;
