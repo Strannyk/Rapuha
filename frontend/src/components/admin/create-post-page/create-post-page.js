@@ -1,4 +1,4 @@
-import TaggedItemForm from '../shared/tagged-item-form/tagged-item-form.vue';
+import TaggedItemForm from './tagged-item-form/tagged-item-form.vue';
 import ItemCreationResultModal from '../shared/item-creation-result-modal/item-creation-result-modal.vue';
 import adminService from '../services/admin-service';
 
@@ -10,7 +10,7 @@ export default {
 
   data() {
     return {
-      postType: 'reflection',
+      postType: null,
       createPostSuccess: null,
       createPostMessage: null
     };
@@ -23,7 +23,7 @@ export default {
       const data = post.data;
       const createPost = adminService.createPost.bind(this, title, data);
 
-      data.type = 'reflection';
+      data.type = this.$data.postType;
       data.date = this.getCurrentDate();
 
       createPost().then(res => this.handleSaveSuccess(res.body),
@@ -32,13 +32,11 @@ export default {
     },
 
     handleSaveSuccess: function (response) {
-      console.log(response);
-
       if (response.ok) {
         this.$data.createPostSuccess = true;
         this.$data.createPostMessage = this.$data.postType === 'reflection'
           ? 'Размышление успешно создано'
-          : 'История успешно создана';
+          : 'Рассказ успешно создан';
         this.openResultModal();
       }
       else if (response.error) {
@@ -79,5 +77,10 @@ export default {
       this.$data.createPostSuccess = null;
       this.$data.createPostMessage = null;
     }
+  },
+
+  mounted() {
+    const postType = this.$router.history.current.name;
+    this.$data.postType = postType === 'createReflection' ? 'reflection' : 'story';
   }
 }

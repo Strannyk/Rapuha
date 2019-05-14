@@ -3,10 +3,6 @@ import mixin from '../modal-mixin/modal-mixin';
 export default {
   mixins: [mixin],
 
-  data() {
-    return {};
-  },
-
   props: {
     postType: String,
     successResult: Boolean,
@@ -15,7 +11,8 @@ export default {
 
   methods: {
     goToAdminPanel: function () {
-
+      this.close();
+      this.$router.push({ name: 'creation' });
     },
 
     close: function () {

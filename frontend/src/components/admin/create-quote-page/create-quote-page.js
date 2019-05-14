@@ -1,4 +1,4 @@
-import QuoteForm from '../shared/quote-form/quote-form.vue';
+import QuoteForm from './quote-form/quote-form.vue';
 
 export default {
   components: {

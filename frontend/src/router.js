@@ -4,7 +4,7 @@ import Home from './components/home/home.vue';
 import Admin from './components/admin/admin.vue';
 import CreateItemChoice from './components/admin/create-item-choice/create-item-choice.vue';
 import CreateQuotePage from './components/admin/create-quote-page/create-quote-page.vue';
-import CreateReflectionPage from './components/admin/create-reflection-page/create-reflection-page.vue';
+import CreatePostPage from './components/admin/create-post-page/create-post-page.vue';
 
 Vue.use(Router);
 
@@ -34,7 +34,12 @@ export default new Router({
         {
           name: 'createReflection',
           path: 'add/reflection',
-          component: CreateReflectionPage
+          component: CreatePostPage
+        },
+        {
+          name: 'createStory',
+          path: 'add/story',
+          component: CreatePostPage
         }
       ]
     }

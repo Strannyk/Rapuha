@@ -1,4 +1,4 @@
-import mixin from '../../../modal-mixin/modal-mixin';
+import mixin from '@/components/admin/shared/modal-mixin/modal-mixin';
 
 export default {
   mixins: [mixin],

@@ -2,8 +2,8 @@
     <div>
         <tagged-item-form ref="itemForm"
                           :newItem="true"
-                          :titleWording="'Новое размышление'"
-                          :createButtonWording="'размышление'"
+                          :titleWording="postType === 'reflection' ? 'Новое размышление' : 'Новый рассказ'"
+                          :createButtonWording="postType === 'reflection' ? 'размышление' : 'рассказ'"
                           @submit="save">
         </tagged-item-form>
         <item-creation-result-modal ref="modal"
@@ -15,4 +15,4 @@
     </div>
 </template>
 
-<script src="./create-reflection-page.js"></script>
+<script src="./create-post-page.js"></script>
