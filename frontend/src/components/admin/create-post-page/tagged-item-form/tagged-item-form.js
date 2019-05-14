@@ -108,7 +108,7 @@ export default {
     },
 
     submit: function () {
-      this.$emit('submit', this.$data.data);
+      this.$emit('submit', this.getData());
     },
 
     clearData: function () {

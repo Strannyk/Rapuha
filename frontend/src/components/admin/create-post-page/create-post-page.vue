@@ -4,7 +4,7 @@
                           :newItem="true"
                           :titleWording="postType === 'reflection' ? 'Новое размышление' : 'Новый рассказ'"
                           :createButtonWording="postType === 'reflection' ? 'размышление' : 'рассказ'"
-                          @submit="save">
+                          @submit="save(data)">
         </tagged-item-form>
         <item-creation-result-modal ref="modal"
                                     :postType="postType"

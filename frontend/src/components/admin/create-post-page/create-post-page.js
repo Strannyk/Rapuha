@@ -17,8 +17,7 @@ export default {
   },
 
   methods: {
-    save: function () {
-      const post = this.$refs.itemForm.getData();
+    save: function (post) {
       const title = post.title;
       const data = post.data;
       const createPost = adminService.createPost.bind(this, title, data);
