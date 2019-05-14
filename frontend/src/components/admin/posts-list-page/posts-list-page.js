@@ -3,7 +3,8 @@ import adminService from '../services/admin-service';
 export default {
   data() {
     return {
-      postsType: null
+      postsType: null,
+      postsTitles: []
     };
   },
 
@@ -29,7 +30,7 @@ export default {
     },
 
     handleGetListSuccess(response) {
-      console.log(response);
+      this.$data.postsTitles = response.data;
     },
 
     handleGetListError() {

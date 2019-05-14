@@ -36,7 +36,7 @@ const dbService = (() => {
     },
 
     getTags() {
-      const query = 'SELECT * FROM tags LIMIT 100';
+      const query = 'SELECT * FROM tags ORDER BY tags LIMIT 100';
       return getDb().any(query);
     },
 
@@ -56,7 +56,7 @@ const dbService = (() => {
     },
 
     getPostTitles(type) {
-      const query = 'SELECT title FROM posts WHERE type = $1';
+      const query = 'SELECT title, to_char(creation_date, \'DD-MM-YYYY\') FROM posts WHERE type = $1 ORDER BY creation_date LIMIT 500';
       return getDb().any(query, type);
     },
 

@@ -26,7 +26,7 @@ export default {
   methods: {
     goToAdminPanel: function () {
       this.close();
-      this.$router.push({ name: 'creation' });
+      this.$router.push({ name: 'manage' });
     },
 
     close: function () {

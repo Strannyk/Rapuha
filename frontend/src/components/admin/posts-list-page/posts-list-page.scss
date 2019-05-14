@@ -1,0 +1,15 @@
+.r-table {
+  .r-row {
+    cursor: pointer;
+
+    &:hover {
+      th, td {
+        background-color: #7A8288 !important;
+      }
+    }
+
+    th, td {
+      color: #fff;
+    }
+  }
+}

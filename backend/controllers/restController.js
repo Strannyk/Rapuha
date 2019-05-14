@@ -59,9 +59,7 @@ const restController = (() => {
             const result = [];
 
             for (const row of data) {
-              const key = Object.keys(row)[0];
-              result.push(row[key]);
-              result.sort();
+              result.push(row.tag_name);
             }
 
             response.createDataMessage(result);
@@ -127,9 +125,12 @@ const restController = (() => {
             const result = [];
 
             for (const row of data) {
-              const key = Object.keys(row)[0];
-              result.push(row[key]);
-              result.sort();
+              const item = {
+                title: row.title,
+                creationDate: row.to_char
+              };
+
+              result.push(item);
             }
 
             response.createDataMessage(result);
