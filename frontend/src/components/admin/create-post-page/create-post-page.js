@@ -20,11 +20,11 @@ export default {
     save: function (post) {
       const title = post.title;
       const data = post.data;
-      const createPost = adminService.createPost.bind(this, title, data);
 
       data.type = this.$data.postType;
       data.date = this.getCurrentDate();
 
+      const createPost = adminService.createPost.bind(this, title, data);
       createPost().then(res => this.handleSaveSuccess(res.body),
         () => this.handleSaveError())
         .catch(err => console.log(err));
