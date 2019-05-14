@@ -24,7 +24,6 @@ export default {
     },
 
     handleSaveSuccess: function (response) {
-      console.log(response);
       if (response.ok) {
         this.$data.createQuoteSuccess = true;
         this.$data.createQuoteMessage = 'Цитата успешно создана';

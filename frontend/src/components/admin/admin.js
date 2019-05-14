@@ -83,12 +83,12 @@ export default {
 
     routeAdminPage: function () {
       if (this.$router.history.current.name === 'admin') {
-        this.goToCreationPage();
+        this.goToManagePage();
       }
     },
 
-    goToCreationPage: function () {
-      this.$router.push({ name: 'creation' });
+    goToManagePage: function () {
+      this.$router.push({ name: 'manage' });
     }
   },
 

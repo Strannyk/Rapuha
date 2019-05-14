@@ -31,6 +31,10 @@ const adminService = {
     });
   },
 
+  getPostsTitles(type) {
+    return this.$http.get('admin/posts/titles/' + type);
+  },
+
   createPost(title, data) {
     return this.$http.put('admin/post/' + title, {
       data: data,

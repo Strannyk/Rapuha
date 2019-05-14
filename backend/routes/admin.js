@@ -27,6 +27,12 @@ router.delete('/tag/:tag', function (req, res) {
     .catch(err => res.send(err));
 });
 
+router.get('/posts/titles/:type', function (req, res) {
+  restController.getPostTitles(req.params.type)
+    .then(result => res.send(result))
+    .catch(err => res.send(err));
+});
+
 router.put('/post/:post', function (req, res) {
   restController.createPost(req.body.token, req.params.post, req.body.data)
     .then(result => res.send(result))

@@ -2,7 +2,8 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './components/home/home.vue';
 import Admin from './components/admin/admin.vue';
-import CreateItemChoice from './components/admin/create-item-choice/create-item-choice.vue';
+import PostsListPage from './components/admin/posts-list-page/posts-list-page.vue';
+import ManageItemsPage from './components/admin/manage-items-page/manage-items-page.vue';
 import CreateQuotePage from './components/admin/create-quote-page/create-quote-page.vue';
 import CreatePostPage from './components/admin/create-post-page/create-post-page.vue';
 
@@ -22,9 +23,24 @@ export default new Router({
       component: Admin,
       children: [
         {
-          name: 'creation',
-          path: 'add',
-          component: CreateItemChoice
+          name: 'manage',
+          path: 'feed',
+          component: ManageItemsPage
+        },
+        {
+          name: 'reflectionsList',
+          path: 'reflections',
+          component: PostsListPage
+        },
+        {
+          name: 'storiesList',
+          path: 'stories',
+          component: PostsListPage
+        },
+        {
+          name: 'quotesList',
+          path: 'quotes',
+          component: PostsListPage // to change
         },
         {
           name: 'createQuote',

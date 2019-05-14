@@ -55,6 +55,11 @@ const dbService = (() => {
       return getDb().one(query, title);
     },
 
+    getPostTitles(type) {
+      const query = 'SELECT title FROM posts WHERE type = $1';
+      return getDb().any(query, type);
+    },
+
     addPost(title, data) {
       const postTagsQuery = 'INSERT INTO posts_tags (title, tag_name) VALUES ($1, $2)';
       const postQuery = 'INSERT INTO posts (title, body, type, creation_date) VALUES ($1, $2, $3, $4)';

@@ -118,6 +118,30 @@ const restController = (() => {
       });
     },
 
+    getPostTitles(type) {
+      const response = new ResponseMessage();
+
+      return new Promise((resolve, reject) => {
+        dbService.getPostTitles(type)
+          .then(data => {
+            const result = [];
+
+            for (const row of data) {
+              const key = Object.keys(row)[0];
+              result.push(row[key]);
+              result.sort();
+            }
+
+            response.createDataMessage(result);
+            resolve(response);
+          })
+          .catch(() => {
+            response.createErrorMessage(defaultErrorMessage);
+            reject(response);
+          });
+      });
+    },
+
     createPost(token, title, data) {
       const response = new ResponseMessage();
 
