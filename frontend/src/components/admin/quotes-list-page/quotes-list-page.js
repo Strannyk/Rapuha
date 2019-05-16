@@ -16,7 +16,11 @@ export default {
     },
 
     handleGetListSuccess(response) {
-      this.$data.quotes = response.data;
+      const quotes = response.data;
+
+      if (Array.isArray(quotes)) {
+        this.$data.quotes = quotes;
+      }
     },
 
     handleGetListError() {

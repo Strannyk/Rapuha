@@ -30,7 +30,11 @@ export default {
     },
 
     handleGetListSuccess(response) {
-      this.$data.postsTitles = response.data;
+      const titles = response.data;
+
+      if (Array.isArray(titles)) {
+        this.$data.postsTitles = titles;
+      }
     },
 
     handleGetListError() {
