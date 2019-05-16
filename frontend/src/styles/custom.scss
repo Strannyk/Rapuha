@@ -2,6 +2,10 @@
   max-width: 800px;
   margin: 20px auto;
   padding: 10px;
+
+  &.r-center {
+    text-align: center;
+  }
 }
 
 .r-block-separate {

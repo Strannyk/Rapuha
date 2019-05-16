@@ -2,6 +2,13 @@
     <div class="r-block">
         <h2>{{titleWording}}</h2>
         <br>
+        <router-link :to="'/admin/add/' + (postsType === 'reflections' ? 'reflection' : 'story')">
+            <button type="button"
+                    class="btn btn-primary"
+                    v-text="'Создать ' + (postsType === 'reflections' ? 'размышление' : 'рассказ')">
+            </button>
+        </router-link>
+        <br><br>
         <table v-if="postsTitles.length" class="table table-hover r-table">
             <thead>
             <tr>
