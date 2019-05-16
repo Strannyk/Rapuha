@@ -1,6 +1,7 @@
-import TaggedItemForm from './tagged-item-form/tagged-item-form.vue';
+import TaggedItemForm from '../shared/tagged-item-form/tagged-item-form.vue';
 import ItemCreationResultModal from '../shared/item-creation-result-modal/item-creation-result-modal.vue';
 import adminService from '../services/admin-service';
+import dateService from '@/common/services/date-service';
 
 export default {
   components: {
@@ -22,7 +23,7 @@ export default {
       const data = post.data;
 
       data.type = this.$data.postType;
-      data.date = this.getCurrentDate();
+      data.date = dateService.getCurrentDate();
 
       const createPost = adminService.createPost.bind(this, title, data);
       createPost().then(res => this.handleSaveSuccess(res.body),
@@ -55,17 +56,6 @@ export default {
 
     openResultModal: function () {
       this.$refs.modal.open();
-    },
-
-    getCurrentDate: function () {
-      const currentDate = new Date();
-      const year = currentDate.getFullYear();
-      const date = currentDate.getDate();
-      let month = String(currentDate.getMonth() + 1);
-
-      month = month.length === 1 ? 0 + month : month;
-
-      return year + '-' + month + '-' + date;
     },
 
     onCloseModal: function () {

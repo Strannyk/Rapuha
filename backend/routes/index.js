@@ -8,4 +8,10 @@ router.get('/tags', function (req, res) {
     .catch(err => res.send(err));
 });
 
+router.get('/quotes', function (req, res) {
+  restController.getQuotes()
+    .then(result => res.send(result))
+    .catch(err => res.send(err));
+});
+
 module.exports = router;

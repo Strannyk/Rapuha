@@ -24,11 +24,6 @@ export default {
   },
 
   methods: {
-    goToAdminPanel: function () {
-      this.close();
-      this.$router.push({ name: 'manage' });
-    },
-
     close: function () {
       this.$data.active = false;
       this.$emit('close');

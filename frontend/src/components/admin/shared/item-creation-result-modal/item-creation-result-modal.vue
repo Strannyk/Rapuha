@@ -19,16 +19,10 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button"
-                                ref="submitButton"
-                                :disabled="!successResult"
-                                v-on:click="goToAdminPanel"
-                                class="btn btn-primary">На панель администратора
-                        </button>
-                        <button type="button"
                                 :disabled="disabled"
                                 v-on:click="close"
                                 class="btn btn-secondary"
-                                data-dismiss="modal">Закрыть
+                                data-dismiss="modal">OK
                         </button>
                     </div>
                 </div>

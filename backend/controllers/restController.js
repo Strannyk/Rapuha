@@ -122,18 +122,13 @@ const restController = (() => {
       return new Promise((resolve, reject) => {
         dbService.getPostTitles(type)
           .then(data => {
-            const result = [];
 
             for (const row of data) {
-              const item = {
-                title: row.title,
-                creationDate: row.to_char
-              };
-
-              result.push(item);
+              row.creationDate = row.to_char;
+              delete row.to_char;
             }
 
-            response.createDataMessage(result);
+            response.createDataMessage(data);
             resolve(response);
           })
           .catch(() => {
@@ -203,6 +198,27 @@ const restController = (() => {
         dbService.addQuote(data)
           .then(() => {
             response.createSuccessMessage();
+            resolve(response);
+          })
+          .catch(() => {
+            response.createErrorMessage(defaultErrorMessage);
+            reject(response);
+          });
+      });
+    },
+
+    getQuotes() {
+      const response = new ResponseMessage();
+
+      return new Promise((resolve, reject) => {
+        dbService.getQuotes()
+          .then(data => {
+            for (const row of data) {
+              row.creationDate = row.to_char;
+              delete row.to_char;
+            }
+
+            response.createDataMessage(data);
             resolve(response);
           })
           .catch(() => {

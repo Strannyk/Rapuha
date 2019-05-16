@@ -1,6 +1,7 @@
 import QuoteForm from './quote-form/quote-form.vue';
 import ItemCreationResultModal from '../shared/item-creation-result-modal/item-creation-result-modal.vue';
 import adminService from '../services/admin-service';
+import dateService from '@/common/services/date-service';
 
 export default {
   components: {
@@ -17,6 +18,8 @@ export default {
 
   methods: {
     save: function (data) {
+      data.date = dateService.getCurrentDate();
+
       const createQuote = adminService.createQuote.bind(this, data);
       createQuote().then(res => this.handleSaveSuccess(res.body),
         () => this.handleSaveError())

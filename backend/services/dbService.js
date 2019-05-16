@@ -80,8 +80,13 @@ const dbService = (() => {
     },
 
     addQuote(data) {
-      const query = 'INSERT INTO quotes (item_id, author, body) VALUES ($1, $2, $3)';
-      return getDb().none(query, [data.id, data.author, data.body]);
+      const query = 'INSERT INTO quotes (item_id, author, body, creation_date) VALUES ($1, $2, $3, $4)';
+      return getDb().none(query, [data.id, data.author, data.body, data.date]);
+    },
+
+    getQuotes() {
+      const query = 'SELECT author, body, to_char(creation_date, \'DD-MM-YYYY\') FROM quotes ORDER BY creation_date LIMIT 500';
+      return getDb().any(query);
     }
   };
 })();

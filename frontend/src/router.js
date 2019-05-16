@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Home from './components/home/home.vue';
 import Admin from './components/admin/admin.vue';
 import PostsListPage from './components/admin/posts-list-page/posts-list-page.vue';
+import QuotesListPage from './components/admin/quotes-list-page/quotes-list-page.vue';
 import ManageItemsPage from './components/admin/manage-items-page/manage-items-page.vue';
 import CreateQuotePage from './components/admin/create-quote-page/create-quote-page.vue';
 import CreatePostPage from './components/admin/create-post-page/create-post-page.vue';
@@ -40,7 +41,7 @@ export default new Router({
         {
           name: 'quotesList',
           path: 'quotes',
-          component: PostsListPage // to change
+          component: QuotesListPage
         },
         {
           name: 'createQuote',
