@@ -7,6 +7,7 @@ import QuotesListPage from './components/admin/quotes-list-page/quotes-list-page
 import ManageItemsPage from './components/admin/manage-items-page/manage-items-page.vue';
 import CreateQuotePage from './components/admin/create-quote-page/create-quote-page.vue';
 import CreatePostPage from './components/admin/create-post-page/create-post-page.vue';
+import EditPostPage from './components/admin/edit-post-page/edit-post-page.vue';
 
 Vue.use(Router);
 
@@ -52,6 +53,16 @@ export default new Router({
           name: 'createReflection',
           path: 'add/reflection',
           component: CreatePostPage
+        },
+        {
+          name: 'editReflection',
+          path: 'edit/reflection/:title',
+          component: EditPostPage
+        },
+        {
+          name: 'editStory',
+          path: 'edit/story/:title',
+          component: EditPostPage
         },
         {
           name: 'createStory',

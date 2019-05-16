@@ -75,12 +75,18 @@
             </div>
         </div>
 
-        <div class="form-group form-button">
+        <div class="form-group form-button float-right">
             <button type="submit"
-                    class="btn btn-primary float-right r-button"
+                    class="btn r-button"
+                    :class="newItem ? 'btn-primary' : 'btn-outline-success'"
                     :disabled="!data.tags.length || !data.title || !data.body"
                     v-on:click="submit"
-                    v-text="newItem ? 'Создать ' + createButtonWording : 'Сохранить'"></button>
+                    v-text="(newItem ? 'Создать ' : 'Сохранить ') + submitButtonWording"></button>
+            <button v-if="!newItem"
+                    type="button"
+                    class="btn r-button btn-outline-danger"
+                    v-on:click="deleteItem"
+                    v-text="'Удалить ' + submitButtonWording"></button>
         </div>
     </div>
 </template>

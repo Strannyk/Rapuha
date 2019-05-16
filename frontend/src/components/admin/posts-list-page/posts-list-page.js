@@ -35,6 +35,11 @@ export default {
 
     handleGetListError() {
       alert('Ошибка сети');
+    },
+
+    editPost(title) {
+      const path = this.$data.postsType === 'reflections' ? 'reflection' : 'story';
+      this.$router.push('/admin/edit/' + path + '/' + title);
     }
   },
 

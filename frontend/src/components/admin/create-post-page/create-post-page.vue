@@ -3,7 +3,7 @@
         <tagged-item-form ref="itemForm"
                           :newItem="true"
                           :titleWording="postType === 'reflection' ? 'Новое размышление' : 'Новый рассказ'"
-                          :createButtonWording="postType === 'reflection' ? 'размышление' : 'рассказ'"
+                          :submitButtonWording="postType === 'reflection' ? 'размышление' : 'рассказ'"
                           @submit="save">
         </tagged-item-form>
         <item-creation-result-modal ref="modal"

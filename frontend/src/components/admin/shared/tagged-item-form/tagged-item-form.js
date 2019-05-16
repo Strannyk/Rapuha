@@ -25,7 +25,7 @@ export default {
   props: {
     newItem: Boolean,
     titleWording: String,
-    createButtonWording: String
+    submitButtonWording: String
   },
 
   methods: {
@@ -109,6 +109,10 @@ export default {
 
     submit: function () {
       this.$emit('submit', this.getData());
+    },
+
+    deleteItem: function () {
+      this.$emit('delete', this.$data.data.title);
     },
 
     clearData: function () {
