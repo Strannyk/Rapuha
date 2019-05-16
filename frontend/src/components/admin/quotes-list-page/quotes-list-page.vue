@@ -9,7 +9,9 @@
             <p class="mb-0">{{quote.body}}</p>
             <footer v-if="quote.author" class="blockquote-footer">{{quote.author}}</footer>
         </blockquote>
-        <div v-if="!quotes.length">&lt;Пусто&gt;</div>
+        <div v-if="!quotes.length">
+            <br><div>&lt;Пусто&gt;</div>
+        </div>
     </div>
 </template>
 

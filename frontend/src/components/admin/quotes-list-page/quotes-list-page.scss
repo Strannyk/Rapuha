@@ -1,9 +1,14 @@
 .r-quote {
-  margin-bottom: 40px;
-  padding-bottom: 20px;
+  margin: 0;
+  padding: 40px 10px 20px;
   border-bottom: solid rgba(122, 130, 136, 0.3) 1px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.075);
+  }
 
   &:first-of-type {
-    margin-top: 30px;
+    margin-top: 15px;
   }
 }
