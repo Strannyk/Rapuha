@@ -182,6 +182,28 @@ const restController = (() => {
       });
     },
 
+    getPost(title) {
+      const response = new ResponseMessage();
+
+      return new Promise((resolve, reject) => {
+        dbService.getPost(title)
+          .then(data => {
+            console.log(data);
+            data.creationDate = data.to_char;
+            delete data.to_char;
+            delete data.creation_date;
+
+            response.createDataMessage(data);
+            resolve(data);
+          })
+          .catch(err => {
+            console.log(err);
+            response.createErrorMessage(defaultErrorMessage);
+            reject(response);
+          });
+      });
+    },
+
     createQuote(token, data) {
       const response = new ResponseMessage();
 

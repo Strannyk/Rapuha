@@ -14,4 +14,10 @@ router.get('/quotes', function (req, res) {
     .catch(err => res.send(err));
 });
 
+router.get('/post/:title', function (req, res) {
+  restController.getPost(req.params.title)
+    .then(result => res.send(result))
+    .catch(err => res.send(err));
+});
+
 module.exports = router;

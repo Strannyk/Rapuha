@@ -107,6 +107,12 @@ export default {
       return data;
     },
 
+    setData: function (data) {
+      this.$data.data.title = data.title;
+      this.$data.data.body = data.body;
+      this.$data.data.tags = data.tags.map(tagName => new TagItem(tagName));
+    },
+
     submit: function () {
       this.$emit('submit', this.getData());
     },

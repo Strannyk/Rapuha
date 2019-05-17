@@ -5,6 +5,10 @@ const commonService = {
 
   getQuotes() {
     return this.$http.get('quotes');
+  },
+
+  getPost(title) {
+    return this.$http.get('post/' + title);
   }
 };
 

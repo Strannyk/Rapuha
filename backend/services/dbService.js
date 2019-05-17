@@ -79,6 +79,11 @@ const dbService = (() => {
       });
     },
 
+    getPost(title) {
+      const query = 'SELECT *, to_char(creation_date, \'DD-MM-YYYY\') from posts AS p LEFT JOIN posts_tags ON p.title = posts_tags.title WHERE p.title = $1';
+      return getDb().any(query, title);
+    },
+
     addQuote(data) {
       const query = 'INSERT INTO quotes (item_id, author, body, creation_date) VALUES ($1, $2, $3, $4)';
       return getDb().none(query, [data.id, data.author, data.body, data.date]);
