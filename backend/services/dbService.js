@@ -40,6 +40,11 @@ const dbService = (() => {
       return getDb().any(query);
     },
 
+    getPostsTags(postTitle) {
+      const query = 'SELECT tag_name FROM posts_tags WHERE title = $1';
+      return getDb().any(query, postTitle);
+    },
+
     updateTag(tag, newTag) {
       const query = 'UPDATE tags SET tag_name = $2 WHERE tag_name = $1';
       return getDb().none(query, [tag, newTag]);
@@ -80,8 +85,8 @@ const dbService = (() => {
     },
 
     getPost(title) {
-      const query = 'SELECT *, to_char(creation_date, \'DD-MM-YYYY\') from posts AS p LEFT JOIN posts_tags ON p.title = posts_tags.title WHERE p.title = $1';
-      return getDb().any(query, title);
+      const query = 'SELECT *, to_char(creation_date, \'DD-MM-YYYY\') from posts WHERE title = $1';
+      return getDb().one(query, title);
     },
 
     addQuote(data) {

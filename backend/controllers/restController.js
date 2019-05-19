@@ -186,18 +186,23 @@ const restController = (() => {
       const response = new ResponseMessage();
 
       return new Promise((resolve, reject) => {
-        dbService.getPost(title)
+        Promise.all([
+          dbService.getPost(title),
+          dbService.getPostsTags(title)
+        ])
           .then(data => {
-            console.log(data);
-            data.creationDate = data.to_char;
-            delete data.to_char;
-            delete data.creation_date;
+            const post = data[0];
+            const tags = data[1];
 
-            response.createDataMessage(data);
-            resolve(data);
+            post.tags = tags.map(item => item.tag_name);
+            post.creationDate = post.to_char;
+            delete post.to_char;
+            delete post.creation_date;
+
+            response.createDataMessage(post);
+            resolve(response);
           })
-          .catch(err => {
-            console.log(err);
+          .catch(() => {
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });
