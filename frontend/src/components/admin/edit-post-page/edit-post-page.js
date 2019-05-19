@@ -17,7 +17,7 @@ export default {
   methods: {
     getDbData: function (title) {
       const getPost = commonService.getPost.bind(this, title);
-      getPost().then(res => console.log(res),
+      getPost().then(res => this.$refs.itemForm.setData(res.body.data),
         () => console.log('err'))
         .catch(err => console.log(err));
     },
