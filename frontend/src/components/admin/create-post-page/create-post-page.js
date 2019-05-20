@@ -1,12 +1,12 @@
 import TaggedItemForm from '../shared/tagged-item-form/tagged-item-form.vue';
-import ItemCreationResultModal from '../shared/item-creation-result-modal/item-creation-result-modal.vue';
+import ItemActionResultModal from '../shared/item-action-result-modal/item-action-result-modal.vue';
 import adminService from '../services/admin-service';
 import dateService from '@/common/services/date-service';
 
 export default {
   components: {
     TaggedItemForm,
-    ItemCreationResultModal
+    ItemActionResultModal
   },
 
   data() {

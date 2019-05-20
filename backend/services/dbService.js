@@ -61,7 +61,7 @@ const dbService = (() => {
     },
 
     getPostTitles(type) {
-      const query = 'SELECT title, to_char(creation_date, \'DD-MM-YYYY\') FROM posts WHERE type = $1 ORDER BY creation_date LIMIT 500';
+      const query = 'SELECT title, to_char(creation_date, \'DD-MM-YYYY\') FROM posts WHERE type = $1 ORDER BY creation_date, title LIMIT 500';
       return getDb().any(query, type);
     },
 
@@ -94,7 +94,21 @@ const dbService = (() => {
       const postTagsDeleteQuery = 'DELETE FROM posts_tags WHERE title = $1';
       const postTagsInsertQuery = 'INSERT INTO posts_tags (title, tag_name) VALUES ($1, $2)';
 
-      return getDb().none(postQuery, [title, data.title, data.body]);
+      return getDb().tx(t => {
+        const queries = [];
+        const firstQuery = t.none(postQuery, [title, data.title, data.body]);
+        const secondQuery = t.none(postTagsDeleteQuery, data.title);
+
+        queries.push(firstQuery);
+        queries.push(secondQuery);
+
+        for (const tag of data.tags) {
+          const query = t.none(postTagsInsertQuery, [data.title, tag]);
+          queries.push(query);
+        }
+
+        return t.batch(queries);
+      });
     },
 
     addQuote(data) {

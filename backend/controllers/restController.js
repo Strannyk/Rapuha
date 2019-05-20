@@ -174,8 +174,7 @@ const restController = (() => {
                 });
             }
           })
-          .catch(err => {
-            console.log(err);
+          .catch(() => {
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });
@@ -206,6 +205,59 @@ const restController = (() => {
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });
+      });
+    },
+
+    updatePost(token, title, data) {
+      const response = new ResponseMessage();
+
+      return new Promise((resolve, reject) => {
+        if (!tokenIsValid(token)) {
+          response.createTokenExpiredMessage();
+          reject(response);
+          return;
+        }
+
+        if (!Array.isArray(data.tags) || !data.tags.length) {
+          response.createErrorMessage(defaultErrorMessage);
+          reject(response);
+          return;
+        }
+
+        data.title = data.title.trim();
+
+        if (title !== data.title) {
+          dbService.postExists(data.title)
+            .then(res => {
+              if (res.exists) {
+                const message = 'Пост с названием "' + data.title + '" уже существует';
+                response.createErrorMessage(message);
+                resolve(response);
+              }
+              else {
+                updatePost();
+              }
+            })
+            .catch(() => {
+              response.createErrorMessage(defaultErrorMessage);
+              reject(response);
+            });
+        }
+        else {
+          updatePost();
+        }
+
+        function updatePost() {
+          dbService.updatePost(title, data)
+            .then(() => {
+              response.createSuccessMessage();
+              resolve(response);
+            })
+            .catch(() => {
+              response.createErrorMessage(defaultErrorMessage);
+              reject(response);
+            });
+        }
       });
     },
 

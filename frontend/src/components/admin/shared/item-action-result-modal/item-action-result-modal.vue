@@ -32,4 +32,4 @@
     </div>
 </template>
 
-<script src="./item-creation-result-modal.js"></script>
+<script src="./item-action-result-modal.js"></script>
