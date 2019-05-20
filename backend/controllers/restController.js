@@ -286,6 +286,30 @@ const restController = (() => {
       });
     },
 
+    updateQuote(token, data) {
+      const response = new ResponseMessage();
+
+      return new Promise((resolve, reject) => {
+        if (!tokenIsValid(token)) {
+          response.createTokenExpiredMessage();
+          reject(response);
+          return;
+        }
+
+        data.author = (!data.author || !data.author.trim()) ? null : data.author;
+
+        dbService.updateQuote(data)
+          .then(() => {
+            response.createSuccessMessage();
+            resolve(response);
+          })
+          .catch(() => {
+            response.createErrorMessage(defaultErrorMessage);
+            reject(response);
+          });
+      });
+    },
+
     getQuotes() {
       const response = new ResponseMessage();
 

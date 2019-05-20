@@ -51,4 +51,10 @@ router.put('/quote', function (req, res) {
     .catch(err => res.send(err));
 });
 
+router.post('/quote', function (req, res) {
+  restController.updateQuote(req.body.token, req.body.data)
+    .then(result => res.send(result))
+    .catch(err => res.send(err));
+});
+
 module.exports = router;

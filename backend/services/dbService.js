@@ -116,8 +116,13 @@ const dbService = (() => {
       return getDb().none(query, [data.id, data.author, data.body, data.date]);
     },
 
+    updateQuote(data) {
+      const query = 'UPDATE quotes SET (author, body) = ($2, $3) WHERE item_id = $1';
+      return getDb().none(query, [data.id, data.author, data.body]);
+    },
+
     getQuotes() {
-      const query = 'SELECT author, body, to_char(creation_date, \'DD-MM-YYYY\') FROM quotes ORDER BY creation_date LIMIT 500';
+      const query = 'SELECT *, to_char(creation_date, \'DD-MM-YYYY\') FROM quotes ORDER BY creation_date LIMIT 500';
       return getDb().any(query);
     }
   };
