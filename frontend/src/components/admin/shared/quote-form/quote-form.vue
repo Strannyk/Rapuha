@@ -17,11 +17,19 @@
                       class="form-control"
                       id="r-body" rows="5"></textarea>
         </div>
-        <button type="submit"
-                class="btn btn-primary float-right r-button"
-                :disabled="!data.body"
-                v-on:click="submit"
-                v-text="newQuote ? 'Создать цитату' : 'Сохранить'"></button>
+        <div class="form-group form-button float-right">
+            <button type="submit"
+                    class="btn r-button"
+                    :class="newQuote ? 'btn-primary' : 'btn-outline-success'"
+                    :disabled="!data.body"
+                    v-on:click="submit"
+                    v-text="newQuote ? 'Создать цитату' : 'Сохранить'"></button>
+            <button v-if="!newQuote"
+                    type="button"
+                    class="btn r-button btn-outline-danger"
+                    v-on:click="deleteQuote">Удалить цитату
+            </button>
+        </div>
     </div>
 </template>
 

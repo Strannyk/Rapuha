@@ -121,9 +121,14 @@ const dbService = (() => {
       return getDb().none(query, [data.id, data.author, data.body]);
     },
 
-    getQuotes() {
+    getQuotesList() {
       const query = 'SELECT *, to_char(creation_date, \'DD-MM-YYYY\') FROM quotes ORDER BY creation_date LIMIT 500';
       return getDb().any(query);
+    },
+
+    getQuote(id) {
+      const query = 'SELECT *, to_char(creation_date, \'DD-MM-YYYY\') FROM quotes WHERE item_id = $1';
+      return getDb().one(query, id);
     }
   };
 })();

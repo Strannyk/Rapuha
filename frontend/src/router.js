@@ -6,6 +6,7 @@ import PostsListPage from './components/admin/posts-list-page/posts-list-page.vu
 import QuotesListPage from './components/admin/quotes-list-page/quotes-list-page.vue';
 import ManageItemsPage from './components/admin/manage-items-page/manage-items-page.vue';
 import CreateQuotePage from './components/admin/create-quote-page/create-quote-page.vue';
+import EditQuotePage from './components/admin/edit-quote-page/edit-quote-page.vue';
 import CreatePostPage from './components/admin/create-post-page/create-post-page.vue';
 import EditPostPage from './components/admin/edit-post-page/edit-post-page.vue';
 
@@ -50,6 +51,11 @@ export default new Router({
           component: CreateQuotePage
         },
         {
+          name: 'editQuote',
+          path: 'edit/quote',
+          component: EditQuotePage
+        },
+        {
           name: 'createReflection',
           path: 'add/reflection',
           component: CreatePostPage
@@ -60,14 +66,14 @@ export default new Router({
           component: EditPostPage
         },
         {
-          name: 'editStory',
-          path: 'edit/story/:title',
-          component: EditPostPage
-        },
-        {
           name: 'createStory',
           path: 'add/story',
           component: CreatePostPage
+        },
+        {
+          name: 'editStory',
+          path: 'edit/story/:title',
+          component: EditPostPage
         }
       ]
     }

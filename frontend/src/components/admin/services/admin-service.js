@@ -54,6 +54,13 @@ const adminService = {
       data: data,
       token: adminService.getToken()
     });
+  },
+
+  updateQuote(data) {
+    return this.$http.post('/admin/quote', {
+      data: data,
+      token: adminService.getToken()
+    });
   }
 };
 

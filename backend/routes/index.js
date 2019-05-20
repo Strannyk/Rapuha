@@ -9,7 +9,13 @@ router.get('/tags', function (req, res) {
 });
 
 router.get('/quotes', function (req, res) {
-  restController.getQuotes()
+  restController.getQuotesList()
+    .then(result => res.send(result))
+    .catch(err => res.send(err));
+});
+
+router.get('/quote', function (req, res) {
+  restController.getQuote(req.body.id)
     .then(result => res.send(result))
     .catch(err => res.send(err));
 });

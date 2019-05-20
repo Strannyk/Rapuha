@@ -15,7 +15,7 @@ export default {
         .catch(err => console.log(err));
     },
 
-    handleGetListSuccess(response) {
+    handleGetListSuccess: function (response) {
       const quotes = response.data;
 
       if (Array.isArray(quotes)) {
@@ -23,8 +23,13 @@ export default {
       }
     },
 
-    handleGetListError() {
+    handleGetListError: function () {
       alert('Ошибка сети');
+    },
+
+    editQuote: function (id) {
+      sessionStorage.setItem('quote_id', id);
+      this.$router.push({ name: 'editQuote' });
     }
   },
 

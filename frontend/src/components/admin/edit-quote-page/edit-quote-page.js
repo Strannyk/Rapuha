@@ -1,7 +1,6 @@
 import QuoteForm from '../shared/quote-form/quote-form.vue';
 import ItemActionResultModal from '../shared/item-action-result-modal/item-action-result-modal.vue';
 import adminService from '../services/admin-service';
-import dateService from '@/common/services/date-service';
 
 export default {
   components: {
@@ -11,30 +10,25 @@ export default {
 
   data() {
     return {
-      createQuoteSuccess: null,
-      createQuoteMessage: null
+      editQuoteSuccess: null,
+      editQuoteMessage: null
     };
   },
 
   methods: {
     save: function (data) {
-      data.date = dateService.getCurrentDate();
 
-      const createQuote = adminService.createQuote.bind(this, data);
-      createQuote().then(res => this.handleSaveSuccess(res.body),
-        () => this.handleActionError())
-        .catch(err => console.log(err));
     },
 
     handleSaveSuccess: function (response) {
       if (response.ok) {
-        this.$data.createQuoteSuccess = true;
-        this.$data.createQuoteMessage = 'Цитата успешно создана';
+        this.$data.editQuoteSuccess = true;
+        this.$data.editQuoteMessage = 'Цитата успешно отредактирована';
         this.openResultModal();
       }
       else if (response.error) {
-        this.$data.createQuoteSuccess = false;
-        this.$data.createQuoteMessage = response.error;
+        this.$data.editQuoteSuccess = false;
+        this.$data.editQuoteMessage = response.error;
         this.openResultModal();
       }
       else if (response.tokenExpired) {
@@ -52,12 +46,7 @@ export default {
     },
 
     onCloseModal: function () {
-      if (this.$data.createQuoteSuccess) {
-        this.$refs.quoteForm.clearData();
-      }
-
-      this.$data.createQuoteSuccess = null;
-      this.$data.createQuoteMessage = null;
+      this.$router.push({ name: 'quotesList' });
     }
   }
 }

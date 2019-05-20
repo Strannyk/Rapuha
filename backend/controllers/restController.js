@@ -310,19 +310,43 @@ const restController = (() => {
       });
     },
 
-    getQuotes() {
+    getQuotesList() {
       const response = new ResponseMessage();
 
       return new Promise((resolve, reject) => {
-        dbService.getQuotes()
+        dbService.getQuotesList()
           .then(data => {
             for (const row of data) {
               row.creationDate = row.to_char;
+              row.id = row.item_id;
+
               delete row.to_char;
+              delete row.item_id;
+              delete row.creation_date;
             }
 
             response.createDataMessage(data);
             resolve(response);
+          })
+          .catch(() => {
+            response.createErrorMessage(defaultErrorMessage);
+            reject(response);
+          });
+      });
+    },
+
+    getQuote(id) {
+      const response = new ResponseMessage();
+
+      return new Promise((resolve, reject) => {
+        dbService.getQuote(id)
+          .then(data => {
+            data.creationDate = data.to_char;
+            data.id = data.item_id;
+
+            delete data.to_char;
+            delete data.item_id;
+            delete data.creation_date;
           })
           .catch(() => {
             response.createErrorMessage(defaultErrorMessage);

@@ -20,6 +20,10 @@ export default {
     clearData: function () {
       this.$data.data.author = null;
       this.$data.data.body = null;
+    },
+
+    deleteQuote: function () {
+
     }
   }
 }
