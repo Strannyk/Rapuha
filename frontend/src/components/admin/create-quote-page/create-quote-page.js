@@ -22,7 +22,7 @@ export default {
 
       const createQuote = adminService.createQuote.bind(this, data);
       createQuote().then(res => this.handleSaveSuccess(res.body),
-        () => this.handleSaveError())
+        () => this.handleActionError())
         .catch(err => console.log(err));
     },
 
@@ -43,7 +43,7 @@ export default {
       }
     },
 
-    handleSaveError: function () {
+    handleActionError: function () {
       alert('Ошибка сети');
     },
 

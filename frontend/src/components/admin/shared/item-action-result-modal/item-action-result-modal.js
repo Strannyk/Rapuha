@@ -5,20 +5,23 @@ export default {
 
   props: {
     postType: String,
+    actionType: String,
     successResult: Boolean,
     message: String
   },
 
   computed: {
     titleWording: function () {
+      const action = this.actionType === 'creation' ? 'Создание ' : 'Редактирование ';
+
       if (this.postType === 'reflection') {
-        return 'размышления';
+        return action + 'размышления';
       }
       else if (this.postType === 'story') {
-        return 'рассказа';
+        return action + 'рассказа';
       }
       else if (this.postType === 'quote') {
-        return 'цитаты';
+        return action + 'цитаты';
       }
     }
   },

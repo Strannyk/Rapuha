@@ -27,7 +27,7 @@ export default {
 
       const createPost = adminService.createPost.bind(this, title, data);
       createPost().then(res => this.handleSaveSuccess(res.body),
-        () => this.handleSaveError())
+        () => this.handleActionError())
         .catch(err => console.log(err));
     },
 
@@ -50,7 +50,7 @@ export default {
       }
     },
 
-    handleSaveError: function () {
+    handleActionError: function () {
       alert('Ошибка сети');
     },
 

@@ -6,6 +6,7 @@
             <input type="text"
                    placeholder="Название"
                    v-model="data.title"
+                   v-on:input="onChange"
                    class="form-control"
                    id="r-title"
                    autocomplete="off">
@@ -15,6 +16,7 @@
             <label for="r-body">Текст</label>
             <textarea placeholder="Текст"
                       v-model="data.body"
+                      v-on:input="onChange"
                       class="form-control"
                       id="r-body" rows="15"></textarea>
         </div>
@@ -79,7 +81,7 @@
             <button type="submit"
                     class="btn r-button"
                     :class="newItem ? 'btn-primary' : 'btn-outline-success'"
-                    :disabled="!data.tags.length || !data.title || !data.body"
+                    :disabled="!data.tags.length || !data.title || !data.body || (!newItem && !dataIsChanged)"
                     v-on:click="submit"
                     v-text="(newItem ? 'Создать ' : 'Сохранить ') + submitButtonWording"></button>
             <button v-if="!newItem"

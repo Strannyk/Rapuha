@@ -4,8 +4,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 v-text="'Создание ' + titleWording"
-                            class="modal-title"></h5>
+                        <h5 class="modal-title">{{titleWording}}</h5>
                         <button v-on:click="close"
                                 type="button"
                                 class="close"

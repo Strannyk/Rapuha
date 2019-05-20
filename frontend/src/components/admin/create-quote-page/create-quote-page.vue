@@ -4,12 +4,13 @@
                     :newQuote="true"
                     @submit="save">
         </quote-form>
-        <item-creation-result-modal ref="modal"
-                                    :postType="'quote'"
-                                    :successResult="createQuoteSuccess"
-                                    :message="createQuoteMessage"
-                                    @close="onCloseModal">
-        </item-creation-result-modal>
+        <item-action-result-modal ref="modal"
+                                  :postType="'quote'"
+                                  :actionType="'creation'"
+                                  :successResult="createQuoteSuccess"
+                                  :message="createQuoteMessage"
+                                  @close="onCloseModal">
+        </item-action-result-modal>
     </div>
 </template>
 

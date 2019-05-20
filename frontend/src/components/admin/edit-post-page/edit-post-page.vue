@@ -6,6 +6,13 @@
                           :submitButtonWording="postType === 'reflection' ? 'размышление' : 'рассказ'"
                           @submit="save">
         </tagged-item-form>
+        <item-action-result-modal ref="modal"
+                                  :postType="postType"
+                                  :actionType="'editing'"
+                                  :successResult="editPostSuccess"
+                                  :message="editPostMessage"
+                                  @close="onCloseModal">
+        </item-action-result-modal>
     </div>
 </template>
 

@@ -18,7 +18,8 @@ export default {
       },
 
       allTags: [],
-      tagsEditMode: false
+      tagsEditMode: false,
+      dataIsChanged: false
     };
   },
 
@@ -41,6 +42,7 @@ export default {
 
     onSelectTags: function (tags) {
       this.$data.data.tags = tags;
+      this.onChange();
     },
 
     updateTag: function (tagIndex) {
@@ -125,6 +127,10 @@ export default {
       this.$data.data.title = null;
       this.$data.data.body = null;
       this.$data.data.tags = [];
+    },
+
+    onChange: function () {
+      this.$data.dataIsChanged = true;
     }
   },
 
