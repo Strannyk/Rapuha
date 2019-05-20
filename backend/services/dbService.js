@@ -66,8 +66,8 @@ const dbService = (() => {
     },
 
     addPost(title, data) {
-      const postTagsQuery = 'INSERT INTO posts_tags (title, tag_name) VALUES ($1, $2)';
       const postQuery = 'INSERT INTO posts (title, body, type, creation_date) VALUES ($1, $2, $3, $4)';
+      const postTagsQuery = 'INSERT INTO posts_tags (title, tag_name) VALUES ($1, $2)';
 
       return getDb().tx(t => {
         const queries = [];
@@ -87,6 +87,14 @@ const dbService = (() => {
     getPost(title) {
       const query = 'SELECT *, to_char(creation_date, \'DD-MM-YYYY\') from posts WHERE title = $1';
       return getDb().one(query, title);
+    },
+
+    updatePost(title, data) {
+      const postQuery = 'UPDATE posts SET (title, body) = ($2, $3) WHERE title = $1';
+      const postTagsDeleteQuery = 'DELETE FROM posts_tags WHERE title = $1';
+      const postTagsInsertQuery = 'INSERT INTO posts_tags (title, tag_name) VALUES ($1, $2)';
+
+      return getDb().none(postQuery, [title, data.title, data.body]);
     },
 
     addQuote(data) {
