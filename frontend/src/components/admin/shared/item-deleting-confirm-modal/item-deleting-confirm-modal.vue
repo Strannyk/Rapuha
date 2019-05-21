@@ -14,13 +14,18 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p :class="successResult ? 'text-success' : 'text-danger'">{{message}}</p>
+                        <p class="text-danger">{{bodyWording}}</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button"
+                                v-on:click="confirm"
+                                class="btn btn-danger"
+                                data-dismiss="modal">Удалить
+                        </button>
+                        <button type="button"
                                 v-on:click="close"
                                 class="btn btn-secondary"
-                                data-dismiss="modal">OK
+                                data-dismiss="modal">Отмена
                         </button>
                     </div>
                 </div>
@@ -30,4 +35,4 @@
     </div>
 </template>
 
-<script src="./item-action-result-modal.js"></script>
+<script src="./item-deleting-confirm-modal.js"></script>

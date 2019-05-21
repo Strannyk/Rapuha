@@ -1,12 +1,14 @@
 import TaggedItemForm from '../shared/tagged-item-form/tagged-item-form.vue';
 import ItemActionResultModal from '../shared/item-action-result-modal/item-action-result-modal.vue';
+import ItemDeletingConfirmModal from '../shared/item-deleting-confirm-modal/item-deleting-confirm-modal.vue';
 import adminService from '../services/admin-service';
 import commonService from '@/common/services/common-service';
 
 export default {
   components: {
     TaggedItemForm,
-    ItemActionResultModal
+    ItemActionResultModal,
+    ItemDeletingConfirmModal
   },
 
   data() {
@@ -47,6 +49,10 @@ export default {
         .catch(err => console.log(err));
     },
 
+    deleteItem: function () {
+      console.log('delete');
+    },
+
     handleSaveSuccess: function (response) {
       if (response.ok) {
         this.$data.editPostSuccess = true;
@@ -70,11 +76,16 @@ export default {
       alert('Ошибка сети');
     },
 
-    openResultModal: function () {
-      this.$refs.modal.open();
+    prepareItemDeleting: function (title) {
+      console.log(title);
+      this.openConfirmModal();
     },
 
-    onCloseModal: function () {
+    openResultModal: function () {
+      this.$refs.resultModal.open();
+    },
+
+    onCloseResultModal: function () {
       if (this.$data.editPostSuccess) {
         this.goToPostsList();
       }
@@ -82,6 +93,10 @@ export default {
         this.$data.editPostSuccess = null;
         this.$data.editPostMessage = null;
       }
+    },
+
+    openConfirmModal: function () {
+      this.$refs.confirmModal.open();
     },
 
     goToManagePage: function () {

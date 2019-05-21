@@ -89,6 +89,11 @@ const dbService = (() => {
       return getDb().one(query, title);
     },
 
+    deletePost(title) {
+      const query = 'DELETE FROM posts WHERE title = $1';
+      return getDb().none(query, title);
+    },
+
     updatePost(title, data) {
       const postQuery = 'UPDATE posts SET (title, body) = ($2, $3) WHERE title = $1';
       const postTagsDeleteQuery = 'DELETE FROM posts_tags WHERE title = $1';
@@ -122,7 +127,7 @@ const dbService = (() => {
     },
 
     getQuotesList() {
-      const query = 'SELECT *, to_char(creation_date, \'DD-MM-YYYY\') FROM quotes ORDER BY creation_date LIMIT 500';
+      const query = 'SELECT *, to_char(creation_date, \'DD-MM-YYYY\') FROM quotes ORDER BY creation_date, body LIMIT 500';
       return getDb().any(query);
     },
 

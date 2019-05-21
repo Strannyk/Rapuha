@@ -24,13 +24,5 @@ export default {
         return action + 'цитаты';
       }
     }
-  },
-
-  methods: {
-    close: function () {
-      this.$data.active = false;
-      this.$emit('close');
-      document.body.classList.remove(this.$data.frozenBodyClassName);
-    }
   }
 }

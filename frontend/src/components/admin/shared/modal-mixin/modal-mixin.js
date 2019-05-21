@@ -19,6 +19,12 @@ export default {
       document.body.classList.add(this.$data.frozenBodyClassName);
     },
 
+    close: function () {
+      this.$data.active = false;
+      this.$emit('close');
+      document.body.classList.remove(this.$data.frozenBodyClassName);
+    },
+
     onFocus: function () {
       this.$emit('focus');
     }

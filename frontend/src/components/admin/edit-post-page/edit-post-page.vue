@@ -2,18 +2,24 @@
     <div>
         <tagged-item-form ref="itemForm"
                           :newItem="false"
-                          :titleWording="postType === 'reflection' ? 'Редактирование размышления' : 'Редактирование рассказа'"
+                          :titleWording="postType === 'reflection'
+                          ? 'Редактирование размышления' : 'Редактирование рассказа'"
                           :submitButtonWording="postType === 'reflection' ? 'размышление' : 'рассказ'"
                           @submit="save"
+                          @delete="prepareItemDeleting"
                           @cancel="goToPostsList">
         </tagged-item-form>
-        <item-action-result-modal ref="modal"
+        <item-action-result-modal ref="resultModal"
                                   :postType="postType"
                                   :actionType="'editing'"
                                   :successResult="editPostSuccess"
                                   :message="editPostMessage"
-                                  @close="onCloseModal">
+                                  @close="onCloseResultModal">
         </item-action-result-modal>
+        <item-deleting-confirm-modal ref="confirmModal"
+                                     :postType="postType"
+                                     @confirm="deleteItem">
+        </item-deleting-confirm-modal>
     </div>
 </template>
 

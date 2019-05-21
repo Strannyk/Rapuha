@@ -49,6 +49,12 @@ const adminService = {
     });
   },
 
+  deletePost(title) {
+    return this.$http.delete('admin/post' + title, {
+      token: adminService.getToken()
+    });
+  },
+
   createQuote(data) {
     return this.$http.put('admin/quote', {
       data: data,

@@ -1,12 +1,14 @@
 import QuoteForm from '../shared/quote-form/quote-form.vue';
 import ItemActionResultModal from '../shared/item-action-result-modal/item-action-result-modal.vue';
+import ItemDeletingConfirmModal from '../shared/item-deleting-confirm-modal/item-deleting-confirm-modal.vue';
 import adminService from '../services/admin-service';
 import commonService from '@/common/services/common-service';
 
 export default {
   components: {
     QuoteForm,
-    ItemActionResultModal
+    ItemActionResultModal,
+    ItemDeletingConfirmModal
   },
 
   data() {
@@ -49,6 +51,10 @@ export default {
         .catch(err => console.log(err));
     },
 
+    deleteQuote: function () {
+      console.log('delete');
+    },
+
     handleSaveSuccess: function (response) {
       if (response.ok) {
         this.$data.editQuoteSuccess = true;
@@ -71,10 +77,10 @@ export default {
     },
 
     openResultModal: function () {
-      this.$refs.modal.open();
+      this.$refs.resultModal.open();
     },
 
-    onCloseModal: function () {
+    onCloseResultModal: function () {
       if (this.$data.editQuoteSuccess) {
         this.goToQuotesList();
       }
@@ -82,6 +88,10 @@ export default {
         this.$data.editQuoteSuccess = null;
         this.$data.editQuoteMessage = null;
       }
+    },
+
+    openConfirmModal: function () {
+      this.$refs.confirmModal.open();
     },
 
     goToManagePage: function () {

@@ -208,6 +208,28 @@ const restController = (() => {
       });
     },
 
+    deletePost(token, title) {
+      const response = new ResponseMessage();
+
+      return new Promise((resolve, reject) => {
+        if (!tokenIsValid(token)) {
+          response.createTokenExpiredMessage();
+          reject(response);
+          return;
+        }
+
+        dbService.deletePost(title)
+          .then(() => {
+            response.createSuccessMessage();
+            resolve(response);
+          })
+          .catch(() => {
+            response.createErrorMessage(defaultErrorMessage);
+            reject(response);
+          });
+      });
+    },
+
     updatePost(token, title, data) {
       const response = new ResponseMessage();
 
