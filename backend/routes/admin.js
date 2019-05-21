@@ -57,4 +57,10 @@ router.post('/quote', function (req, res) {
     .catch(err => res.send(err));
 });
 
+router.delete('/quote', function (req, res) {
+  restController.deleteQuote(req.body.token, req.body.id)
+    .then(result => res.send(result))
+    .catch(err => res.send(err));
+});
+
 module.exports = router;

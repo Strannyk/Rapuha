@@ -61,6 +61,13 @@ const adminService = {
       data: data,
       token: adminService.getToken()
     });
+  },
+
+  deleteQuote(id) {
+    return this.$http.delete('admin/quote', {
+      id: id,
+      token: adminService.getToken()
+    })
   }
 };
 

@@ -129,6 +129,11 @@ const dbService = (() => {
     getQuote(id) {
       const query = 'SELECT *, to_char(creation_date, \'DD-MM-YYYY\') FROM quotes WHERE item_id = $1';
       return getDb().one(query, id);
+    },
+
+    deleteQuote(id) {
+      const query = 'DELETE FROM quotes WHERE item_id = $1';
+      return getDb().none(query, id);
     }
   };
 })();

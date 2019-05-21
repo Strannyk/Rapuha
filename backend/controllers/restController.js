@@ -356,6 +356,28 @@ const restController = (() => {
             reject(response);
           });
       });
+    },
+
+    deleteQuote(token, id) {
+      const response = new ResponseMessage();
+
+      return new Promise((resolve, reject) => {
+        if (!tokenIsValid(token)) {
+          response.createTokenExpiredMessage();
+          reject(response);
+          return;
+        }
+
+        dbService.deleteQuote(id)
+          .then(() => {
+            response.createSuccessMessage();
+            resolve(response);
+          })
+          .catch(() => {
+            response.createErrorMessage(defaultErrorMessage);
+            reject(response);
+          });
+      });
     }
   };
 })();

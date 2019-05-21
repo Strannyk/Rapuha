@@ -41,7 +41,7 @@ export default {
     },
 
     deleteQuote: function () {
-
+      this.$emit('delete');
     }
   }
 }
