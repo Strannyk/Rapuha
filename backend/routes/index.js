@@ -14,7 +14,7 @@ router.get('/quotes', function (req, res) {
     .catch(err => res.send(err));
 });
 
-router.get('/quote', function (req, res) {
+router.post('/quote', function (req, res) {
   restController.getQuote(req.body.id)
     .then(result => res.send(result))
     .catch(err => res.send(err));

@@ -4,7 +4,9 @@ export default {
       data: {
         author: null,
         body: null
-      }
+      },
+
+      dataIsChanged: false
     };
   },
 
@@ -20,6 +22,18 @@ export default {
     clearData: function () {
       this.$data.data.author = null;
       this.$data.data.body = null;
+    },
+
+    getData: function () {
+      return {
+        author: this.$data.data.author,
+        body: this.$data.data.body
+      };
+    },
+
+    setData: function (data) {
+      this.$data.data.author = data.author;
+      this.$data.data.body = data.body;
     },
 
     deleteQuote: function () {

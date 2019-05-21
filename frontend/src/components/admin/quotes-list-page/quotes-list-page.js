@@ -8,9 +8,9 @@ export default {
   },
 
   methods: {
-    getQuotes: function () {
-      const getQuotes = commonService.getQuotes.bind(this);
-      getQuotes().then(res => this.handleGetListSuccess(res.body),
+    getQuotesList: function () {
+      const getQuotesList = commonService.getQuotesList.bind(this);
+      getQuotesList().then(res => this.handleGetListSuccess(res.body),
         () => this.handleGetListError())
         .catch(err => console.log(err));
     },
@@ -34,6 +34,6 @@ export default {
   },
 
   mounted() {
-    this.getQuotes();
+    this.getQuotesList();
   }
 }

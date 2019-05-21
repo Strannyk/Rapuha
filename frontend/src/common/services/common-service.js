@@ -3,8 +3,12 @@ const commonService = {
     return this.$http.get('tags');
   },
 
-  getQuotes() {
+  getQuotesList() {
     return this.$http.get('quotes');
+  },
+
+  getQuote(id) {
+    return this.$http.post('quote', { id: id });
   },
 
   getPost(title) {

@@ -1,6 +1,7 @@
 import QuoteForm from '../shared/quote-form/quote-form.vue';
 import ItemActionResultModal from '../shared/item-action-result-modal/item-action-result-modal.vue';
 import adminService from '../services/admin-service';
+import commonService from '@/common/services/common-service';
 
 export default {
   components: {
@@ -16,6 +17,24 @@ export default {
   },
 
   methods: {
+    getQuoteId: function () {
+      return sessionStorage.getItem('quote_id');
+    },
+
+    getDbData: function () {
+      const getQuote = commonService.getQuote.bind(this, this.getQuoteId());
+      getQuote().then(res => {
+          if (res.body.data) {
+            this.$refs.quoteForm.setData(res.body.data);
+          }
+          else {
+            this.goToQuotesList();
+          }
+        },
+        () => this.handleActionError())
+        .catch(err => console.log(err));
+    },
+
     save: function (data) {
 
     },
@@ -47,6 +66,14 @@ export default {
 
     onCloseModal: function () {
       this.$router.push({ name: 'quotesList' });
+    },
+
+    goToQuotesList: function () {
+      this.$router.push({ name: 'quotesList' });
     }
+  },
+
+  mounted() {
+    this.getDbData();
   }
 }

@@ -347,6 +347,9 @@ const restController = (() => {
             delete data.to_char;
             delete data.item_id;
             delete data.creation_date;
+
+            response.createDataMessage(data);
+            resolve(response);
           })
           .catch(() => {
             response.createErrorMessage(defaultErrorMessage);
