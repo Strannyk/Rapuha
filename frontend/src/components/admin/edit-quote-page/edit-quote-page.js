@@ -75,7 +75,13 @@ export default {
     },
 
     onCloseModal: function () {
-      this.$router.push({ name: 'quotesList' });
+      if (this.$data.editQuoteSuccess) {
+        this.goToQuotesList();
+      }
+      else {
+        this.$data.editQuoteSuccess = null;
+        this.$data.editQuoteMessage = null;
+      }
     },
 
     goToQuotesList: function () {

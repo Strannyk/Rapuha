@@ -19,6 +19,10 @@ export default {
       this.$emit('submit', this.$data.data);
     },
 
+    cancel: function () {
+      this.$emit('cancel');
+    },
+
     clearData: function () {
       this.$data.data.author = null;
       this.$data.data.body = null;

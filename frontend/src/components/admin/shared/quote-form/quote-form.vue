@@ -31,6 +31,11 @@
                     class="btn r-button btn-outline-danger"
                     v-on:click="deleteQuote">Удалить цитату
             </button>
+            <button type="button"
+                    class="btn r-button"
+                    :class="newQuote ? 'btn-secondary' : 'btn-outline-secondary'"
+                    v-on:click="cancel">Отмена
+            </button>
         </div>
     </div>
 </template>

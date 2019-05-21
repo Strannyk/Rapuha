@@ -123,6 +123,10 @@ export default {
       this.$emit('delete', this.$data.data.title);
     },
 
+    cancel: function () {
+      this.$emit('cancel');
+    },
+
     clearData: function () {
       this.$data.data.title = null;
       this.$data.data.body = null;

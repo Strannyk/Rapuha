@@ -2,7 +2,8 @@
     <div>
         <quote-form ref="quoteForm"
                     :newQuote="true"
-                    @submit="save">
+                    @submit="save"
+                    @cancel="goToQuotesList">
         </quote-form>
         <item-action-result-modal ref="modal"
                                   :postType="'quote'"

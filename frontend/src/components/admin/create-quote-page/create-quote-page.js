@@ -58,6 +58,10 @@ export default {
 
       this.$data.createQuoteSuccess = null;
       this.$data.createQuoteMessage = null;
+    },
+
+    goToQuotesList: function () {
+      this.$router.push({ name: 'quotesList' });
     }
   }
 }

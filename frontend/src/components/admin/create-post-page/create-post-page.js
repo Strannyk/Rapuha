@@ -65,6 +65,11 @@ export default {
 
       this.$data.createPostSuccess = null;
       this.$data.createPostMessage = null;
+    },
+
+    goToPostsList: function () {
+      const route = this.$data.postType === 'reflection' ? 'reflectionsList' : 'storiesList';
+      this.$router.push({ name: route });
     }
   },
 
