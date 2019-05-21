@@ -21,6 +21,10 @@ export default {
       return sessionStorage.getItem('quote_id');
     },
 
+    eraseQuoteId: function () {
+      sessionStorage.removeItem('quote_id');
+    },
+
     getDbData: function () {
       const getQuote = commonService.getQuote.bind(this, this.getQuoteId());
       getQuote().then(res => {
@@ -35,8 +39,14 @@ export default {
         .catch(err => console.log(err));
     },
 
-    save: function (data) {
+    save: function () {
+      const data = this.$refs.quoteForm.getData();
+      data.id = this.getQuoteId();
 
+      const updateQuote = adminService.updateQuote.bind(this, data);
+      updateQuote().then(res => this.handleSaveSuccess(res.body),
+        () => this.handleActionError())
+        .catch(err => console.log(err));
     },
 
     handleSaveSuccess: function (response) {
@@ -75,5 +85,9 @@ export default {
 
   mounted() {
     this.getDbData();
+  },
+
+  destroyed() {
+    this.eraseQuoteId();
   }
 }
