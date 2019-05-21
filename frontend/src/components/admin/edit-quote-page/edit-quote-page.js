@@ -32,7 +32,7 @@ export default {
             this.$refs.quoteForm.setData(res.body.data);
           }
           else {
-            this.goToQuotesList();
+            this.goToManagePage();
           }
         },
         () => this.handleActionError())
@@ -82,6 +82,10 @@ export default {
         this.$data.editQuoteSuccess = null;
         this.$data.editQuoteMessage = null;
       }
+    },
+
+    goToManagePage: function () {
+      this.$router.push({ name: 'manage' });
     },
 
     goToQuotesList: function () {

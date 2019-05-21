@@ -29,7 +29,7 @@ export default {
             this.$refs.itemForm.setData(res.body.data);
           }
           else {
-            this.goToPostsList();
+            this.goToManagePage();
           }
         },
         () => this.handleActionError())
@@ -82,6 +82,10 @@ export default {
         this.$data.editPostSuccess = null;
         this.$data.editPostMessage = null;
       }
+    },
+
+    goToManagePage: function () {
+      this.$router.push({ name: 'manage' });
     },
 
     goToPostsList: function () {
