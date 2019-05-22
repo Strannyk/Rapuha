@@ -69,4 +69,16 @@ router.delete('/quote', function (req, res) {
     .catch(err => res.send(err));
 });
 
+router.post('/feedback', function (req, res) {
+  restController.getFeedbackList(req.body.token)
+    .then(result => res.send(result))
+    .catch(err => res.send(err));
+});
+
+router.delete('/feedback', function (req, res) {
+  restController.deleteFeedback(req.body.token, req.body.id)
+    .then(result => res.send(result))
+    .catch(err => res.send(err));
+});
+
 module.exports = router;

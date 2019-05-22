@@ -139,6 +139,16 @@ const dbService = (() => {
     deleteQuote(id) {
       const query = 'DELETE FROM quotes WHERE item_id = $1';
       return getDb().none(query, id);
+    },
+
+    getFeedbackList() {
+      const query = 'SELECT *, to_char(creation_date, \'DD-MM-YYYY\') FROM feedback ORDER BY creation_date LIMIT 500';
+      return getDb().any(query);
+    },
+
+    deleteFeedback(id) {
+      const query = 'DELETE FROM feedback WHERE item_id = $1';
+      return getDb().none(query, id);
     }
   };
 })();
