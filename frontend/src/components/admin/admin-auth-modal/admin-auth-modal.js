@@ -1,7 +1,7 @@
-import mixin from '../shared/modal-mixin/modal-mixin';
+import modalMixin from '../shared/modal-mixin/modal-mixin';
 
 export default {
-  mixins: [mixin],
+  mixins: [modalMixin],
 
   data() {
     return {

@@ -1,7 +1,7 @@
-import mixin from '../modal-mixin/modal-mixin';
+import modalMixin from '../modal-mixin/modal-mixin';
 
 export default {
-  mixins: [mixin],
+  mixins: [modalMixin],
 
   props: {
     postType: String
