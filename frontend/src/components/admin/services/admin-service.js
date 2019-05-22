@@ -50,8 +50,8 @@ const adminService = {
   },
 
   deletePost(title) {
-    return this.$http.delete('admin/post' + title, {
-      token: adminService.getToken()
+    return this.$http.delete('admin/post/' + title, {
+      body: { token: adminService.getToken() }
     });
   },
 
@@ -71,8 +71,10 @@ const adminService = {
 
   deleteQuote(id) {
     return this.$http.delete('admin/quote', {
-      id: id,
-      token: adminService.getToken()
+      body: {
+        id: id,
+        token: adminService.getToken()
+      }
     })
   }
 };

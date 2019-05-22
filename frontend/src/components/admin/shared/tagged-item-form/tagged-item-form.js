@@ -120,7 +120,7 @@ export default {
     },
 
     deleteItem: function () {
-      this.$emit('delete', this.$data.data.title); // todo: fixate first version of title
+      this.$emit('delete');
     },
 
     cancel: function () {

@@ -14,8 +14,13 @@ export default {
   data() {
     return {
       postType: null,
-      editPostSuccess: null,
-      editPostMessage: null
+      actionType: null,
+      actionSuccess: null,
+      actionMessage: null,
+      availableActionTypes: {
+        editing: 'editing',
+        deleting: 'deleting'
+      }
     };
   },
 
@@ -50,20 +55,48 @@ export default {
     },
 
     deleteItem: function () {
-      console.log('delete');
+      this.closeConfirmModal();
+
+      const deletePost = adminService.deletePost.bind(this, this.getPostTitle());
+      deletePost().then(res => this.handleDeleteSuccess(res.body),
+        () => this.handleActionError())
+        .catch(err => console.log(err));
     },
 
     handleSaveSuccess: function (response) {
+      this.$data.actionType = this.$data.availableActionTypes.editing;
+
       if (response.ok) {
-        this.$data.editPostSuccess = true;
-        this.$data.editPostMessage = this.$data.postType === 'reflection'
+        this.$data.actionSuccess = true;
+        this.$data.actionMessage = this.$data.postType === 'reflection'
           ? 'Размышление успешно отредактировано'
           : 'Рассказ успешно отредактирован';
         this.openResultModal();
       }
-      else if (response.error) {
-        this.$data.editPostSuccess = false;
-        this.$data.editPostMessage = response.error;
+      else {
+        this.handleCommonActionSuccess(response);
+      }
+    },
+
+    handleDeleteSuccess: function (response) {
+      this.$data.actionType = this.$data.availableActionTypes.deleting;
+
+      if (response.ok) {
+        this.$data.actionSuccess = true;
+        this.$data.actionMessage = this.$data.postType === 'reflection'
+          ? 'Размышление удалено'
+          : 'Рассказ удален';
+        this.openResultModal();
+      }
+      else {
+        this.handleCommonActionSuccess(response);
+      }
+    },
+
+    handleCommonActionSuccess: function (response) {
+      if (response.error) {
+        this.$data.actionSuccess = false;
+        this.$data.actionMessage = response.error;
         this.openResultModal();
       }
       else if (response.tokenExpired) {
@@ -76,27 +109,27 @@ export default {
       alert('Ошибка сети');
     },
 
-    prepareItemDeleting: function (title) {
-      console.log(title);
-      this.openConfirmModal();
-    },
-
     openResultModal: function () {
       this.$refs.resultModal.open();
     },
 
     onCloseResultModal: function () {
-      if (this.$data.editPostSuccess) {
+      if (this.$data.actionSuccess) {
         this.goToPostsList();
       }
       else {
-        this.$data.editPostSuccess = null;
-        this.$data.editPostMessage = null;
+        this.$data.actionType = null;
+        this.$data.actionSuccess = null;
+        this.$data.actionMessage = null;
       }
     },
 
     openConfirmModal: function () {
       this.$refs.confirmModal.open();
+    },
+
+    closeConfirmModal: function () {
+      this.$refs.confirmModal.close();
     },
 
     goToManagePage: function () {

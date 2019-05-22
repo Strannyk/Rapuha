@@ -13,8 +13,13 @@ export default {
 
   data() {
     return {
-      editQuoteSuccess: null,
-      editQuoteMessage: null
+      actionType: null,
+      actionSuccess: null,
+      actionMessage: null,
+      availableActionTypes: {
+        editing: 'editing',
+        deleting: 'deleting'
+      }
     };
   },
 
@@ -52,18 +57,44 @@ export default {
     },
 
     deleteQuote: function () {
-      console.log('delete');
+      this.closeConfirmModal();
+
+      const deleteQuote = adminService.deleteQuote.bind(this, this.getQuoteId());
+      deleteQuote().then(res => this.handleDeleteSuccess(res.body),
+        () => this.handleActionError())
+        .catch(err => console.log(err));
     },
 
     handleSaveSuccess: function (response) {
+      this.$data.actionType = this.$data.availableActionTypes.editing;
+
       if (response.ok) {
-        this.$data.editQuoteSuccess = true;
-        this.$data.editQuoteMessage = 'Цитата успешно отредактирована';
+        this.$data.actionSuccess = true;
+        this.$data.actionMessage = 'Цитата успешно отредактирована';
         this.openResultModal();
       }
-      else if (response.error) {
-        this.$data.editQuoteSuccess = false;
-        this.$data.editQuoteMessage = response.error;
+      else {
+        this.handleCommonActionSuccess(response);
+      }
+    },
+
+    handleDeleteSuccess: function (response) {
+      this.$data.actionType = this.$data.availableActionTypes.deleting;
+
+      if (response.ok) {
+        this.$data.actionSuccess = true;
+        this.$data.actionMessage = 'Цитата удалена';
+        this.openResultModal();
+      }
+      else {
+        this.handleCommonActionSuccess(response);
+      }
+    },
+
+    handleCommonActionSuccess: function (response) {
+      if (response.error) {
+        this.$data.actionSuccess = false;
+        this.$data.actionMessage = response.error;
         this.openResultModal();
       }
       else if (response.tokenExpired) {
@@ -81,17 +112,22 @@ export default {
     },
 
     onCloseResultModal: function () {
-      if (this.$data.editQuoteSuccess) {
+      if (this.$data.actionSuccess) {
         this.goToQuotesList();
       }
       else {
-        this.$data.editQuoteSuccess = null;
-        this.$data.editQuoteMessage = null;
+        this.$data.actionType = null;
+        this.$data.actionSuccess = null;
+        this.$data.actionMessage = null;
       }
     },
 
     openConfirmModal: function () {
       this.$refs.confirmModal.open();
+    },
+
+    closeConfirmModal: function () {
+      this.$refs.confirmModal.close();
     },
 
     goToManagePage: function () {

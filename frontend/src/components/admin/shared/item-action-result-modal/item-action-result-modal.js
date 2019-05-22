@@ -12,7 +12,17 @@ export default {
 
   computed: {
     titleWording: function () {
-      const action = this.actionType === 'creation' ? 'Создание ' : 'Редактирование ';
+      let action;
+
+      if (this.actionType === 'creation') {
+        action = 'Создание ';
+      }
+      else if (this.actionType === 'editing') {
+        action = 'Редактирование ';
+      }
+      else if (this.actionType === 'deleting') {
+        action = 'Удаление ';
+      }
 
       if (this.postType === 'reflection') {
         return action + 'размышления';

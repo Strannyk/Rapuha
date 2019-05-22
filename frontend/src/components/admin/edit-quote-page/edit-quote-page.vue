@@ -8,9 +8,9 @@
         </quote-form>
         <item-action-result-modal ref="resultModal"
                                   :postType="'quote'"
-                                  :actionType="'edition'"
-                                  :successResult="editQuoteSuccess"
-                                  :message="editQuoteMessage"
+                                  :actionType="actionType"
+                                  :successResult="actionSuccess"
+                                  :message="actionMessage"
                                   @close="onCloseResultModal">
         </item-action-result-modal>
         <item-deleting-confirm-modal ref="confirmModal"

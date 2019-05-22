@@ -6,14 +6,14 @@
                           ? 'Редактирование размышления' : 'Редактирование рассказа'"
                           :submitButtonWording="postType === 'reflection' ? 'размышление' : 'рассказ'"
                           @submit="save"
-                          @delete="prepareItemDeleting"
+                          @delete="openConfirmModal"
                           @cancel="goToPostsList">
         </tagged-item-form>
         <item-action-result-modal ref="resultModal"
                                   :postType="postType"
-                                  :actionType="'editing'"
-                                  :successResult="editPostSuccess"
-                                  :message="editPostMessage"
+                                  :actionType="actionType"
+                                  :successResult="actionSuccess"
+                                  :message="actionMessage"
                                   @close="onCloseResultModal">
         </item-action-result-modal>
         <item-deleting-confirm-modal ref="confirmModal"
