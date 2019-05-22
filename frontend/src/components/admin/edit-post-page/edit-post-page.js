@@ -1,10 +1,13 @@
 import TaggedItemForm from '../shared/tagged-item-form/tagged-item-form.vue';
 import ItemActionResultModal from '../shared/item-action-result-modal/item-action-result-modal.vue';
 import ItemDeletingConfirmModal from '../shared/item-deleting-confirm-modal/item-deleting-confirm-modal.vue';
+import editItemMixin from '../shared/edit-item-mixin/edit-item-mixin';
 import adminService from '../services/admin-service';
 import commonService from '@/common/services/common-service';
 
 export default {
+  mixins: [editItemMixin],
+
   components: {
     TaggedItemForm,
     ItemActionResultModal,
@@ -13,14 +16,7 @@ export default {
 
   data() {
     return {
-      postType: null,
-      actionType: null,
-      actionSuccess: null,
-      actionMessage: null,
-      availableActionTypes: {
-        editing: 'editing',
-        deleting: 'deleting'
-      }
+      postType: null
     };
   },
 
@@ -93,18 +89,6 @@ export default {
       }
     },
 
-    handleCommonActionSuccess: function (response) {
-      if (response.error) {
-        this.$data.actionSuccess = false;
-        this.$data.actionMessage = response.error;
-        this.openResultModal();
-      }
-      else if (response.tokenExpired) {
-        localStorage.removeItem('token');
-        this.eventHub.$emit('tokenExpired');
-      }
-    },
-
     handleActionError: function () {
       alert('Ошибка сети');
     },
@@ -118,22 +102,8 @@ export default {
         this.goToPostsList();
       }
       else {
-        this.$data.actionType = null;
-        this.$data.actionSuccess = null;
-        this.$data.actionMessage = null;
+        this.clearData();
       }
-    },
-
-    openConfirmModal: function () {
-      this.$refs.confirmModal.open();
-    },
-
-    closeConfirmModal: function () {
-      this.$refs.confirmModal.close();
-    },
-
-    goToManagePage: function () {
-      this.$router.push({ name: 'manage' });
     },
 
     goToPostsList: function () {
