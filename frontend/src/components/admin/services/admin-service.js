@@ -76,6 +76,12 @@ const adminService = {
         token: adminService.getToken()
       }
     })
+  },
+
+  getFeedbackList() {
+    return this.$http.post('admin/feedback', {
+      token: adminService.getToken()
+    })
   }
 };
 

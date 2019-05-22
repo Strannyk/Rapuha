@@ -58,6 +58,7 @@ export default {
         this.routeAdminPage();
 
         this.clearAuthModalValues();
+        this.eventHub.$emit('authorized');
       }
       else if (error) {
         this.$data.authError = error;

@@ -9,6 +9,7 @@ import CreateQuotePage from './components/admin/create-quote-page/create-quote-p
 import EditQuotePage from './components/admin/edit-quote-page/edit-quote-page.vue';
 import CreatePostPage from './components/admin/create-post-page/create-post-page.vue';
 import EditPostPage from './components/admin/edit-post-page/edit-post-page.vue';
+import FeedbackListPage from './components/admin/feedback-list-page/feedback-list-page.vue';
 
 Vue.use(Router);
 
@@ -44,6 +45,11 @@ export default new Router({
           name: 'quotesList',
           path: 'quotes',
           component: QuotesListPage
+        },
+        {
+          name: 'feedbackList',
+          path: 'feedback',
+          component: FeedbackListPage
         },
         {
           name: 'createQuote',

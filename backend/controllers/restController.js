@@ -122,7 +122,6 @@ const restController = (() => {
       return new Promise((resolve, reject) => {
         dbService.getPostTitles(type)
           .then(data => {
-
             for (const row of data) {
               row.creationDate = row.to_char;
               delete row.to_char;
@@ -414,6 +413,17 @@ const restController = (() => {
 
         dbService.getFeedbackList()
           .then(data => {
+            for (const row of data) {
+              row.creationDate = row.to_char;
+              row.id = row.item_id;
+              row.userName = row.user_name;
+
+              delete row.creation_date;
+              delete row.to_char;
+              delete row.item_id;
+              delete row.user_name;
+            }
+
             response.createDataMessage(data);
             resolve(response);
           })
