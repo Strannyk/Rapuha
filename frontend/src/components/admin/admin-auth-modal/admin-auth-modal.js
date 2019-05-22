@@ -14,7 +14,9 @@ export default {
 
   methods: {
     close: function (selfClosing) {
-      this.active = false;
+      this.$data.active = false;
+      this.$data.credentials.login = null;
+      this.$data.credentials.password = null;
 
       if (this.$data.isSingleModal) {
         document.body.classList.remove(this.$data.frozenBodyClassName);
