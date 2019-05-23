@@ -82,6 +82,15 @@ const adminService = {
     return this.$http.post('admin/feedback', {
       token: adminService.getToken()
     })
+  },
+
+  deleteFeedback(id) {
+    return this.$http.delete('admin/feedback', {
+      body: {
+        id: id,
+        token: adminService.getToken()
+      }
+    });
   }
 };
 

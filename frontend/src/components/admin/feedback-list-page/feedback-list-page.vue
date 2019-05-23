@@ -2,11 +2,13 @@
     <div class="r-block">
         <h2>Обратная связь</h2>
         <br>
-        <button v-on:click="clearFeedback"
-                type="button"
-                class="btn btn-outline-danger">Очистить обратную связь
-        </button>
-        <br><br>
+        <div v-if="feedbackList.length">
+            <button v-on:click="clearFeedback"
+                    type="button"
+                    class="btn btn-outline-danger">Очистить обратную связь
+            </button>
+            <br><br>
+        </div>
         <div v-for="feedback in feedbackList"
              :class="feedback.unread ? 'border-warning': 'border-primary'"
              class="card mb-3">
@@ -24,16 +26,20 @@
                             type="button"
                             class="btn btn-outline-secondary btn-sm r-button">Отметить просмотренным
                     </button>
-                    <button v-on:click="deleteFeedback(feedback.id)"
+                    <button v-on:click="prepareFeedbackDeleting(feedback.id)"
                             type="button"
                             class="btn btn-outline-secondary btn-sm r-button">Удалить
                     </button>
                 </div>
             </div>
         </div>
+        <div v-if="!feedbackList.length">&lt;Пусто&gt;</div>
+        <item-deleting-confirm-modal ref="confirmModal"
+                                     :postType="'feedback'"
+                                     @confirm="deleteFeedback"
+                                     @close="clearFeedbackSelection">
+        </item-deleting-confirm-modal>
     </div>
 </template>
 
 <script src="./feedback-list-page.js"></script>
-
-<style scoped src="./feedback-list-page.scss" lang="scss"></style>

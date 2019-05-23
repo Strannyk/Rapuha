@@ -1,10 +1,20 @@
 import ItemDeletingConfirmModal from '../shared/item-deleting-confirm-modal/item-deleting-confirm-modal.vue';
+import editItemMixin from '../shared/edit-item-mixin/edit-item-mixin';
 import adminService from '../services/admin-service';
 
 export default {
+  mixins: [
+    editItemMixin
+  ],
+
+  components: {
+    ItemDeletingConfirmModal
+  },
+
   data() {
     return {
-      feedbackList: []
+      feedbackList: [],
+      selectedFeedbackId: null
     };
   },
 
@@ -20,8 +30,19 @@ export default {
       console.log(id);
     },
 
-    deleteFeedback: function (id) {
-      console.log(id);
+    prepareFeedbackDeleting: function (id) {
+      this.$data.selectedFeedbackId = id;
+      this.openConfirmModal();
+    },
+
+    deleteFeedback: function () {
+      const deleteFeedback = adminService.deleteFeedback.bind(this, this.$data.selectedFeedbackId);
+      deleteFeedback().then(res => this.handleDeleteSuccess(res.body),
+        () => this.handleActionError())
+        .catch(err => console.log(err))
+        .finally(() => {
+          this.closeConfirmModal();
+        });
     },
 
     clearFeedback: function () {
@@ -32,7 +53,22 @@ export default {
       if (response.data) {
         this.$data.feedbackList = response.data;
       }
-      else if (response.tokenExpired) {
+      else {
+        this.handleCommonActionSuccess(response);
+      }
+    },
+
+    handleDeleteSuccess: function (response) {
+      if (response.ok) {
+        this.getFeedbackList();
+      }
+      else {
+        this.handleCommonActionSuccess(response);
+      }
+    },
+
+    handleCommonActionSuccess: function (response) {
+      if (response.tokenExpired) {
         localStorage.removeItem('token');
         this.eventHub.$emit('tokenExpired');
       }
@@ -40,6 +76,10 @@ export default {
 
     handleActionError: function () {
       alert('Ошибка сети');
+    },
+
+    clearFeedbackSelection: function () {
+      this.$data.selectedFeedbackId = null;
     }
   },
 

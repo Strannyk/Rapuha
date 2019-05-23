@@ -11,28 +11,38 @@ export default {
     titleWording: function () {
       const action = 'Удаление ';
 
-      if (this.postType === 'reflection') {
-        return action + 'размышления';
-      }
-      else if (this.postType === 'story') {
-        return action + 'рассказа';
-      }
-      else if (this.postType === 'quote') {
-        return action + 'цитаты';
+      switch (this.postType) {
+        case 'reflection': {
+          return action + 'размышления';
+        }
+        case 'story': {
+          return action + 'рассказа';
+        }
+        case 'quote': {
+          return action + 'цитаты';
+        }
+        case 'feedback': {
+          return action + ' обратной связи';
+        }
       }
     },
 
     bodyWording: function () {
       const action = 'Удалить ';
 
-      if (this.postType === 'reflection') {
-        return action + 'размышление?';
-      }
-      else if (this.postType === 'story') {
-        return action + 'рассказ?';
-      }
-      else if (this.postType === 'quote') {
-        return action + 'цитату?';
+      switch (this.postType) {
+        case 'reflection': {
+          return action + 'размышление?';
+        }
+        case 'story': {
+          return action + 'рассказ?';
+        }
+        case 'quote': {
+          return action + 'цитату?';
+        }
+        case 'feedback': {
+          return action + ' обратную связь?';
+        }
       }
     }
   },
