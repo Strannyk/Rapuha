@@ -81,4 +81,16 @@ router.delete('/feedback', function (req, res) {
     .catch(err => res.send(err));
 });
 
+router.post('/feedback/mark', function (req, res) {
+  restController.markFeedbackAsRead(req.body.token, req.body.id)
+    .then(result => res.send(result))
+    .catch(err => res.send(err));
+});
+
+router.delete('/feedback/all', function (req, res) {
+  restController.clearFeedback(req.body.token)
+    .then(result => res.send(result))
+    .catch(err => res.send(err));
+});
+
 module.exports = router;

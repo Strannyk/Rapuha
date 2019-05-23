@@ -22,7 +22,7 @@
                                        placeholder="Новый тег"
                                        v-model="newTag"
                                        class="form-control"
-                                       :class="errorMessage ? 'is-invalid' : ''"
+                                       :class="errorMessage ? 'is-invalid' : null"
                                        v-on:focus="onFocus"
                                        id="r-new-tag"
                                        autocomplete="off">

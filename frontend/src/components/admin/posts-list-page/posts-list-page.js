@@ -25,7 +25,7 @@ export default {
 
       const getList = adminService.getPostsTitles.bind(this, type);
       getList().then(res => this.handleGetListSuccess(res.body),
-        () => this.handleGetListError())
+        () => this.handleActionError())
         .catch(err => console.log(err));
     },
 
@@ -37,7 +37,7 @@ export default {
       }
     },
 
-    handleGetListError() {
+    handleActionError() {
       alert('Ошибка сети');
     },
 

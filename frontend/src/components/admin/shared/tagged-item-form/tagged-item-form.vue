@@ -46,7 +46,7 @@
 
             <div v-if="allTags.length === 0">Нет тегов</div>
 
-            <div class="tag-items" :class="allTags.length >= 10 ? 'full-form' : ''">
+            <div class="tag-items" :class="allTags.length >= 10 ? 'full-form' : null">
                 <div v-for="(tag, index) in allTags" class="form-group">
                     <input type="text"
                            :readonly="!tag.changing"
@@ -86,7 +86,7 @@
                     v-text="(newItem ? 'Создать ' : 'Сохранить ') + submitButtonWording"></button>
             <button v-if="!newItem"
                     type="button"
-                    class="btn r-button btn-outline-danger"
+                    class="btn btn-outline-danger r-button"
                     v-on:click="deleteItem"
                     v-text="'Удалить ' + submitButtonWording"></button>
             <button type="button"

@@ -454,6 +454,50 @@ const restController = (() => {
             reject(response);
           });
       });
+    },
+
+    markFeedbackAsRead(token, id) {
+      const response = new ResponseMessage();
+
+      return new Promise((resolve, reject) => {
+        if (!tokenIsValid(token)) {
+          response.createTokenExpiredMessage();
+          reject(response);
+          return;
+        }
+
+        dbService.markFeedbackAsRead(id)
+          .then(() => {
+            response.createSuccessMessage();
+            resolve(response);
+          })
+          .catch(() => {
+            response.createErrorMessage(defaultErrorMessage);
+            reject(response);
+          });
+      });
+    },
+
+    clearFeedback(token) {
+      const response = new ResponseMessage();
+
+      return new Promise((resolve, reject) => {
+        if (!tokenIsValid(token)) {
+          response.createTokenExpiredMessage();
+          reject(response);
+          return;
+        }
+
+        dbService.clearFeedback()
+          .then(() => {
+            response.createSuccessMessage();
+            resolve(response);
+          })
+          .catch(() => {
+            response.createErrorMessage(defaultErrorMessage);
+            reject(response);
+          });
+      });
     }
   };
 })();

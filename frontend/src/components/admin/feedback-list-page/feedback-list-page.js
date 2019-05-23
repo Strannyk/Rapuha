@@ -12,13 +12,24 @@ export default {
     getFeedbackList: function () {
       const getFeedbackList = adminService.getFeedbackList.bind(this);
       getFeedbackList().then(res => this.handleGetListSuccess(res.body),
-        () => this.handleGetListError())
+        () => this.handleActionError())
         .catch(err => console.log(err));
+    },
+
+    markFeedbackAsRead: function (id) {
+      console.log(id);
+    },
+
+    deleteFeedback: function (id) {
+      console.log(id);
+    },
+
+    clearFeedback: function () {
+
     },
 
     handleGetListSuccess: function (response) {
       if (response.data) {
-        console.log(response.data);
         this.$data.feedbackList = response.data;
       }
       else if (response.tokenExpired) {
@@ -27,7 +38,7 @@ export default {
       }
     },
 
-    handleGetListError: function () {
+    handleActionError: function () {
       alert('Ошибка сети');
     }
   },

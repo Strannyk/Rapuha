@@ -11,7 +11,7 @@ export default {
     getQuotesList: function () {
       const getQuotesList = commonService.getQuotesList.bind(this);
       getQuotesList().then(res => this.handleGetListSuccess(res.body),
-        () => this.handleGetListError())
+        () => this.handleActionError())
         .catch(err => console.log(err));
     },
 
@@ -23,7 +23,7 @@ export default {
       }
     },
 
-    handleGetListError: function () {
+    handleActionError: function () {
       alert('Ошибка сети');
     },
 

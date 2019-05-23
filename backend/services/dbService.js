@@ -61,7 +61,7 @@ const dbService = (() => {
     },
 
     getPostTitles(type) {
-      const query = 'SELECT title, to_char(creation_date, \'DD-MM-YYYY\') FROM posts WHERE type = $1 ORDER BY creation_date, title LIMIT 500';
+      const query = 'SELECT title, to_char(creation_date, \'DD-MM-YYYY\') FROM posts WHERE type = $1 ORDER BY creation_date DESC, title LIMIT 500';
       return getDb().any(query, type);
     },
 
@@ -127,7 +127,7 @@ const dbService = (() => {
     },
 
     getQuotesList() {
-      const query = 'SELECT *, to_char(creation_date, \'DD-MM-YYYY\') FROM quotes ORDER BY creation_date, body LIMIT 500';
+      const query = 'SELECT *, to_char(creation_date, \'DD-MM-YYYY\') FROM quotes ORDER BY creation_date DESC, body LIMIT 500';
       return getDb().any(query);
     },
 
@@ -142,13 +142,22 @@ const dbService = (() => {
     },
 
     getFeedbackList() {
-      const query = 'SELECT *, to_char(creation_date, \'DD-MM-YYYY\') FROM feedback ORDER BY creation_date LIMIT 500';
+      const query = 'SELECT *, to_char(creation_date, \'DD-MM-YYYY\') FROM feedback ORDER BY unread DESC, creation_date DESC, user_name LIMIT 500';
       return getDb().any(query);
     },
 
     deleteFeedback(id) {
       const query = 'DELETE FROM feedback WHERE item_id = $1';
       return getDb().none(query, id);
+    },
+
+    markFeedbackAsRead(id) {
+      const query = 'UPDATE feedback SET unread = FALSE WHERE item_id = $1';
+      return getDb().none(query, id);
+    },
+
+    clearFeedback() {
+      const query = 'TRUNCATE users';
     }
   };
 })();

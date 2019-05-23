@@ -22,7 +22,7 @@
                                        placeholder="Логин"
                                        v-model="credentials.login"
                                        class="form-control"
-                                       :class="errorMessage ? 'is-invalid' : ''"
+                                       :class="errorMessage ? 'is-invalid' : null"
                                        v-on:focus="onFocus"
                                        id="r-login"
                                        autocomplete="off">
@@ -35,7 +35,7 @@
                                        placeholder="Пароль"
                                        v-model="credentials.password"
                                        class="form-control"
-                                       :class="errorMessage ? 'is-invalid' : ''"
+                                       :class="errorMessage ? 'is-invalid' : null"
                                        v-on:focus="onFocus"
                                        id="r-password"
                                        autocomplete="off">
