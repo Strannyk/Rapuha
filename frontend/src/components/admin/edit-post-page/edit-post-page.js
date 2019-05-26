@@ -16,8 +16,32 @@ export default {
 
   data() {
     return {
-      postType: null
+      postType: null,
     };
+  },
+
+  computed: {
+    deletingModalTitleWording: function () {
+      const action = 'Удаление ';
+
+      if (this.$data.postType === 'reflection') {
+        return action + 'размышления';
+      }
+      else if (this.$data.postType === 'story') {
+        return action + 'рассказа';
+      }
+    },
+
+    deletingModalBodyWording: function () {
+      const action = 'Удалить ';
+
+      if (this.$data.postType === 'reflection') {
+        return action + 'размышление?';
+      }
+      else if (this.$data.postType === 'story') {
+        return action + 'рассказ?';
+      }
+    }
   },
 
   methods: {
@@ -64,9 +88,16 @@ export default {
 
       if (response.ok) {
         this.$data.actionSuccess = true;
-        this.$data.actionMessage = this.$data.postType === 'reflection'
-          ? 'Размышление успешно отредактировано'
-          : 'Рассказ успешно отредактирован';
+
+        if (this.$data.postType === 'reflection') {
+          this.$data.actionResultModalTitleWording = 'Редактирование размышления';
+          this.$data.actionMessage = 'Размышление успешно отредактировано';
+        }
+        else if (this.$data.postType === 'story') {
+          this.$data.actionResultModalTitleWording = 'Редактирование рассказа';
+          this.$data.actionMessage = 'Рассказ успешно отредактирован';
+        }
+
         this.openResultModal();
       }
       else {
@@ -79,9 +110,16 @@ export default {
 
       if (response.ok) {
         this.$data.actionSuccess = true;
-        this.$data.actionMessage = this.$data.postType === 'reflection'
-          ? 'Размышление удалено'
-          : 'Рассказ удален';
+
+        if (this.$data.postType === 'reflection') {
+          this.$data.actionResultModalTitleWording = 'Удаление размышления';
+          this.$data.actionMessage = 'Размышление удалено';
+        }
+        else if (this.$data.postType === 'story') {
+          this.$data.actionResultModalTitleWording = 'Удаление рассказа';
+          this.$data.actionMessage = 'Рассказ удален';
+        }
+
         this.openResultModal();
       }
       else {

@@ -8,11 +8,10 @@
                           @cancel="goToPostsList">
         </tagged-item-form>
         <item-action-result-modal ref="modal"
-                                  :postType="postType"
-                                  :actionType="'creation'"
                                   :successResult="createPostSuccess"
+                                  :titleWording="createPostTitleWording"
                                   :message="createPostMessage"
-                                  @close="onCloseModal">
+                                  @close="onCloseResultModal">
         </item-action-result-modal>
     </div>
 </template>

@@ -1,11 +1,11 @@
 <template>
     <div class="r-block">
-        <h2>Обратная связь</h2>
+        <h2>Отзывы</h2>
         <br>
         <div v-if="feedbackList.length">
             <button v-on:click="clearFeedback"
                     type="button"
-                    class="btn btn-outline-danger">Очистить обратную связь
+                    class="btn btn-outline-danger">Удалить все отзывы
             </button>
             <br><br>
         </div>
@@ -34,8 +34,15 @@
             </div>
         </div>
         <div v-if="!feedbackList.length">&lt;Пусто&gt;</div>
+        <item-action-result-modal ref="resultModal"
+                                  :successResult="actionSuccess"
+                                  :titleWording="'Удаление отзыва'"
+                                  :message="actionMessage"
+                                  @close="onCloseResultModal">
+        </item-action-result-modal>
         <item-deleting-confirm-modal ref="confirmModal"
-                                     :postType="'feedback'"
+                                     :titleWording="'Удаление отзыва'"
+                                     :bodyWording="'Удалить отзыв?'"
                                      @confirm="deleteFeedback"
                                      @close="clearFeedbackSelection">
         </item-deleting-confirm-modal>

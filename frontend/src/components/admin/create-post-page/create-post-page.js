@@ -13,6 +13,7 @@ export default {
     return {
       postType: null,
       createPostSuccess: null,
+      createPostTitleWording: null,
       createPostMessage: null
     };
   },
@@ -34,9 +35,16 @@ export default {
     handleSaveSuccess: function (response) {
       if (response.ok) {
         this.$data.createPostSuccess = true;
-        this.$data.createPostMessage = this.$data.postType === 'reflection'
-          ? 'Размышление успешно создано'
-          : 'Рассказ успешно создан';
+
+        if (this.$data.postType === 'reflection') {
+          this.$data.createPostTitleWording = 'Создание размышления';
+          this.$data.createPostMessage = 'Размышление успешно создано';
+        }
+        else if (this.$data.postType === 'story') {
+          this.$data.createPostTitleWording = 'Создание рассказа';
+          this.$data.createPostMessage = 'Рассказ успешно создан';
+        }
+
         this.openResultModal();
       }
       else if (response.error) {
@@ -58,12 +66,17 @@ export default {
       this.$refs.modal.open();
     },
 
-    onCloseModal: function () {
+    onCloseResultModal: function () {
       if (this.$data.createPostSuccess) {
         this.$refs.itemForm.clearData();
       }
 
+      this.clearData();
+    },
+
+    clearData: function () {
       this.$data.createPostSuccess = null;
+      this.$data.createPostTitleWording = null;
       this.$data.createPostMessage = null;
     },
 

@@ -10,14 +10,14 @@
                           @cancel="goToPostsList">
         </tagged-item-form>
         <item-action-result-modal ref="resultModal"
-                                  :postType="postType"
-                                  :actionType="actionType"
                                   :successResult="actionSuccess"
+                                  :titleWording="actionResultModalTitleWording"
                                   :message="actionMessage"
                                   @close="onCloseResultModal">
         </item-action-result-modal>
         <item-deleting-confirm-modal ref="confirmModal"
-                                     :postType="postType"
+                                     :titleWording="deletingModalTitleWording"
+                                     :bodyWording="deletingModalBodyWording"
                                      @confirm="deleteItem">
         </item-deleting-confirm-modal>
     </div>

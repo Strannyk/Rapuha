@@ -4,6 +4,7 @@ export default {
       actionType: null,
       actionSuccess: null,
       actionMessage: null,
+      actionResultModalTitleWording: null,
       availableActionTypes: {
         editing: 'editing',
         deleting: 'deleting'
@@ -27,6 +28,7 @@ export default {
     clearData: function () {
       this.$data.actionType = null;
       this.$data.actionSuccess = null;
+      this.$data.actionResultModalTitleWording = null;
       this.$data.actionMessage = null;
     },
 

@@ -6,9 +6,8 @@
                     @cancel="goToQuotesList">
         </quote-form>
         <item-action-result-modal ref="modal"
-                                  :postType="'quote'"
-                                  :actionType="'creation'"
                                   :successResult="createQuoteSuccess"
+                                  :titleWording="'Создание цитаты'"
                                   :message="createQuoteMessage"
                                   @close="onCloseModal">
         </item-action-result-modal>

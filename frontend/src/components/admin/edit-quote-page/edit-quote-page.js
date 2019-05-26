@@ -61,6 +61,7 @@ export default {
 
       if (response.ok) {
         this.$data.actionSuccess = true;
+        this.$data.actionResultModalTitleWording = 'Редактирование цитаты';
         this.$data.actionMessage = 'Цитата успешно отредактирована';
         this.openResultModal();
       }
@@ -74,6 +75,7 @@ export default {
 
       if (response.ok) {
         this.$data.actionSuccess = true;
+        this.$data.actionResultModalTitleWording = 'Удаление цитаты';
         this.$data.actionMessage = 'Цитата удалена';
         this.openResultModal();
       }
@@ -95,7 +97,7 @@ export default {
         this.goToQuotesList();
       }
       else {
-        this.clearData();;
+        this.clearData();
       }
     },
 

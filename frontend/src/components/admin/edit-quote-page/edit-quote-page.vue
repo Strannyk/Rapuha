@@ -7,14 +7,14 @@
                     @cancel="goToQuotesList">
         </quote-form>
         <item-action-result-modal ref="resultModal"
-                                  :postType="'quote'"
-                                  :actionType="actionType"
                                   :successResult="actionSuccess"
+                                  :titleWording="actionResultModalTitleWording"
                                   :message="actionMessage"
                                   @close="onCloseResultModal">
         </item-action-result-modal>
         <item-deleting-confirm-modal ref="confirmModal"
-                                     :postType="'quote'"
+                                     :titleWording="'Удаление цитаты'"
+                                     :bodyWording="'Удалить цитату?'"
                                      @confirm="deleteQuote">
         </item-deleting-confirm-modal>
     </div>
