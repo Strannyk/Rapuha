@@ -3,7 +3,7 @@
         <h2>Отзывы</h2>
         <br>
         <div v-if="feedbackList.length">
-            <button v-on:click="clearFeedback"
+            <button v-on:click="prepareFeedbackClearing"
                     type="button"
                     class="btn btn-outline-danger">Удалить все отзывы
             </button>
@@ -36,14 +36,14 @@
         <div v-if="!feedbackList.length">&lt;Пусто&gt;</div>
         <item-action-result-modal ref="resultModal"
                                   :successResult="actionSuccess"
-                                  :titleWording="'Удаление отзыва'"
+                                  :titleWording="clearingFeedbackMode ? 'Удаление отзывов' : 'Удаление отзыва'"
                                   :message="actionMessage"
                                   @close="onCloseResultModal">
         </item-action-result-modal>
         <item-deleting-confirm-modal ref="confirmModal"
-                                     :titleWording="'Удаление отзыва'"
-                                     :bodyWording="'Удалить отзыв?'"
-                                     @confirm="deleteFeedback"
+                                     :titleWording="clearingFeedbackMode ? 'Удаление отзывов' : 'Удаление отзыва'"
+                                     :bodyWording="clearingFeedbackMode ? 'Удалить все отзывы?' : 'Удалить отзыв?'"
+                                     @confirm="onDeleteFeedback"
                                      @close="clearFeedbackSelection">
         </item-deleting-confirm-modal>
     </div>

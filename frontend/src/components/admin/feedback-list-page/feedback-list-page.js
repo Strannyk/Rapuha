@@ -18,7 +18,8 @@ export default {
       feedbackList: [],
       selectedFeedbackId: null,
       actionSuccess: null,
-      actionMessage: null
+      actionMessage: null,
+      clearingFeedbackMode: null
     };
   },
 
@@ -35,8 +36,23 @@ export default {
     },
 
     prepareFeedbackDeleting: function (id) {
+      this.$data.clearingFeedbackMode = false;
       this.$data.selectedFeedbackId = id;
       this.openConfirmModal();
+    },
+
+    prepareFeedbackClearing: function () {
+      this.$data.clearingFeedbackMode = true;
+      this.openConfirmModal();
+    },
+
+    onDeleteFeedback: function () {
+      if (this.$data.clearingFeedbackMode) {
+        this.clearFeedback();
+      }
+      else {
+        this.deleteFeedback();
+      }
     },
 
     deleteFeedback: function () {
@@ -44,13 +60,15 @@ export default {
       deleteFeedback().then(res => this.handleDeleteSuccess(res.body),
         () => this.handleActionError())
         .catch(err => console.log(err))
-        .finally(() => {
-          this.closeConfirmModal();
-        });
+        .finally(() => this.closeConfirmModal());
     },
 
     clearFeedback: function () {
-
+      const clearFeedback = adminService.clearFeedback.bind(this);
+      clearFeedback().then(res => this.handleClearSuccess(res.body),
+        () => this.handleActionError())
+        .catch(err => console.log(err))
+        .finally(() => this.closeConfirmModal());
     },
 
     handleGetListSuccess: function (response) {
@@ -66,6 +84,17 @@ export default {
       if (response.ok) {
         this.$data.actionSuccess = true;
         this.$data.actionMessage = 'Отзыв удален';
+        this.openResultModal();
+      }
+      else {
+        this.handleCommonActionSuccess(response);
+      }
+    },
+
+    handleClearSuccess: function (response) {
+      if (response.ok) {
+        this.$data.actionSuccess = true;
+        this.$data.actionMessage = 'Все отзывы удалены';
         this.openResultModal();
       }
       else {

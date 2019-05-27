@@ -157,7 +157,8 @@ const dbService = (() => {
     },
 
     clearFeedback() {
-      const query = 'TRUNCATE users';
+      const query = 'TRUNCATE users CASCADE';
+      return getDb().none(query);
     }
   };
 })();

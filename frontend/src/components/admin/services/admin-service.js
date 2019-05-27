@@ -91,6 +91,14 @@ const adminService = {
         token: adminService.getToken()
       }
     });
+  },
+
+  clearFeedback: function () {
+    return this.$http.delete('admin/feedback/all', {
+      body: {
+        token: adminService.getToken()
+      }
+    });
   }
 };
 
