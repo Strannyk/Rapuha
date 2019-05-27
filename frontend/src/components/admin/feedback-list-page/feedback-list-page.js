@@ -19,16 +19,18 @@ export default {
       selectedFeedbackId: null,
       actionSuccess: null,
       actionMessage: null,
-      clearingFeedbackMode: null
+      listOfUserFeedbackMode: false,
+      clearingFeedbackMode: false,
+      selectedUserName: null
     };
   },
 
   methods: {
     init: function () {
-      const selectedUser = this.$router.history.current.params.user;
+      this.$data.selectedUserName = this.$router.history.current.params.user || null;
 
-      if (selectedUser) {
-        this.getListOfUserFeedback(selectedUser);
+      if (this.$data.selectedUserName) {
+        this.getListOfUserFeedback(this.$data.selectedUserName);
       }
       else {
         this.getFeedbackList();
@@ -161,14 +163,14 @@ export default {
     }
   },
 
-  watch:{
-    $route (to) {
+  watch: {
+    $route(to) {
       this.init();
     }
   },
 
   mounted() {
     this.init();
-    this.eventHub.$on('authorized', () => this.getFeedbackList());
+    this.eventHub.$on('authorized', () => this.init());
   }
 }
