@@ -93,7 +93,14 @@ const adminService = {
     });
   },
 
-  clearFeedback: function () {
+  markFeedbackAsRead(id) {
+    return this.$http.post('admin/feedback/mark', {
+      id: id,
+      token: adminService.getToken()
+    });
+  },
+
+  clearFeedback() {
     return this.$http.delete('admin/feedback/all', {
       body: {
         token: adminService.getToken()

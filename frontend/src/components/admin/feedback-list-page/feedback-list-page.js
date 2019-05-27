@@ -32,7 +32,12 @@ export default {
     },
 
     markFeedbackAsRead: function (id) {
-      console.log(id);
+      const markFeedbackAsRead = adminService.markFeedbackAsRead.bind(this, id);
+      markFeedbackAsRead().then(() => {
+        this.$refs.markButton.forEach(button => button.blur());
+        this.getFeedbackList();
+      }, () => this.handleActionError())
+        .catch(err => console.log(err));
     },
 
     prepareFeedbackDeleting: function (id) {

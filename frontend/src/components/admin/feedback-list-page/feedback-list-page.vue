@@ -21,7 +21,8 @@
                 <p class="card-text">{{feedback.body}}</p>
                 <a href="#" class="card-link">{{feedback.subject}}</a>
                 <div class="float-right">
-                    <button v-if="feedback.unread"
+                    <button ref="markButton"
+                            v-if="feedback.unread"
                             v-on:click="markFeedbackAsRead(feedback.id)"
                             type="button"
                             class="btn btn-outline-secondary btn-sm r-button">Отметить просмотренным
