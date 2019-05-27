@@ -14,7 +14,10 @@
              class="card mb-3">
             <div class="card-body">
                 <div class="d-flex w-100 justify-content-between">
-                    <h4 class="card-title">{{feedback.userName}}</h4>
+                    <router-link :to="'/admin/feedback/' + feedback.userName"
+                                 v-on:click.native="getListOfUserFeedback(feedback.userName)">
+                        <h4 class="card-title">{{feedback.userName}}</h4>
+                    </router-link>
                     <small>{{feedback.creationDate}}</small>
                 </div>
                 <h6 class="card-subtitle mb-2 text-muted">{{feedback.contacts}}</h6>
@@ -51,3 +54,5 @@
 </template>
 
 <script src="./feedback-list-page.js"></script>
+
+<style scoped src="./feedback-list-page.scss" lang="scss"></style>

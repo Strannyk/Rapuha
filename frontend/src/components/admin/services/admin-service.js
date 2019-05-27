@@ -84,6 +84,12 @@ const adminService = {
     })
   },
 
+  getListOfUserFeedback(userName) {
+    return this.$http.post('admin/feedback/' + userName, {
+      token: adminService.getToken()
+    });
+  },
+
   deleteFeedback(id) {
     return this.$http.delete('admin/feedback', {
       body: {

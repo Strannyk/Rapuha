@@ -146,6 +146,11 @@ const dbService = (() => {
       return getDb().any(query);
     },
 
+    getListOfUserFeedback(userName) {
+      const query = 'SELECT *, to_char(creation_date, \'DD-MM-YYYY\') FROM feedback WHERE user_name = $1 ORDER BY unread DESC, creation_date DESC LIMIT 500';
+      return getDb().any(query, userName);
+    },
+
     deleteFeedback(id) {
       const query = 'DELETE FROM feedback WHERE item_id = $1';
       return getDb().none(query, id);

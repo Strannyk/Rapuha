@@ -52,6 +52,11 @@ export default new Router({
           component: FeedbackListPage
         },
         {
+          name: 'listOfUserFeedback',
+          path: 'feedback/:user',
+          component: FeedbackListPage
+        },
+        {
           name: 'createQuote',
           path: 'add/quote',
           component: CreateQuotePage

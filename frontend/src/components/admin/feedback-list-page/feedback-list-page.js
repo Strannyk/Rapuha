@@ -24,9 +24,27 @@ export default {
   },
 
   methods: {
+    init: function () {
+      const selectedUser = this.$router.history.current.params.user;
+
+      if (selectedUser) {
+        this.getListOfUserFeedback(selectedUser);
+      }
+      else {
+        this.getFeedbackList();
+      }
+    },
+
     getFeedbackList: function () {
       const getFeedbackList = adminService.getFeedbackList.bind(this);
       getFeedbackList().then(res => this.handleGetListSuccess(res.body),
+        () => this.handleActionError())
+        .catch(err => console.log(err));
+    },
+
+    getListOfUserFeedback: function (userName) {
+      const getListOfUserFeedback = adminService.getListOfUserFeedback.bind(this, userName);
+      getListOfUserFeedback().then(res => this.handleGetListSuccess(res.body),
         () => this.handleActionError())
         .catch(err => console.log(err));
     },
@@ -143,8 +161,14 @@ export default {
     }
   },
 
+  watch:{
+    $route (to) {
+      this.init();
+    }
+  },
+
   mounted() {
-    this.getFeedbackList();
+    this.init();
     this.eventHub.$on('authorized', () => this.getFeedbackList());
   }
 }
