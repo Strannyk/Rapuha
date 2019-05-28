@@ -503,6 +503,28 @@ const restController = (() => {
             response.createSuccessMessage();
             resolve(response);
           })
+          .catch(err => {
+            response.createErrorMessage(defaultErrorMessage);
+            reject(response);
+          });
+      });
+    },
+
+    clearUserFeedback(token, userName) {
+      const response = new ResponseMessage();
+
+      return new Promise((resolve, reject) => {
+        if (!tokenIsValid(token)) {
+          response.createTokenExpiredMessage();
+          reject(response);
+          return;
+        }
+
+        dbService.clearUserFeedback(userName)
+          .then(() => {
+            response.createSuccessMessage();
+            resolve(response);
+          })
           .catch(() => {
             response.createErrorMessage(defaultErrorMessage);
             reject(response);

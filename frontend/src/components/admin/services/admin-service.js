@@ -85,7 +85,7 @@ const adminService = {
   },
 
   getListOfUserFeedback(userName) {
-    return this.$http.post('admin/feedback/' + userName, {
+    return this.$http.post('admin/feedback/user/' + userName, {
       token: adminService.getToken()
     });
   },
@@ -108,6 +108,14 @@ const adminService = {
 
   clearFeedback() {
     return this.$http.delete('admin/feedback/all', {
+      body: {
+        token: adminService.getToken()
+      }
+    });
+  },
+
+  clearUserFeedback(username) {
+    return this.$http.delete('admin/feedback/all/' + username, {
       body: {
         token: adminService.getToken()
       }

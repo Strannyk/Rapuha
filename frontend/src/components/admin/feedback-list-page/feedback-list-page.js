@@ -53,9 +53,9 @@ export default {
 
     markFeedbackAsRead: function (id) {
       const markFeedbackAsRead = adminService.markFeedbackAsRead.bind(this, id);
-      markFeedbackAsRead().then(() => {
+      markFeedbackAsRead().then(data => {
         this.$refs.markButton.forEach(button => button.blur());
-        this.getFeedbackList();
+        this.init();
       }, () => this.handleActionError())
         .catch(err => console.log(err));
     },
@@ -73,16 +73,29 @@ export default {
 
     onDeleteFeedback: function () {
       if (this.$data.clearingFeedbackMode) {
-        this.clearFeedback();
+        if (this.$data.selectedUserName) {
+          this.clearUserFeedback(this.$data.selectedUserName);
+        }
+        else {
+          this.clearFeedback();
+        }
       }
       else {
-        this.deleteFeedback();
+        this.deleteFeedback(this.$data.selectedFeedbackId);
       }
     },
 
-    deleteFeedback: function () {
-      const deleteFeedback = adminService.deleteFeedback.bind(this, this.$data.selectedFeedbackId);
+    deleteFeedback: function (id) {
+      const deleteFeedback = adminService.deleteFeedback.bind(this, id);
       deleteFeedback().then(res => this.handleDeleteSuccess(res.body),
+        () => this.handleActionError())
+        .catch(err => console.log(err))
+        .finally(() => this.closeConfirmModal());
+    },
+
+    clearUserFeedback: function (userName) {
+      const clearUserFeedback = adminService.clearUserFeedback.bind(this, userName);
+      clearUserFeedback().then(res => this.handleClearSuccess(res.body),
         () => this.handleActionError())
         .catch(err => console.log(err))
         .finally(() => this.closeConfirmModal());
@@ -148,7 +161,7 @@ export default {
     },
 
     onCloseResultModal: function () {
-      this.getFeedbackList();
+      this.init();
       this.clearData();
     },
 

@@ -75,7 +75,7 @@ router.post('/feedback', function (req, res) {
     .catch(err => res.send(err));
 });
 
-router.post('/feedback/:user', function (req, res) {
+router.post('/feedback/user/:user', function (req, res) {
   restController.getListOfUserFeedback(req.body.token, req.params.user)
     .then(result => res.send(result))
     .catch(err => res.send(err));
@@ -89,6 +89,12 @@ router.delete('/feedback', function (req, res) {
 
 router.post('/feedback/mark', function (req, res) {
   restController.markFeedbackAsRead(req.body.token, req.body.id)
+    .then(result => res.send(result))
+    .catch(err => res.send(err));
+});
+
+router.delete('/feedback/all/:user', function (req, res) {
+  restController.clearUserFeedback(req.body.token, req.params.user)
     .then(result => res.send(result))
     .catch(err => res.send(err));
 });

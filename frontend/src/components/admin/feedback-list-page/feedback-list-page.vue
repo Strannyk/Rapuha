@@ -1,11 +1,12 @@
 <template>
     <div class="r-block">
-        <h2>Отзывы</h2>
+        <h2 v-text="'Отзывы' + (selectedUserName ? ' посетителя ' + selectedUserName : '')"></h2>
         <br>
         <div v-if="feedbackList.length">
             <button v-on:click="prepareFeedbackClearing"
+                    v-text="'Удалить все отзывы' + (selectedUserName ? ' посетителя ' + selectedUserName : '')"
                     type="button"
-                    class="btn btn-outline-danger">Удалить все отзывы
+                    class="btn btn-outline-danger">
             </button>
             <br><br>
         </div>

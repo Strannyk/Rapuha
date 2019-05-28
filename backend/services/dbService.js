@@ -161,6 +161,11 @@ const dbService = (() => {
       return getDb().none(query, id);
     },
 
+    clearUserFeedback(userName) {
+      const query = 'DELETE FROM users WHERE user_name = $1';
+      return getDb().none(query, userName);
+    },
+
     clearFeedback() {
       const query = 'TRUNCATE users CASCADE';
       return getDb().none(query);
