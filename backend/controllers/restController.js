@@ -480,6 +480,54 @@ const restController = (() => {
       });
     },
 
+    getListOfPostFeedback(token, title) {
+      const response = new ResponseMessage();
+
+      return new Promise((resolve, reject) => {
+        if (!tokenIsValid(token)) {
+          response.createTokenExpiredMessage();
+          reject(response);
+          return;
+        }
+
+        dbService.postExists(title)
+          .then(res => {
+            if (!res.exists) {
+              const message = 'Пост с названием "' + title + '" не найден';
+              response.createErrorMessage(message);
+              resolve(response);
+            }
+            else {
+              dbService.getListOfPostFeedback(title)
+                .then(data => {
+                  for (const row of data) {
+                    row.creationDate = row.to_char;
+                    row.id = row.item_id;
+                    row.userName = row.user_name;
+
+                    delete row.subject;
+                    delete row.creation_date;
+                    delete row.to_char;
+                    delete row.item_id;
+                    delete row.user_name;
+                  }
+
+                  response.createDataMessage(data);
+                  resolve(response);
+                })
+                .catch(() => {
+                  response.createErrorMessage(defaultErrorMessage);
+                  reject(response);
+                });
+            }
+          })
+          .catch(() => {
+            response.createErrorMessage(defaultErrorMessage);
+            reject(response);
+          });
+      });
+    },
+
     deleteFeedback(token, id) {
       const response = new ResponseMessage();
 

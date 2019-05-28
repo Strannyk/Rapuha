@@ -23,7 +23,7 @@
                 </div>
                 <h6 class="card-subtitle mb-2 text-muted">{{feedback.contacts}}</h6>
                 <p class="card-text">{{feedback.body}}</p>
-                <a href="#" class="card-link">{{feedback.subject}}</a>
+                <router-link :to="'/post/' + feedback.subject" class="card-link">{{feedback.subject}}</router-link>
                 <div class="float-right">
                     <button ref="markButton"
                             v-if="feedback.unread"

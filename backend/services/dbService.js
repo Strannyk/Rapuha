@@ -147,8 +147,13 @@ const dbService = (() => {
     },
 
     getListOfUserFeedback(userName) {
-      const query = 'SELECT *, to_char(creation_date, \'DD-MM-YYYY\') FROM feedback WHERE user_name = $1 ORDER BY unread DESC, creation_date DESC LIMIT 500';
+      const query = 'SELECT *, to_char(creation_date, \'DD-MM-YYYY\') FROM feedback WHERE user_name = $1 ORDER BY unread DESC, creation_date DESC, subject LIMIT 500';
       return getDb().any(query, userName);
+    },
+
+    getListOfPostFeedback(title) {
+      const query = 'SELECT *, to_char(creation_date, \'DD-MM-YYYY\') FROM feedback WHERE subject = $1 ORDER BY unread DESC, creation_date DESC, user_name LIMIT 500';
+      return getDb().any(query, title);
     },
 
     userExists(userName) {

@@ -81,6 +81,12 @@ router.post('/feedback/user/:user', function (req, res) {
     .catch(err => res.send(err));
 });
 
+router.post('/feedback/post/:title', function (req, res) {
+  restController.getListOfPostFeedback(req.body.token, req.params.title)
+    .then(result => res.send(result))
+    .catch(err => res.send(err));
+});
+
 router.delete('/feedback', function (req, res) {
   restController.deleteFeedback(req.body.token, req.body.id)
     .then(result => res.send(result))
