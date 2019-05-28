@@ -444,20 +444,34 @@ const restController = (() => {
           return;
         }
 
-        dbService.getListOfUserFeedback(userName)
-          .then(data => {
-            for (const row of data) {
-              row.creationDate = row.to_char;
-              row.id = row.item_id;
-
-              delete row.creation_date;
-              delete row.to_char;
-              delete row.item_id;
-              delete row.user_name;
+        dbService.userExists(userName)
+          .then(res => {
+            if (!res.exists) {
+              const message = 'Посетитель "' + userName + '" не найден';
+              response.createErrorMessage(message);
+              resolve(response);
             }
+            else {
+              dbService.getListOfUserFeedback(userName)
+                .then(data => {
+                  for (const row of data) {
+                    row.creationDate = row.to_char;
+                    row.id = row.item_id;
 
-            response.createDataMessage(data);
-            resolve(response);
+                    delete row.creation_date;
+                    delete row.to_char;
+                    delete row.item_id;
+                    delete row.user_name;
+                  }
+
+                  response.createDataMessage(data);
+                  resolve(response);
+                })
+                .catch(() => {
+                  response.createErrorMessage(defaultErrorMessage);
+                  reject(response);
+                });
+            }
           })
           .catch(() => {
             response.createErrorMessage(defaultErrorMessage);

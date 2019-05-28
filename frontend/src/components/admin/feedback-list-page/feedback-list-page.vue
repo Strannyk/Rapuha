@@ -41,13 +41,13 @@
         <div v-if="!feedbackList.length">&lt;Пусто&gt;</div>
         <item-action-result-modal ref="resultModal"
                                   :successResult="actionSuccess"
-                                  :titleWording="clearingFeedbackMode ? 'Удаление отзывов' : 'Удаление отзыва'"
+                                  :titleWording="modalTitleWording"
                                   :message="actionMessage"
                                   @close="onCloseResultModal">
         </item-action-result-modal>
         <item-deleting-confirm-modal ref="confirmModal"
-                                     :titleWording="clearingFeedbackMode ? 'Удаление отзывов' : 'Удаление отзыва'"
-                                     :bodyWording="clearingFeedbackMode ? 'Удалить все отзывы?' : 'Удалить отзыв?'"
+                                     :titleWording="modalTitleWording"
+                                     :bodyWording="deletingModalBodyWording"
                                      @confirm="onDeleteFeedback"
                                      @close="clearFeedbackSelection">
         </item-deleting-confirm-modal>

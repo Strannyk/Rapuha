@@ -21,8 +21,43 @@ export default {
       actionMessage: null,
       listOfUserFeedbackMode: false,
       clearingFeedbackMode: false,
-      selectedUserName: null
+      selectedUserName: null,
+      gettingListError: false
     };
+  },
+
+  computed: {
+    modalTitleWording: function () {
+      if (this.$data.gettingListError) {
+        return 'Отзывы посетителей';
+      }
+
+      if (this.$data.clearingFeedbackMode) {
+        if (this.$data.selectedUserName) {
+          return 'Удаление отзывов посетителя';
+        }
+        else {
+          return 'Удаление отзывов';
+        }
+      }
+      else {
+        return 'Удаление отзыва';
+      }
+    },
+
+    deletingModalBodyWording: function () {
+      if (this.$data.clearingFeedbackMode) {
+        if (this.$data.selectedUserName) {
+          return 'Удалить все отзывы посетителя?';
+        }
+        else {
+          return 'Удалить все отзывы?';
+        }
+      }
+      else {
+        return 'Удалить отзыв?';
+      }
+    }
   },
 
   methods: {
@@ -53,7 +88,7 @@ export default {
 
     markFeedbackAsRead: function (id) {
       const markFeedbackAsRead = adminService.markFeedbackAsRead.bind(this, id);
-      markFeedbackAsRead().then(data => {
+      markFeedbackAsRead().then(() => {
         this.$refs.markButton.forEach(button => button.blur());
         this.init();
       }, () => this.handleActionError())
@@ -114,6 +149,7 @@ export default {
         this.$data.feedbackList = response.data;
       }
       else {
+        this.$data.gettingListError = true;
         this.handleCommonActionSuccess(response);
       }
     },
@@ -132,7 +168,7 @@ export default {
     handleClearSuccess: function (response) {
       if (response.ok) {
         this.$data.actionSuccess = true;
-        this.$data.actionMessage = 'Все отзывы удалены';
+        this.$data.actionMessage = this.$data.selectedUserName ? 'Все отзывы посетителя удалены' : 'Все отзывы удалены';
         this.openResultModal();
       }
       else {
@@ -161,8 +197,21 @@ export default {
     },
 
     onCloseResultModal: function () {
-      this.init();
       this.clearData();
+
+      if (this.$data.gettingListError) {
+        this.$data.gettingListError = false;
+        this.goToFeedbackList();
+      }
+
+      if ((this.$data.clearingFeedbackMode && this.$data.selectedUserName)
+        || (this.$data.selectedUserName && this.$data.feedbackList.length === 1)) {
+        this.$data.selectedUserName = null;
+        this.goToFeedbackList();
+      }
+      else {
+        this.init();
+      }
     },
 
     clearFeedbackSelection: function () {
@@ -173,6 +222,10 @@ export default {
       this.clearFeedbackSelection();
       this.$data.actionSuccess = null;
       this.$data.actionMessage = null;
+    },
+
+    goToFeedbackList: function () {
+      this.$router.history.push({ name: 'feedbackList' });
     }
   },
 

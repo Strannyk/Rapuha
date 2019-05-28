@@ -151,6 +151,11 @@ const dbService = (() => {
       return getDb().any(query, userName);
     },
 
+    userExists(userName) {
+      const query = 'SELECT EXISTS (SELECT 1 FROM users WHERE user_name = $1)';
+      return getDb().one(query, userName);
+    },
+
     deleteFeedback(id) {
       const query = 'DELETE FROM feedback WHERE item_id = $1';
       return getDb().none(query, id);
