@@ -29,7 +29,12 @@ export default new Router({
         {
           name: 'manage',
           path: 'feed',
-          component: ManageItemsPage
+          component: ManageItemsPage,
+          meta: {
+            breadcrumb: [
+              { name: 'Панель администратора' }
+            ]
+          }
         },
         {
           name: 'reflectionsList',

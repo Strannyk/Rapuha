@@ -1,13 +1,13 @@
 <template>
     <div>
-        <div>Admin</div>
         <router-view/>
         <admin-auth-modal ref="modal"
                           :disabled="sendingAuthRequest"
                           :errorMessage="authError"
                           @submit="sendCredentials"
                           @focus="authError = null"
-                          @close="selectPath"></admin-auth-modal>
+                          @close="selectPath">
+        </admin-auth-modal>
     </div>
 </template>
 

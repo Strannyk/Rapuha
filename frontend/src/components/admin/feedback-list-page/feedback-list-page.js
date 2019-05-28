@@ -230,7 +230,7 @@ export default {
   },
 
   watch: {
-    $route(to) {
+    $route() {
       this.init();
     }
   },
