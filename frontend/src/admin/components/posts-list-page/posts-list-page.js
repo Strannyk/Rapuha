@@ -23,6 +23,12 @@ export default {
   },
 
   methods: {
+    init: function () {
+      const postType = this.$router.history.current.name;
+      this.$data.postsType = postType === 'reflectionsList' ? 'reflections' : 'stories';
+      this.getPostsList(this.$data.postsType);
+    },
+
     getPostsList(type) {
       type = type === 'reflections' ? 'reflection' : 'story';
 
@@ -50,9 +56,13 @@ export default {
     }
   },
 
+  watch: {
+    $route() {
+      this.init();
+    }
+  },
+
   mounted() {
-    const postType = this.$router.history.current.name;
-    this.$data.postsType = postType === 'reflectionsList' ? 'reflections' : 'stories';
-    this.getPostsList(this.$data.postsType);
+    this.init();
   }
 }

@@ -228,13 +228,9 @@ export default {
 
     goToFeedbackList: function () {
       this.$router.history.push({ name: 'feedbackList' });
-    }
-  },
+    },
 
-  watch: {
-    $route() {
-      this.init();
-
+    setLastBreadcrumb: function () {
       if (this.$data.selectedUserName) {
         const breadCrumbsLength = this.$data.breadcrumbs.length;
         const lastBreadcrumb = this.$data.breadcrumbs[breadCrumbsLength - 1];
@@ -247,6 +243,13 @@ export default {
           this.$data.breadcrumbs[breadCrumbsLength - 1] = newBreadcrumb;
         }
       }
+    }
+  },
+
+  watch: {
+    $route() {
+      this.init();
+      this.setLastBreadcrumb();
     }
   },
 

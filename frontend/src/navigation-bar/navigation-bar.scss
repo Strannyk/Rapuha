@@ -1,0 +1,11 @@
+.nav-link.dropdown-toggle {
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  margin: -1px 0 0 -1px;
+
+  &.visible {
+    display: block;
+  }
+}
