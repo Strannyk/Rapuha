@@ -1,15 +1,15 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './components/home/home.vue';
-import Admin from './components/admin/admin.vue';
-import PostsListPage from './components/admin/posts-list-page/posts-list-page.vue';
-import QuotesListPage from './components/admin/quotes-list-page/quotes-list-page.vue';
-import ManageItemsPage from './components/admin/manage-items-page/manage-items-page.vue';
-import CreateQuotePage from './components/admin/create-quote-page/create-quote-page.vue';
-import EditQuotePage from './components/admin/edit-quote-page/edit-quote-page.vue';
-import CreatePostPage from './components/admin/create-post-page/create-post-page.vue';
-import EditPostPage from './components/admin/edit-post-page/edit-post-page.vue';
-import FeedbackListPage from './components/admin/feedback-list-page/feedback-list-page.vue';
+import Home from './home/home.vue';
+import Admin from './admin/admin.vue';
+import PostsListPage from './admin/components/posts-list-page/posts-list-page.vue';
+import QuotesListPage from './admin/components/quotes-list-page/quotes-list-page.vue';
+import ManageItemsPage from './admin/components/manage-items-page/manage-items-page.vue';
+import CreateQuotePage from './admin/components/create-quote-page/create-quote-page.vue';
+import EditQuotePage from './admin/components/edit-quote-page/edit-quote-page.vue';
+import CreatePostPage from './admin/components/create-post-page/create-post-page.vue';
+import EditPostPage from './admin/components/edit-post-page/edit-post-page.vue';
+import FeedbackListPage from './admin/components/feedback-list-page/feedback-list-page.vue';
 
 Vue.use(Router);
 
