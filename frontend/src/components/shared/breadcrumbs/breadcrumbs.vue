@@ -1,9 +1,9 @@
 <template>
     <ol class="breadcrumb">
-        <li v-for="(item, index) in list"
-            :class="index === list.length - 1 ? 'active' : null"
+        <li v-for="item in list"
+            :class="!item.href ? 'active' : null"
             class="breadcrumb-item">
-            <router-link v-if="index !== list.length - 1" :to="item.href">{{item.name}}</router-link>
+            <router-link v-if="item.href" :to="item.href">{{item.name}}</router-link>
             <span v-else>{{item.name}}</span>
         </li>
     </ol>

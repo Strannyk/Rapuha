@@ -1,6 +1,9 @@
+import coreMixin from '@/components/shared/core-mixin/core-mixin';
 import adminService from '../services/admin-service';
 
 export default {
+  mixins: [coreMixin],
+
   data() {
     return {
       postsType: null,

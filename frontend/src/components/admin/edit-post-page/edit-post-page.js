@@ -1,3 +1,4 @@
+import coreMixin from '@/components/shared/core-mixin/core-mixin';
 import TaggedItemForm from '../shared/tagged-item-form/tagged-item-form.vue';
 import ItemActionResultModal from '../shared/item-action-result-modal/item-action-result-modal.vue';
 import ItemDeletingConfirmModal from '../shared/item-deleting-confirm-modal/item-deleting-confirm-modal.vue';
@@ -6,7 +7,10 @@ import adminService from '../services/admin-service';
 import commonService from '@/common/services/common-service';
 
 export default {
-  mixins: [editItemMixin],
+  mixins: [
+    coreMixin,
+    editItemMixin
+  ],
 
   components: {
     TaggedItemForm,

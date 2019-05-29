@@ -29,22 +29,29 @@ export default new Router({
         {
           name: 'manage',
           path: 'feed',
-          component: ManageItemsPage,
-          meta: {
-            breadcrumb: [
-              { name: 'Панель администратора' }
-            ]
-          }
+          component: ManageItemsPage
         },
         {
           name: 'reflectionsList',
           path: 'reflections',
-          component: PostsListPage
+          component: PostsListPage,
+          meta: {
+            breadcrumb: [
+              { name: 'Панель администратора', href: '/admin/feed' },
+              { name: 'Размышления' }
+            ]
+          }
         },
         {
           name: 'storiesList',
           path: 'stories',
-          component: PostsListPage
+          component: PostsListPage,
+          meta: {
+            breadcrumb: [
+              { name: 'Панель администратора', href: '/admin/feed' },
+              { name: 'Рассказы' }
+            ]
+          }
         },
         {
           name: 'quotesList',
@@ -74,22 +81,50 @@ export default new Router({
         {
           name: 'createReflection',
           path: 'add/reflection',
-          component: CreatePostPage
+          component: CreatePostPage,
+          meta: {
+            breadcrumb: [
+              { name: 'Панель администратора', href: '/admin/feed' },
+              { name: 'Размышления', href: '/admin/reflections' },
+              { name: 'Новое размышление' }
+            ]
+          }
         },
         {
           name: 'editReflection',
           path: 'edit/reflection/:title',
-          component: EditPostPage
+          component: EditPostPage,
+          meta: {
+            breadcrumb: [
+              { name: 'Панель администратора', href: '/admin/feed' },
+              { name: 'Размышления', href: '/admin/reflections' },
+              { name: 'Редактирование размышления' }
+            ]
+          }
         },
         {
           name: 'createStory',
           path: 'add/story',
-          component: CreatePostPage
+          component: CreatePostPage,
+          meta: {
+            breadcrumb: [
+              { name: 'Панель администратора', href: '/admin/feed' },
+              { name: 'Рассказы', href: '/admin/stories' },
+              { name: 'Новый рассказ' }
+            ]
+          }
         },
         {
           name: 'editStory',
           path: 'edit/story/:title',
-          component: EditPostPage
+          component: EditPostPage,
+          meta: {
+            breadcrumb: [
+              { name: 'Панель администратора', href: '/admin/feed' },
+              { name: 'Рассказы', href: '/admin/stories' },
+              { name: 'Редактирование рассказа' }
+            ]
+          }
         }
       ]
     }

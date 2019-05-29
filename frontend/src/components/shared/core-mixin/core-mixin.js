@@ -8,6 +8,12 @@ export default {
   data() {
     return {
       breadcrumbs: []
+    };
+  },
+
+  methods: {
+    handleActionError: function () {
+      alert('Ошибка сети');
     }
   },
 

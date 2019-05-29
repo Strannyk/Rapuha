@@ -1,5 +1,6 @@
 <template>
     <div>
+        <breadcrumbs :list="breadcrumbs"></breadcrumbs>
         <tagged-item-form ref="itemForm"
                           :newItem="true"
                           :titleWording="postType === 'reflection' ? 'Новое размышление' : 'Новый рассказ'"

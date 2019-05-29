@@ -4,9 +4,7 @@ import editItemMixin from '../shared/edit-item-mixin/edit-item-mixin';
 import adminService from '../services/admin-service';
 
 export default {
-  mixins: [
-    editItemMixin
-  ],
+  mixins: [editItemMixin],
 
   components: {
     ItemActionResultModal,

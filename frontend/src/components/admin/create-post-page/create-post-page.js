@@ -1,9 +1,12 @@
+import coreMixin from '@/components/shared/core-mixin/core-mixin';
 import TaggedItemForm from '../shared/tagged-item-form/tagged-item-form.vue';
 import ItemActionResultModal from '../shared/item-action-result-modal/item-action-result-modal.vue';
 import adminService from '../services/admin-service';
 import dateService from '@/common/services/date-service';
 
 export default {
+  mixins: [coreMixin],
+
   components: {
     TaggedItemForm,
     ItemActionResultModal
@@ -11,6 +14,7 @@ export default {
 
   data() {
     return {
+      breadcrumbs: [],
       postType: null,
       createPostSuccess: null,
       createPostTitleWording: null,
@@ -56,10 +60,6 @@ export default {
         localStorage.removeItem('token');
         this.eventHub.$emit('tokenExpired');
       }
-    },
-
-    handleActionError: function () {
-      alert('Ошибка сети');
     },
 
     openResultModal: function () {
