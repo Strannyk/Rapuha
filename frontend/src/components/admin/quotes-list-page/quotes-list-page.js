@@ -1,6 +1,9 @@
+import coreMixin from '@/components/shared/core-mixin/core-mixin';
 import commonService from '@/common/services/common-service';
 
 export default {
+  mixins: [coreMixin],
+
   data() {
     return {
       quotes: []

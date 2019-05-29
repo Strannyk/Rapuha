@@ -56,27 +56,59 @@ export default new Router({
         {
           name: 'quotesList',
           path: 'quotes',
-          component: QuotesListPage
+          component: QuotesListPage,
+          meta: {
+            breadcrumb: [
+              { name: 'Панель администратора', href: '/admin/feed' },
+              { name: 'Цитаты' }
+            ]
+          }
         },
         {
           name: 'feedbackList',
           path: 'feedback',
-          component: FeedbackListPage
+          component: FeedbackListPage,
+          meta: {
+            breadcrumb: [
+              { name: 'Панель администратора', href: '/admin/feed' },
+              { name: 'Отзывы' }
+            ]
+          }
         },
         {
           name: 'listOfUserFeedback',
           path: 'feedback/:user',
-          component: FeedbackListPage
+          component: FeedbackListPage,
+          meta: {
+            breadcrumb: [
+              { name: 'Панель администратора', href: '/admin/feed' },
+              { name: 'Отзывы', href: '/admin/feedback' }
+            ]
+          }
         },
         {
           name: 'createQuote',
           path: 'add/quote',
-          component: CreateQuotePage
+          component: CreateQuotePage,
+          meta: {
+            breadcrumb: [
+              { name: 'Панель администратора', href: '/admin/feed' },
+              { name: 'Цитаты', href: '/admin/quotes' },
+              { name: 'Новая цитата' }
+            ]
+          }
         },
         {
           name: 'editQuote',
           path: 'edit/quote',
-          component: EditQuotePage
+          component: EditQuotePage,
+          meta: {
+            breadcrumb: [
+              { name: 'Панель администратора', href: '/admin/feed' },
+              { name: 'Цитаты', href: '/admin/quotes' },
+              { name: 'Редактирование цитаты' }
+            ]
+          }
         },
         {
           name: 'createReflection',

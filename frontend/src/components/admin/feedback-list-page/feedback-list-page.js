@@ -1,10 +1,14 @@
+import coreMixin from '@/components/shared/core-mixin/core-mixin';
 import ItemActionResultModal from '../shared/item-action-result-modal/item-action-result-modal.vue';
 import ItemDeletingConfirmModal from '../shared/item-deleting-confirm-modal/item-deleting-confirm-modal.vue';
 import editItemMixin from '../shared/edit-item-mixin/edit-item-mixin';
 import adminService from '../services/admin-service';
 
 export default {
-  mixins: [editItemMixin],
+  mixins: [
+    coreMixin,
+    editItemMixin
+  ],
 
   components: {
     ItemActionResultModal,
@@ -230,6 +234,19 @@ export default {
   watch: {
     $route() {
       this.init();
+
+      if (this.$data.selectedUserName) {
+        const breadCrumbsLength = this.$data.breadcrumbs.length;
+        const lastBreadcrumb = this.$data.breadcrumbs[breadCrumbsLength - 1];
+        const newBreadcrumb = { name: 'Отзывы посетителя ' + this.$data.selectedUserName};
+
+        if (lastBreadcrumb.href) {
+          this.$data.breadcrumbs.push(newBreadcrumb);
+        }
+        else {
+          this.$data.breadcrumbs[breadCrumbsLength - 1] = newBreadcrumb;
+        }
+      }
     }
   },
 

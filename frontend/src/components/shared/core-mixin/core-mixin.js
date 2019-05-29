@@ -12,12 +12,22 @@ export default {
   },
 
   methods: {
+    initBreadcrumbs: function () {
+      this.$data.breadcrumbs = this.$route.meta.breadcrumb;
+    },
+
     handleActionError: function () {
       alert('Ошибка сети');
     }
   },
 
   mounted() {
-    this.$data.breadcrumbs = this.$route.meta.breadcrumb;
+    this.initBreadcrumbs();
+  },
+
+  watch: {
+    $route() {
+      this.initBreadcrumbs();
+    }
   }
 }

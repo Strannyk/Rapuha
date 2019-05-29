@@ -1,9 +1,12 @@
+import coreMixin from '@/components/shared/core-mixin/core-mixin';
 import QuoteForm from '../shared/quote-form/quote-form.vue';
 import ItemActionResultModal from '../shared/item-action-result-modal/item-action-result-modal.vue';
 import adminService from '../services/admin-service';
 import dateService from '@/common/services/date-service';
 
 export default {
+  mixins: [coreMixin],
+
   components: {
     QuoteForm,
     ItemActionResultModal

@@ -1,5 +1,6 @@
 <template>
     <div>
+        <breadcrumbs :list="breadcrumbs"></breadcrumbs>
         <quote-form ref="quoteForm"
                     :newQuote="false"
                     @submit="save"
