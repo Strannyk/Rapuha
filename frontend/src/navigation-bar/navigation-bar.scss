@@ -16,19 +16,5 @@
 }
 
 .r-logout {
-  display: table;
-  height: 54px;
-  padding: 0 8px;
-  color: #AAAAAA;
   cursor: pointer;
-
-  &:hover {
-    background-image: linear-gradient(#101112, #17191b 40%, #1b1e20);
-    color: #FFF;
-  }
-
-  .r-logout-wording {
-    display: table-cell;
-    vertical-align: middle;
-  }
 }

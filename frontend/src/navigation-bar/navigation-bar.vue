@@ -31,9 +31,11 @@
                     </li>
                 </ul>
             </div>
-            <div v-if="isAdmin" v-on:click="logOut" class="r-logout">
-                <span class="r-logout-wording">Выйти</span>
-            </div>
+            <ul v-if="isAdmin" class="nav navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a v-on:click="logOut" class="nav-link r-logout">Выйти</a>
+                </li>
+            </ul>
         </div>
     </nav>
 </template>
