@@ -1,7 +1,8 @@
 import { MultiSelect } from 'vue-search-select';
 import TagControlForm from './tag-control-form/tag-control-form.vue';
-import commonService from '@/common/services/common-service';
+import dataService from '@/common/services/data-service';
 import adminService from '../../../services/admin-service';
+import authService from '../../../../common/services/auth-service';
 
 export default {
   components: {
@@ -31,7 +32,7 @@ export default {
 
   methods: {
     getAllTags: function () {
-      const getTags = commonService.getTags.bind(this);
+      const getTags = dataService.getTags.bind(this);
       getTags().then(res => this.createTagItems(res.body.data))
         .catch(err => console.log(err));
     },
@@ -68,7 +69,7 @@ export default {
 
     handleTagActionSuccess: function (response, tagText) {
       if (response.tokenExpired) {
-        localStorage.removeItem('token');
+        authService.removeToken();
         this.eventHub.$emit('tokenExpired');
       }
 

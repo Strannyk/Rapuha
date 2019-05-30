@@ -1,5 +1,6 @@
 import AddTagModal from './add-tag-modal/add-tag-modal.vue';
-import adminService from '../../../../services/admin-service';
+import adminService from '@/admin/services/admin-service';
+import authService from '@/common/services/auth-service';
 
 export default {
   components: {
@@ -44,7 +45,7 @@ export default {
         this.$data.addTagError = response.error;
       }
       else if (response.tokenExpired) {
-        localStorage.removeItem('token');
+        authService.removeToken();
         this.eventHub.$emit('tokenExpired', false);
       }
     },

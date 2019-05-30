@@ -3,6 +3,7 @@ import ItemActionResultModal from '../../shared/components/item-action-result-mo
 import ItemDeletingConfirmModal from '../../shared/components/item-deleting-confirm-modal/item-deleting-confirm-modal.vue';
 import editItemMixin from '../../shared/mixins/edit-item-mixin/edit-item-mixin';
 import adminService from '../../services/admin-service';
+import authService from '../../../common/services/auth-service';
 
 export default {
   mixins: [
@@ -185,7 +186,7 @@ export default {
         this.openResultModal();
       }
       else if (response.tokenExpired) {
-        localStorage.removeItem('token');
+        authService.removeToken();
         this.eventHub.$emit('tokenExpired');
       }
     },

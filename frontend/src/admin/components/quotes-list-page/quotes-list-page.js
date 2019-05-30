@@ -1,5 +1,5 @@
 import coreMixin from '@/shared/mixins/core-mixin/core-mixin';
-import commonService from '@/common/services/common-service';
+import dataService from '@/common/services/data-service';
 
 export default {
   mixins: [coreMixin],
@@ -12,7 +12,7 @@ export default {
 
   methods: {
     getQuotesList: function () {
-      const getQuotesList = commonService.getQuotesList.bind(this);
+      const getQuotesList = dataService.getQuotesList.bind(this);
       getQuotesList().then(res => this.handleGetListSuccess(res.body),
         () => this.handleActionError())
         .catch(err => console.log(err));

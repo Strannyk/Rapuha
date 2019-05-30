@@ -4,7 +4,7 @@ import ItemActionResultModal from '../../shared/components/item-action-result-mo
 import ItemDeletingConfirmModal from '../../shared/components/item-deleting-confirm-modal/item-deleting-confirm-modal.vue';
 import editItemMixin from '../../shared/mixins/edit-item-mixin/edit-item-mixin';
 import adminService from '../../services/admin-service';
-import commonService from '@/common/services/common-service';
+import dataService from '@/common/services/data-service';
 
 export default {
   mixins: [
@@ -28,7 +28,7 @@ export default {
     },
 
     getDbData: function () {
-      const getQuote = commonService.getQuote.bind(this, this.getQuoteId());
+      const getQuote = dataService.getQuote.bind(this, this.getQuoteId());
       getQuote().then(res => {
           if (res.body.data) {
             this.$refs.quoteForm.setData(res.body.data);

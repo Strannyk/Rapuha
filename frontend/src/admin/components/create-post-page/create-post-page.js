@@ -2,6 +2,7 @@ import coreMixin from '@/shared/mixins/core-mixin/core-mixin';
 import TaggedItemForm from '../../shared/components/tagged-item-form/tagged-item-form.vue';
 import ItemActionResultModal from '../../shared/components/item-action-result-modal/item-action-result-modal.vue';
 import adminService from '../../services/admin-service';
+import authService from '../../../common/services/auth-service';
 import dateService from '@/common/services/date-service';
 
 export default {
@@ -57,7 +58,7 @@ export default {
         this.openResultModal();
       }
       else if (response.tokenExpired) {
-        localStorage.removeItem('token');
+        authService.removeToken();
         this.eventHub.$emit('tokenExpired');
       }
     },

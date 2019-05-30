@@ -1,3 +1,5 @@
+import authService from '@/common/services/auth-service';
+
 export default {
   data() {
     return {
@@ -20,7 +22,7 @@ export default {
         this.openResultModal();
       }
       else if (response.tokenExpired) {
-        localStorage.removeItem('token');
+        authService.removeToken();
         this.eventHub.$emit('tokenExpired');
       }
     },

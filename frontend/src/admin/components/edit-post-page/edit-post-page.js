@@ -4,7 +4,7 @@ import ItemActionResultModal from '../../shared/components/item-action-result-mo
 import ItemDeletingConfirmModal from '../../shared/components/item-deleting-confirm-modal/item-deleting-confirm-modal.vue';
 import editItemMixin from '../../shared/mixins/edit-item-mixin/edit-item-mixin';
 import adminService from '../../services/admin-service';
-import commonService from '@/common/services/common-service';
+import dataService from '@/common/services/data-service';
 
 export default {
   mixins: [
@@ -54,7 +54,7 @@ export default {
     },
 
     getDbData: function (title) {
-      const getPost = commonService.getPost.bind(this, title);
+      const getPost = dataService.getPost.bind(this, title);
       getPost().then(res => {
           if (res.body.data) {
             this.$refs.itemForm.setData(res.body.data);
@@ -90,18 +90,17 @@ export default {
     handleSaveSuccess: function (response) {
       this.$data.actionType = this.$data.availableActionTypes.editing;
 
+      if (this.$data.postType === 'reflection') {
+        this.$data.actionResultModalTitleWording = 'Редактирование размышления';
+        this.$data.actionMessage = 'Размышление успешно отредактировано';
+      }
+      else if (this.$data.postType === 'story') {
+        this.$data.actionResultModalTitleWording = 'Редактирование рассказа';
+        this.$data.actionMessage = 'Рассказ успешно отредактирован';
+      }
+
       if (response.ok) {
         this.$data.actionSuccess = true;
-
-        if (this.$data.postType === 'reflection') {
-          this.$data.actionResultModalTitleWording = 'Редактирование размышления';
-          this.$data.actionMessage = 'Размышление успешно отредактировано';
-        }
-        else if (this.$data.postType === 'story') {
-          this.$data.actionResultModalTitleWording = 'Редактирование рассказа';
-          this.$data.actionMessage = 'Рассказ успешно отредактирован';
-        }
-
         this.openResultModal();
       }
       else {

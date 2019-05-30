@@ -1,5 +1,5 @@
 const dateService = {
-  getCurrentDate: function () {
+  getCurrentDate() {
     const currentDate = new Date();
     const year = currentDate.getFullYear();
     const date = currentDate.getDate();

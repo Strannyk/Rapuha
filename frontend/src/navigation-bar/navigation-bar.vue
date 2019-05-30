@@ -6,7 +6,10 @@
             </span>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav">
-                    <li @mouseover="menuOpen = true" @mouseleave="menuOpen = false" class="nav-item dropdown">
+                    <li v-if="isAdmin"
+                        @mouseover="menuOpen = true"
+                        @mouseleave="menuOpen = false"
+                        class="nav-item dropdown">
                         <span class="nav-link dropdown-toggle">Администрирование</span>
                         <div v-on:click="menuOpen = false"
                              :class="menuOpen ? 'visible' : null"

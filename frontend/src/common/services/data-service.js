@@ -1,4 +1,4 @@
-const commonService = {
+const dataService = {
   getTags() {
     return this.$http.get('tags');
   },
@@ -16,4 +16,4 @@ const commonService = {
   }
 };
 
-module.exports = commonService;
+module.exports = dataService;

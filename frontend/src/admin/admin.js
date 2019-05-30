@@ -1,5 +1,6 @@
 import AdminAuthModal from './components/admin-auth-modal/admin-auth-modal.vue';
 import adminService from './services/admin-service';
+import authService from '../common/services/auth-service';
 
 export default {
   components: {
@@ -14,17 +15,13 @@ export default {
   },
 
   methods: {
-    checkToken: function () {
-      if (!localStorage.getItem('token')) {
+    checkAdminRole: function () {
+      if (!authService.isAdmin()) {
         this.openAuthModal();
       }
       else if (this.$router.history.current.name === 'admin') {
         this.routeAdminPage();
       }
-    },
-
-    writeToken: function (token) {
-      localStorage.setItem('token', token);
     },
 
     openAuthModal: function (singleMode = true) {
@@ -53,7 +50,7 @@ export default {
       const error = response.error;
 
       if (token) {
-        this.writeToken(token);
+        authService.authorizeAdmin(token);
         this.closeAuthModal();
         this.routeAdminPage();
 
@@ -94,7 +91,7 @@ export default {
   },
 
   mounted() {
-    this.checkToken();
+    this.checkAdminRole();
     this.eventHub.$on('tokenExpired', (singleMode = true) => this.openAuthModal(singleMode));
   }
 }
