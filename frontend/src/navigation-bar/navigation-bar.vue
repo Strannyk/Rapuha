@@ -7,12 +7,14 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav">
                     <li v-if="isAdmin"
+                        v-on:click="menuOpen = false"
                         @mouseover="menuOpen = true"
                         @mouseleave="menuOpen = false"
                         class="nav-item dropdown">
-                        <span class="nav-link dropdown-toggle">Администрирование</span>
-                        <div v-on:click="menuOpen = false"
-                             :class="menuOpen ? 'visible' : null"
+                        <router-link to="/admin/feed">
+                            <span class="nav-link dropdown-toggle">Администрирование</span>
+                        </router-link>
+                        <div :class="menuOpen ? 'visible' : null"
                              class="dropdown-menu">
                             <router-link class="dropdown-item" to="/admin/reflections">Размышления</router-link>
                             <router-link class="dropdown-item" to="/admin/stories">Рассказы</router-link>
@@ -20,6 +22,7 @@
                             <div class="dropdown-divider"></div>
                             <router-link class="dropdown-item" to="/admin/feedback">Обратная связь</router-link>
                         </div>
+
                     </li>
                 </ul>
             </div>
