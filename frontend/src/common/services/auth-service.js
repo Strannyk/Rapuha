@@ -1,5 +1,5 @@
 const authService = (() => {
-  const tokenStorageKey = 'token';
+  const tokenStorageKey = 'adminToken';
 
   return {
     authorizeAdmin(token) {
