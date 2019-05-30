@@ -45,7 +45,7 @@ export default {
         this.$data.addTagError = response.error;
       }
       else if (response.tokenExpired) {
-        authService.removeToken();
+        authService.logOutAdmin();
         this.eventHub.$emit('tokenExpired', false);
       }
     },

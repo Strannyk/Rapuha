@@ -37,7 +37,7 @@ export default new Router({
           component: PostsListPage,
           meta: {
             breadcrumb: [
-              { name: 'Панель администратора', href: '/admin/feed' },
+              { name: 'Администрирование', href: '/admin/feed' },
               { name: 'Размышления' }
             ]
           }
@@ -48,7 +48,7 @@ export default new Router({
           component: PostsListPage,
           meta: {
             breadcrumb: [
-              { name: 'Панель администратора', href: '/admin/feed' },
+              { name: 'Администрирование', href: '/admin/feed' },
               { name: 'Рассказы' }
             ]
           }
@@ -59,7 +59,7 @@ export default new Router({
           component: QuotesListPage,
           meta: {
             breadcrumb: [
-              { name: 'Панель администратора', href: '/admin/feed' },
+              { name: 'Администрирование', href: '/admin/feed' },
               { name: 'Цитаты' }
             ]
           }
@@ -70,7 +70,7 @@ export default new Router({
           component: FeedbackListPage,
           meta: {
             breadcrumb: [
-              { name: 'Панель администратора', href: '/admin/feed' },
+              { name: 'Администрирование', href: '/admin/feed' },
               { name: 'Отзывы' }
             ]
           }
@@ -81,7 +81,7 @@ export default new Router({
           component: FeedbackListPage,
           meta: {
             breadcrumb: [
-              { name: 'Панель администратора', href: '/admin/feed' },
+              { name: 'Администрирование', href: '/admin/feed' },
               { name: 'Отзывы', href: '/admin/feedback' }
             ]
           }
@@ -92,7 +92,7 @@ export default new Router({
           component: CreateQuotePage,
           meta: {
             breadcrumb: [
-              { name: 'Панель администратора', href: '/admin/feed' },
+              { name: 'Администрирование', href: '/admin/feed' },
               { name: 'Цитаты', href: '/admin/quotes' },
               { name: 'Новая цитата' }
             ]
@@ -104,7 +104,7 @@ export default new Router({
           component: EditQuotePage,
           meta: {
             breadcrumb: [
-              { name: 'Панель администратора', href: '/admin/feed' },
+              { name: 'Администрирование', href: '/admin/feed' },
               { name: 'Цитаты', href: '/admin/quotes' },
               { name: 'Редактирование цитаты' }
             ]
@@ -116,7 +116,7 @@ export default new Router({
           component: CreatePostPage,
           meta: {
             breadcrumb: [
-              { name: 'Панель администратора', href: '/admin/feed' },
+              { name: 'Администрирование', href: '/admin/feed' },
               { name: 'Размышления', href: '/admin/reflections' },
               { name: 'Новое размышление' }
             ]
@@ -128,7 +128,7 @@ export default new Router({
           component: EditPostPage,
           meta: {
             breadcrumb: [
-              { name: 'Панель администратора', href: '/admin/feed' },
+              { name: 'Администрирование', href: '/admin/feed' },
               { name: 'Размышления', href: '/admin/reflections' },
               { name: 'Редактирование размышления' }
             ]
@@ -140,7 +140,7 @@ export default new Router({
           component: CreatePostPage,
           meta: {
             breadcrumb: [
-              { name: 'Панель администратора', href: '/admin/feed' },
+              { name: 'Администрирование', href: '/admin/feed' },
               { name: 'Рассказы', href: '/admin/stories' },
               { name: 'Новый рассказ' }
             ]
@@ -152,7 +152,7 @@ export default new Router({
           component: EditPostPage,
           meta: {
             breadcrumb: [
-              { name: 'Панель администратора', href: '/admin/feed' },
+              { name: 'Администрирование', href: '/admin/feed' },
               { name: 'Рассказы', href: '/admin/stories' },
               { name: 'Редактирование рассказа' }
             ]

@@ -1,7 +1,7 @@
 <template>
     <div>
         <router-view/>
-        <admin-auth-modal ref="modal"
+        <admin-auth-modal ref="authModal"
                           :disabled="sendingAuthRequest"
                           :errorMessage="authError"
                           @submit="sendCredentials"

@@ -25,15 +25,15 @@ export default {
     },
 
     openAuthModal: function (singleMode = true) {
-      this.$refs.modal.open(singleMode);
+      this.$refs.authModal.open(singleMode);
     },
 
     closeAuthModal: function () {
-      this.$refs.modal.close();
+      this.$refs.authModal.close();
     },
 
     clearAuthModalValues: function () {
-      this.$refs.modal.clearCredentials();
+      this.$refs.authModal.clearCredentials();
     },
 
     sendCredentials: function (data) {
@@ -50,7 +50,7 @@ export default {
       const error = response.error;
 
       if (token) {
-        authService.authorizeAdmin(token);
+        authService.setToken(token);
         this.closeAuthModal();
         this.routeAdminPage();
 
@@ -71,8 +71,18 @@ export default {
     },
 
     selectPath: function () {
-      // add condition
-      // this.goToHomePage();
+      const allowedNames = [
+        'createReflection',
+        'editReflection',
+        'createStory',
+        'editStory',
+        'createQuote',
+        'editQuote'
+      ];
+
+      if (!allowedNames.includes(this.$route.name)) {
+        this.goToHomePage();
+      }
     },
 
     goToHomePage: function () {

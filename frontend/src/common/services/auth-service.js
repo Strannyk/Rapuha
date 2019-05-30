@@ -2,7 +2,7 @@ const authService = (() => {
   const tokenStorageKey = 'adminToken';
 
   return {
-    authorizeAdmin(token) {
+    setToken(token) {
       localStorage.setItem(tokenStorageKey, token);
     },
 
@@ -10,7 +10,7 @@ const authService = (() => {
       return localStorage.getItem(tokenStorageKey) || null;
     },
 
-    removeToken() {
+    logOutAdmin() {
       localStorage.removeItem(tokenStorageKey);
     },
 

@@ -22,7 +22,7 @@ export default {
         this.openResultModal();
       }
       else if (response.tokenExpired) {
-        authService.removeToken();
+        authService.logOutAdmin();
         this.eventHub.$emit('tokenExpired');
       }
     },

@@ -1,6 +1,6 @@
 <template>
     <div class="r-block r-center">
-        <h2>Панель администратора</h2>
+        <h2>Администрирование</h2>
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <div>
                 <router-link to="/admin/reflections">

@@ -69,7 +69,7 @@ export default {
 
     handleTagActionSuccess: function (response, tagText) {
       if (response.tokenExpired) {
-        authService.removeToken();
+        authService.logOutAdmin();
         this.eventHub.$emit('tokenExpired');
       }
 

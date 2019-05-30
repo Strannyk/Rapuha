@@ -14,7 +14,7 @@ export default {
     },
 
     logOut: function () {
-      authService.removeToken();
+      authService.logOutAdmin();
       this.refreshIsAdmin();
       this.goToHomePage();
     },
