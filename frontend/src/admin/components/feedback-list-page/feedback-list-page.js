@@ -1,6 +1,7 @@
 import coreMixin from '@/shared/mixins/core-mixin/core-mixin';
 import ItemActionResultModal from '../../shared/components/item-action-result-modal/item-action-result-modal.vue';
-import ItemDeletingConfirmModal from '../../shared/components/item-deleting-confirm-modal/item-deleting-confirm-modal.vue';
+import ItemDeletingConfirmModal
+  from '../../shared/components/item-deleting-confirm-modal/item-deleting-confirm-modal.vue';
 import editItemMixin from '../../shared/mixins/edit-item-mixin/edit-item-mixin';
 import adminService from '../../services/admin-service';
 import authService from '../../../common/services/auth-service';
@@ -235,7 +236,7 @@ export default {
       if (this.$data.selectedUserName) {
         const breadCrumbsLength = this.$data.breadcrumbs.length;
         const lastBreadcrumb = this.$data.breadcrumbs[breadCrumbsLength - 1];
-        const newBreadcrumb = { name: 'Отзывы посетителя ' + this.$data.selectedUserName};
+        const newBreadcrumb = { name: 'Отзывы посетителя ' + this.$data.selectedUserName };
 
         if (lastBreadcrumb.href) {
           this.$data.breadcrumbs.push(newBreadcrumb);
