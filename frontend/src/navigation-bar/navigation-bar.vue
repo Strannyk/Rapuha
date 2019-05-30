@@ -23,6 +23,9 @@
                     </li>
                 </ul>
             </div>
+            <div v-if="isAdmin" v-on:click="logOut" class="r-logout">
+                <span class="r-logout-wording">Выйти</span>
+            </div>
         </div>
     </nav>
 </template>

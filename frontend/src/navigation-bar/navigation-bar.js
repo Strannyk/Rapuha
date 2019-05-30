@@ -11,6 +11,16 @@ export default {
   methods: {
     refreshIsAdmin: function () {
       this.$data.isAdmin = authService.isAdmin();
+    },
+
+    logOut: function () {
+      authService.removeToken();
+      this.refreshIsAdmin();
+      this.goToHomePage();
+    },
+
+    goToHomePage: function () {
+      this.$router.push({ name: 'home' });
     }
   },
 
