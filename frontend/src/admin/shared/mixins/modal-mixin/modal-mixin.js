@@ -16,6 +16,7 @@ export default {
     open: function (single = true) {
       this.$data.active = true;
       this.$data.isSingleModal = single;
+      this.$emit('open');
       document.body.classList.add(this.$data.frozenBodyClassName);
     },
 

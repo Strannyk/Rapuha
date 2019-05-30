@@ -34,6 +34,14 @@ export default {
     clearCredentials: function () {
       this.$data.credentials.login = null;
       this.$data.credentials.password = null;
+    },
+
+    focus: function () {
+      setTimeout(() => this.$refs.loginInput.focus());
     }
+  },
+
+  mounted() {
+    this.$on('open', () => this.focus());
   }
 }
