@@ -17,7 +17,7 @@ export default {
       authService.logOutAdmin();
       this.refreshIsAdmin();
 
-      if (this.$route.path.includes('admin')) {
+      if (this.$route.path.split('/')[1] === 'admin') {
         this.goToHomePage();
       }
     },
