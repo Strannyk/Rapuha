@@ -26,5 +26,6 @@ export default {
 
   mounted() {
     this.eventHub.$on('authorized', () => this.refreshIsAdmin());
+    this.eventHub.$on('loggingOut', () => this.refreshIsAdmin());
   }
 }

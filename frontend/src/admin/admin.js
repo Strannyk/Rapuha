@@ -9,6 +9,7 @@ export default {
 
   data() {
     return {
+      isAdmin: authService.isAdmin(),
       sendingAuthRequest: false,
       authError: null
     };
@@ -53,8 +54,9 @@ export default {
         authService.setToken(token);
         this.closeAuthModal();
         this.routeAdminPage();
-
         this.clearAuthModalValues();
+
+        this.$data.isAdmin = true;
         this.eventHub.$emit('authorized');
       }
       else if (error) {
@@ -68,6 +70,11 @@ export default {
       this.$data.sendingAuthRequest = false;
       alert('Ошибка сети.');
       this.goToHomePage();
+    },
+
+    onCloseAuthModel: function () {
+      this.selectPath();
+      this.eventHub.$emit('loggingOut');
     },
 
     selectPath: function () {
