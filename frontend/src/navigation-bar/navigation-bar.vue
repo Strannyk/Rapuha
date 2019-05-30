@@ -1,28 +1,33 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <span class="navbar-brand main-link">
-                <router-link to="/">Rapuha</router-link>
-            </span>
+            <router-link to="/" class="navbar-brand main-link">Rapuha</router-link>
             <div class="collapse navbar-collapse">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav" v-on:click="blurLinks">
                     <li v-if="isAdmin"
                         v-on:click="menuOpen = false"
                         @mouseover="menuOpen = true"
                         @mouseleave="menuOpen = false"
                         class="nav-item dropdown">
-                        <router-link to="/admin/feed">
-                            <span class="nav-link dropdown-toggle">Администрирование</span>
+                        <router-link to="/admin/feed" class="nav-link dropdown-toggle">Администрирование
                         </router-link>
                         <div :class="menuOpen ? 'visible' : null"
                              class="dropdown-menu">
-                            <router-link class="dropdown-item" to="/admin/reflections">Размышления</router-link>
-                            <router-link class="dropdown-item" to="/admin/stories">Рассказы</router-link>
-                            <router-link class="dropdown-item" to="/admin/quotes">Цитаты</router-link>
+                            <router-link to="/admin/reflections" class="dropdown-item">Размышления</router-link>
+                            <router-link to="/admin/stories" class="dropdown-item">Рассказы</router-link>
+                            <router-link to="/admin/quotes" class="dropdown-item">Цитаты</router-link>
                             <div class="dropdown-divider"></div>
                             <router-link class="dropdown-item" to="/admin/feedback">Обратная связь</router-link>
                         </div>
-
+                    </li>
+                    <li class="navbar-nav">
+                        <router-link to="/reflections" class="nav-link">Размышления</router-link>
+                    </li>
+                    <li class="navbar-nav">
+                        <router-link to="/stories" class="nav-link">Рассказы</router-link>
+                    </li>
+                    <li class="navbar-nav">
+                        <router-link to="/quotes" class="nav-link">Цитаты</router-link>
                     </li>
                 </ul>
             </div>

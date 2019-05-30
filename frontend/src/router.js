@@ -2,6 +2,8 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './home/home.vue';
 import Admin from './admin/admin.vue';
+import PostsPage from './home/components/posts-page/posts-page.vue';
+import QuotesPage from './home/components/quotes-page/quotes-page.vue';
 import PostsListPage from './admin/components/posts-list-page/posts-list-page.vue';
 import QuotesListPage from './admin/components/quotes-list-page/quotes-list-page.vue';
 import ManageItemsPage from './admin/components/manage-items-page/manage-items-page.vue';
@@ -19,7 +21,24 @@ export default new Router({
     {
       name: 'home',
       path: '/',
-      component: Home
+      component: Home,
+      children: [
+        {
+          name: 'reflections',
+          path: '/reflections',
+          component: PostsPage
+        },
+        {
+          name: 'stories',
+          path: '/stories',
+          component: PostsPage
+        },
+        {
+          name: 'quotes',
+          path: '/quotes',
+          component: QuotesPage
+        }
+      ]
     },
     {
       name: 'admin',

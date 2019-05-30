@@ -21,6 +21,11 @@ export default {
 
     goToHomePage: function () {
       this.$router.push({ name: 'home' });
+    },
+
+    blurLinks: function () {
+      const links = document.querySelectorAll('.nav-link');
+      links.forEach(link => link.blur());
     }
   },
 
