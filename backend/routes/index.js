@@ -26,4 +26,10 @@ router.get('/post/:title', function (req, res) {
     .catch(err => res.send(err));
 });
 
+router.get('/count', function (req, res) {
+  restController.getItemsNumber()
+    .then(result => res.send(result))
+    .catch(err => res.send(err));
+});
+
 module.exports = router;

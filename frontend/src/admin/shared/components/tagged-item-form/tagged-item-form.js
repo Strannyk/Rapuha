@@ -1,8 +1,8 @@
 import { MultiSelect } from 'vue-search-select';
 import TagControlForm from './tag-control-form/tag-control-form.vue';
-import dataService from '@/common/services/data-service';
+import dataService from '@/services/data-service';
 import adminService from '../../../services/admin-service';
-import authService from '../../../../common/services/auth-service';
+import authService from '../../../../services/auth-service';
 
 export default {
   components: {

@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './home/home.vue';
 import Admin from './admin/admin.vue';
+import StartPage from './home/components/start-page/start-page.vue';
 import PostsPage from './home/components/posts-page/posts-page.vue';
 import QuotesPage from './home/components/quotes-page/quotes-page.vue';
 import PostsListPage from './admin/components/posts-list-page/posts-list-page.vue';
@@ -23,6 +24,11 @@ export default new Router({
       path: '/',
       component: Home,
       children: [
+        {
+          name: 'start',
+          path: '/feed',
+          component: StartPage
+        },
         {
           name: 'reflections',
           path: '/reflections',

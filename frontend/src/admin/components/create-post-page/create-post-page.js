@@ -2,8 +2,8 @@ import coreMixin from '@/shared/mixins/core-mixin/core-mixin';
 import TaggedItemForm from '../../shared/components/tagged-item-form/tagged-item-form.vue';
 import ItemActionResultModal from '../../shared/components/item-action-result-modal/item-action-result-modal.vue';
 import adminService from '../../services/admin-service';
-import authService from '../../../common/services/auth-service';
-import dateService from '@/common/services/date-service';
+import authService from '../../../services/auth-service';
+import dateService from '@/services/date-service';
 
 export default {
   mixins: [coreMixin],

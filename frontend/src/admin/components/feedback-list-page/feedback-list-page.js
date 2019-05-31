@@ -4,7 +4,7 @@ import ItemDeletingConfirmModal
   from '../../shared/components/item-deleting-confirm-modal/item-deleting-confirm-modal.vue';
 import editItemMixin from '../../shared/mixins/edit-item-mixin/edit-item-mixin';
 import adminService from '../../services/admin-service';
-import authService from '../../../common/services/auth-service';
+import authService from '../../../services/auth-service';
 
 export default {
   mixins: [

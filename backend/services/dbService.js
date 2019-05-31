@@ -179,6 +179,21 @@ const dbService = (() => {
     clearFeedback() {
       const query = 'TRUNCATE users CASCADE';
       return getDb().none(query);
+    },
+
+    getNumberOfReflections() {
+      const query = 'SELECT count(*) FROM posts WHERE type = \'reflection\'';
+      return getDb().one(query);
+    },
+
+    getNumberOfStories() {
+      const query = 'SELECT count(*) FROM posts WHERE type = \'story\'';
+      return getDb().one(query);
+    },
+
+    getNumberOfQuotes() {
+      const query = 'SELECT count(*) FROM quotes';
+      return getDb().one(query);
     }
   };
 })();

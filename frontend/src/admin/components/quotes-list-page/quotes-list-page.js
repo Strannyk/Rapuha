@@ -1,5 +1,5 @@
 import coreMixin from '@/shared/mixins/core-mixin/core-mixin';
-import dataService from '@/common/services/data-service';
+import dataService from '@/services/data-service';
 
 export default {
   mixins: [coreMixin],

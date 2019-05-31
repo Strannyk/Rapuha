@@ -1,6 +1,6 @@
 import AddTagModal from './add-tag-modal/add-tag-modal.vue';
 import adminService from '@/admin/services/admin-service';
-import authService from '@/common/services/auth-service';
+import authService from '@/services/auth-service';
 
 export default {
   components: {

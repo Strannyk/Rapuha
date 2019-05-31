@@ -614,6 +614,32 @@ const restController = (() => {
             reject(response);
           });
       });
+    },
+
+    getItemsNumber() {
+      const response = new ResponseMessage();
+
+      return new Promise((resolve, reject) => {
+        Promise.all([
+          dbService.getNumberOfReflections(),
+          dbService.getNumberOfStories(),
+          dbService.getNumberOfQuotes()
+        ])
+          .then(data => {
+            const result = {};
+
+            result.reflections = data[0].count;
+            result.stories = data[1].count;
+            result.quotes = data[2].count;
+
+            response.createDataMessage(result);
+            resolve(response);
+          })
+          .catch(() => {
+            response.createErrorMessage(defaultErrorMessage);
+            reject(response);
+          });
+      });
     }
   };
 })();

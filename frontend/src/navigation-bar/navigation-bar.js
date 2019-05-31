@@ -1,4 +1,4 @@
-import authService from '../common/services/auth-service';
+import authService from '../services/auth-service';
 
 export default {
   data() {

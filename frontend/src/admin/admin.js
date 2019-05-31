@@ -1,6 +1,6 @@
 import AdminAuthModal from './components/admin-auth-modal/admin-auth-modal.vue';
 import adminService from './services/admin-service';
-import authService from '../common/services/auth-service';
+import authService from '../services/auth-service';
 
 export default {
   components: {
@@ -16,11 +16,11 @@ export default {
   },
 
   methods: {
-    checkAdminRole: function () {
+    init: function () {
       if (!authService.isAdmin()) {
         this.openAuthModal();
       }
-      else if (this.$router.history.current.name === 'admin') {
+      else {
         this.routeAdminPage();
       }
     },
@@ -108,7 +108,7 @@ export default {
   },
 
   mounted() {
-    this.checkAdminRole();
+    this.init();
     this.eventHub.$on('tokenExpired', (singleMode = true) => this.openAuthModal(singleMode));
   }
 }

@@ -1,4 +1,4 @@
-const authService = require('../../common/services/auth-service');
+const authService = require('../../services/auth-service');
 
 const adminService = {
   authAdmin(login, password) {

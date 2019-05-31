@@ -13,6 +13,10 @@ const dataService = {
 
   getPost(title) {
     return this.$http.get('post/' + title);
+  },
+
+  getItemsNumber() {
+    return this.$http.get('count');
   }
 };
 
