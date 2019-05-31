@@ -7,7 +7,8 @@ export default {
   data() {
     return {
       postsType: null,
-      posts: []
+      posts: [],
+      contentIsLoaded: false
     };
   },
 
@@ -35,7 +36,8 @@ export default {
       const getPosts = dataService.getPostsList.bind(this, type);
       getPosts().then(res => this.handleGetPostsSuccess(res.body),
         () => this.handleActionError())
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
+        .finally(() => this.$data.contentIsLoaded = true);
     },
 
     handleGetPostsSuccess: function (response) {

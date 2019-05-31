@@ -1,0 +1,17 @@
+.jumbotron {
+  padding: 20px;
+}
+
+a {
+  color: inherit;
+  display: inline-block;
+
+  &:hover {
+    color: #FFF;
+    text-decoration: none;
+  }
+}
+
+.r-tag-link {
+  margin-right: 10px;
+}

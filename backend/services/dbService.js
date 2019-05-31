@@ -197,7 +197,7 @@ const dbService = (() => {
     },
 
     getPostsList(type) {
-      const query = 'SELECT * FROM (SELECT *, to_char(creation_date, \'DD-MM-YYYY\') FROM posts WHERE type = $1) AS p INNER JOIN posts_tags USING(title) ORDER BY p.creation_date DESC, p.title LIMIT 500';
+      const query = 'SELECT * FROM (SELECT *, to_char(creation_date, \'DD.MM.YYYY\') FROM posts WHERE type = $1) AS p INNER JOIN posts_tags USING(title) ORDER BY p.creation_date DESC, p.title LIMIT 500';
       return getDb().any(query, type);
     }
   };
