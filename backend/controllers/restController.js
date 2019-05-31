@@ -648,15 +648,28 @@ const restController = (() => {
       return new Promise((resolve, reject) => {
         dbService.getPostsList(type)
           .then(data => {
-            for (const row of data) {
-              row.creationDate = row.to_char;
+            const titles = [];
+            const result = [];
 
-              delete row.to_char;
-              delete row.creation_date;
-              delete row.type;
+            for (const row of data) {
+              const item = {};
+
+              if (titles.includes(row.title)) {
+                result[titles.length - 1].tags.push(row.tag_name);
+              }
+              else {
+                titles.push(row.title);
+
+                item.title = row.title;
+                item.body = row.body;
+                item.creationDate = row.to_char;
+                item.tags = [row.tag_name];
+
+                result.push(item);
+              }
             }
 
-            response.createDataMessage(data);
+            response.createDataMessage(result);
             resolve(response);
           })
           .catch(() => {
