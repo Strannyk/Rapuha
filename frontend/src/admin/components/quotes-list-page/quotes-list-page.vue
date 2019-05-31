@@ -11,7 +11,9 @@
                         v-on:dblclick="editQuote(quote.id)"
                         class="r-quote blockquote">
                 <p class="mb-0" v-html="quote.body"></p>
-                <footer v-if="quote.author" class="blockquote-footer">{{quote.author}}</footer>
+                <footer v-if="quote.author" class="blockquote-footer">
+                    <cite title="Source Title">{{quote.author}}</cite>
+                </footer>
             </blockquote>
             <div v-if="!quotes.length">
                 <br>

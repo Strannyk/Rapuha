@@ -61,6 +61,20 @@
   }
 }
 
+.jumbotron {
+  padding: 20px;
+}
+
+a {
+  color: inherit;
+  display: inline-block;
+
+  &:hover {
+    color: #FFF;
+    text-decoration: none;
+  }
+}
+
 a:focus {
   color: #FFF !important;
 }

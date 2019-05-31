@@ -24,4 +24,4 @@
 
 <script src="./posts-page.js"></script>
 
-<style scoped src="./post-page.scss" lang="scss"></style>
+<style scoped src="./posts-page.scss" lang="scss"></style>
