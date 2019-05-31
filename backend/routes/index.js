@@ -32,4 +32,10 @@ router.get('/count', function (req, res) {
     .catch(err => res.send(err));
 });
 
+router.get('/posts/:type', function (req, res) {
+  restController.getPostsList(req.params.type)
+    .then(result => res.send(result))
+    .catch(err => res.send(err));
+});
+
 module.exports = router;

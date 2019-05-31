@@ -29,7 +29,7 @@ export default {
       this.getPostsList(this.$data.postsType);
     },
 
-    getPostsList(type) {
+    getPostsList: function (type) {
       type = type === 'reflections' ? 'reflection' : 'story';
 
       const getList = adminService.getPostsTitles.bind(this, type);
@@ -38,7 +38,7 @@ export default {
         .catch(err => console.log(err));
     },
 
-    handleGetListSuccess(response) {
+    handleGetListSuccess: function (response) {
       const titles = response.data;
 
       if (Array.isArray(titles)) {
@@ -46,11 +46,7 @@ export default {
       }
     },
 
-    handleActionError() {
-      alert('Ошибка сети');
-    },
-
-    editPost(title) {
+    editPost: function (title) {
       const path = this.$data.postsType === 'reflections' ? 'reflection' : 'story';
       this.$router.push('/admin/edit/' + path + '/' + title);
     }

@@ -194,6 +194,11 @@ const dbService = (() => {
     getNumberOfQuotes() {
       const query = 'SELECT count(*) FROM quotes';
       return getDb().one(query);
+    },
+
+    getPostsList(type) {
+      const query = 'SELECT *, to_char(creation_date, \'DD-MM-YYYY\') FROM posts WHERE type = $1 ORDER BY creation_date DESC, title LIMIT 500';
+      return getDb().any(query, type);
     }
   };
 })();

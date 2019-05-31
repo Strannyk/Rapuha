@@ -17,6 +17,10 @@ const dataService = {
 
   getItemsNumber() {
     return this.$http.get('count');
+  },
+
+  getPostsList(type) {
+    return this.$http.get('posts/' + type);
   }
 };
 

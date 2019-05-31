@@ -640,6 +640,30 @@ const restController = (() => {
             reject(response);
           });
       });
+    },
+
+    getPostsList(type) {
+      const response = new ResponseMessage();
+
+      return new Promise((resolve, reject) => {
+        dbService.getPostsList(type)
+          .then(data => {
+            for (const row of data) {
+              row.creationDate = row.to_char;
+
+              delete row.to_char;
+              delete row.creation_date;
+              delete row.type;
+            }
+
+            response.createDataMessage(data);
+            resolve(response);
+          })
+          .catch(() => {
+            response.createErrorMessage(defaultErrorMessage);
+            reject(response);
+          });
+      });
     }
   };
 })();
