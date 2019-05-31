@@ -60,3 +60,7 @@
     background-size: calc(0.75em + 0.75rem) calc(0.75em + 0.75rem);
   }
 }
+
+a:focus {
+  color: #FFF !important;
+}

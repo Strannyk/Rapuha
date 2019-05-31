@@ -35,8 +35,18 @@ export default new Router({
           component: PostsPage
         },
         {
+          name: 'reflectionsByTag',
+          path: '/reflections/tag/:tag',
+          component: PostsPage
+        },
+        {
           name: 'stories',
           path: '/stories',
+          component: PostsPage
+        },
+        {
+          name: 'storiesByTag',
+          path: '/stories/tag/:tag',
           component: PostsPage
         },
         {

@@ -7,6 +7,7 @@ export default {
   data() {
     return {
       postsType: null,
+      selectedTag: null,
       posts: [],
       contentIsLoaded: false
     };
@@ -26,14 +27,20 @@ export default {
   methods: {
     init: function () {
       const postType = this.$router.history.current.name;
-      this.$data.postsType = postType === 'reflections' ? 'reflections' : 'stories';
-      this.getPosts(this.$data.postsType);
+      const tag = this.$route.params.tag;
+
+      this.$data.postsType = postType.includes('reflections') ? 'reflections' : 'stories';
+      this.$data.selectedTag = tag || null;
+      this.getPosts(this.$data.postsType, tag);
     },
 
-    getPosts: function (type) {
+    getPosts: function (type, tag) {
       type = type === 'reflections' ? 'reflection' : 'story';
 
-      const getPosts = dataService.getPostsList.bind(this, type);
+      const getPosts = tag
+        ? dataService.getPostsByTag.bind(this, type, tag)
+        : dataService.getPostsList.bind(this, type);
+
       getPosts().then(res => this.handleGetPostsSuccess(res.body),
         () => this.handleActionError())
         .catch(err => console.log(err))
@@ -45,7 +52,13 @@ export default {
 
       if (Array.isArray(posts)) {
         this.$data.posts = posts;
+        this.blurLinks();
       }
+    },
+
+    blurLinks: function () {
+      const links = document.querySelectorAll('.r-tag-link');
+      links.forEach(link => link.blur());
     }
   },
 

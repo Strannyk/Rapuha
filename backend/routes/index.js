@@ -38,4 +38,10 @@ router.get('/posts/:type', function (req, res) {
     .catch(err => res.send(err));
 });
 
+router.get('/posts/:type/tag/:tag', function (req, res) {
+  restController.getPostsList(req.params.type, req.params.tag)
+    .then(result => res.send(result))
+    .catch(err => res.send(err));
+});
+
 module.exports = router;

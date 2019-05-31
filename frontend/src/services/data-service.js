@@ -21,6 +21,10 @@ const dataService = {
 
   getPostsList(type) {
     return this.$http.get('posts/' + type);
+  },
+
+  getPostsByTag(type, tag) {
+    return this.$http.get('posts/' + type + '/tag/' + tag);
   }
 };
 

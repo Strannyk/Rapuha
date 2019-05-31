@@ -642,14 +642,14 @@ const restController = (() => {
       });
     },
 
-    getPostsList(type) {
+    getPostsList(type, tag) {
       const response = new ResponseMessage();
 
       return new Promise((resolve, reject) => {
         dbService.getPostsList(type)
           .then(data => {
             const titles = [];
-            const result = [];
+            let result = [];
 
             for (const row of data) {
               const item = {};
@@ -669,6 +669,10 @@ const restController = (() => {
               }
             }
 
+            if (tag) {
+              result = result.filter(item => item.tags.includes(tag));
+            }
+
             response.createDataMessage(result);
             resolve(response);
           })
@@ -677,6 +681,12 @@ const restController = (() => {
             reject(response);
           });
       });
+    },
+
+    getPostsByTag(tag, type) {
+      const response = new ResponseMessage();
+
+
     }
   };
 })();
