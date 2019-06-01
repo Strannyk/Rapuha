@@ -4,6 +4,7 @@ import Home from './home/home.vue';
 import Admin from './admin/admin.vue';
 import StartPage from './home/components/start-page/start-page.vue';
 import PostsPage from './home/components/posts-page/posts-page.vue';
+import SinglePostPage from './home/components/single-post-page/single-post-page.vue';
 import QuotesPage from './home/components/quotes-page/quotes-page.vue';
 import PostsListPage from './admin/components/posts-list-page/posts-list-page.vue';
 import QuotesListPage from './admin/components/quotes-list-page/quotes-list-page.vue';
@@ -53,6 +54,11 @@ export default new Router({
           name: 'quotes',
           path: '/quotes',
           component: QuotesPage
+        },
+        {
+          name: 'singlePost',
+          path: '/post/:title',
+          component: SinglePostPage
         }
       ]
     },

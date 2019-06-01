@@ -23,5 +23,3 @@
 </template>
 
 <script src="./posts-page.js"></script>
-
-<style scoped src="./posts-page.scss" lang="scss"></style>
