@@ -3,9 +3,15 @@ a:focus {
   outline: none;
 }
 
-.main-link {
-  a:hover {
-    color: #fff;
+a {
+  color: inherit;
+
+  &:hover {
+    color: #FFF;
     text-decoration: none;
   }
+}
+
+a:focus {
+  color: #FFF !important;
 }
