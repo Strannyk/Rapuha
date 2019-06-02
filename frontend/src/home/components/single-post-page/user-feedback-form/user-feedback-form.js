@@ -37,6 +37,7 @@ export default {
       createFeedback().then(res => this.handleSendingSuccess(res.body),
         () => this.handleActionError())
         .catch(err => console.log(err))
+        .finally(() => this.blurButton());
     },
 
     handleSendingSuccess: function (response) {
@@ -61,6 +62,10 @@ export default {
       this.$data.data.userName = '';
       this.$data.data.feedbackText = '';
       this.$data.data.contacts = null;
+    },
+
+    blurButton: function () {
+      this.$refs.submitButton.blur();
     }
   }
 }

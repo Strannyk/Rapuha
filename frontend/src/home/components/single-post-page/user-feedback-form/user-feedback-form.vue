@@ -31,11 +31,12 @@
                           placeholder="Контактные данные">
                 </textarea>
             </div>
-            <div class="text-success" v-if="sendingSuccess">{{message}}</div>
-            <div class="text-danger" v-if="sendingError">{{message}}</div>
+            <div class="feedback-message text-success" v-if="sendingSuccess">{{message}}</div>
+            <div class="feedback-message text-danger" v-if="sendingError">{{message}}</div>
             <div class="form-group form-button">
                 <button :disabled="!data.userName.trim() || !data.feedbackText.trim()"
                         v-on:click="send"
+                        ref="submitButton"
                         type="submit"
                         class="btn btn-primary float-right r-button">Отправить
                 </button>

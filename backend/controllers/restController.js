@@ -411,7 +411,7 @@ const restController = (() => {
         data.contacts = (!data.contacts || !data.contacts.trim()) ? null : data.contacts;
 
         if (!data.userName || !data.body) {
-          response.createDataMessage('Некорректные данные');
+          response.createErrorMessage('Некорректные данные');
           reject(response);
           return;
         }
