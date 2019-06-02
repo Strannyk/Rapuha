@@ -1,6 +1,6 @@
 <template>
     <div class="r-block">
-        <h2 v-text="titleWording + (selectedTag ? ' по тегу ' + selectedTag : '')"></h2>
+        <h2 v-html="titleWording + (selectedTag ? ' по тегу &laquo;' + selectedTag + '&raquo;' : '')"></h2>
         <br>
         <div v-if="contentIsLoaded">
             <div v-for="post in posts" class="jumbotron">

@@ -1,7 +1,7 @@
 <template>
     <div v-if="contentIsLoaded" class="r-block jumbotron">
         <div class="d-flex w-100 justify-content-between">
-            <h2 v-html="postTypeWording + ' &laquo;' + post.title + '&raquo;'"></h2>
+            <h2>{{post.title}}</h2>
             <small>{{post.creationDate.replace(/-/g, '.')}}</small>
         </div>
         <br>
