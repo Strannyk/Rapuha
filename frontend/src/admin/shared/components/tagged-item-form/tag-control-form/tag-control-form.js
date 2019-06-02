@@ -52,7 +52,7 @@ export default {
 
     handleAddTagError: function () {
       this.$data.sendingAddTagRequest = false;
-      alert('Ошибка сети.');
+      alert('Ошибка сети');
     },
 
     clearAddTagResults: function () {

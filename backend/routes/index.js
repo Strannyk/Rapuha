@@ -44,4 +44,10 @@ router.get('/posts/:type/tag/:tag', function (req, res) {
     .catch(err => res.send(err));
 });
 
+router.put('/feedback', function (req, res) {
+  restController.createFeedback(req.body.data)
+    .then(result => res.send(result))
+    .catch(err => res.send(err));
+});
+
 module.exports = router;

@@ -19,6 +19,8 @@ const dbService = (() => {
       dbOptions.host + dbOptions.databaseName);
   };
 
+  const addFeedbackQuery = 'INSERT INTO feedback (item_id, creation_date, subject, user_name, body, contacts) VALUES ($1, $2, $3, $4, $5, $6)';
+
   return {
     getPasswordHash(login) {
       const query = 'SELECT admin_password FROM admins WHERE admin_login = $1';
@@ -141,8 +143,22 @@ const dbService = (() => {
       return getDb().none(query, id);
     },
 
+    addFeedback(data) {
+      return getDb()
+        .none(addFeedbackQuery, [data.id, data.creationDate, data.subject, data.userName, data.body, data.contacts]);
+    },
+
+    addFeedbackWithUser(data) {
+      const userQuery = 'INSERT INTO users (user_name) VALUES ($1)';
+
+      return getDb().tx(t => t.batch([
+        t.none(userQuery, data.userName),
+        t.none(addFeedbackQuery, [data.id, data.creationDate, data.subject, data.userName, data.body, data.contacts])
+      ]));
+    },
+
     getFeedbackList() {
-      const query = 'SELECT *, to_char(creation_date, \'DD-MM-YYYY\') FROM feedback ORDER BY unread DESC, creation_date DESC, user_name LIMIT 500';
+      const query = 'SELECT *, to_char(creation_date, \'DD-MM-YYYY\') FROM feedback ORDER BY unread DESC, creation_date DESC, user_name, subject LIMIT 500';
       return getDb().any(query);
     },
 

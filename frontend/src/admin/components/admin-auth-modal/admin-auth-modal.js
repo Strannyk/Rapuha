@@ -1,4 +1,4 @@
-import modalMixin from '../../shared/mixins/modal-mixin/modal-mixin';
+import modalMixin from '../../shared/mixins/modal-mixin';
 
 export default {
   mixins: [modalMixin],

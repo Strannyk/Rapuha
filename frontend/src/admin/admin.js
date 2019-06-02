@@ -68,7 +68,7 @@ export default {
 
     handleAuthError: function () {
       this.$data.sendingAuthRequest = false;
-      alert('Ошибка сети.');
+      alert('Ошибка сети');
       this.goToHomePage();
     },
 

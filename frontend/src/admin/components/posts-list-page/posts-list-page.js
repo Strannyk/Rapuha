@@ -1,4 +1,4 @@
-import coreMixin from '@/shared/mixins/core-mixin/core-mixin';
+import coreMixin from '@/shared/mixins/core-mixin';
 import adminService from '../../services/admin-service';
 
 export default {

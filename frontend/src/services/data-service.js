@@ -25,6 +25,10 @@ const dataService = {
 
   getPostsByTag(type, tag) {
     return this.$http.get('posts/' + type + '/tag/' + tag);
+  },
+
+  createFeedback(data) {
+    return this.$http.put('feedback', { data: data });
   }
 };
 

@@ -1,5 +1,5 @@
-import coreMixin from '@/shared/mixins/core-mixin/core-mixin';
-import QuoteForm from '../../shared/mixins/quote-form/quote-form.vue';
+import coreMixin from '@/shared/mixins/core-mixin';
+import QuoteForm from '../../shared/components/quote-form/quote-form.vue';
 import ItemActionResultModal from '../../shared/components/item-action-result-modal/item-action-result-modal.vue';
 import adminService from '../../services/admin-service';
 import authService from '../../../services/auth-service';

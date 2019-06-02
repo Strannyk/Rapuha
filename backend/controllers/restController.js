@@ -29,7 +29,7 @@ const restController = (() => {
             if (res.exists) {
               const message = 'Тег "' + tag + '" уже существует';
               response.createErrorMessage(message);
-              resolve(response);
+              reject(response);
             }
             else {
               dbService.addTag(tag)
@@ -401,6 +401,53 @@ const restController = (() => {
       });
     },
 
+    createFeedback(data) {
+      const response = new ResponseMessage();
+
+      return new Promise((resolve, reject) => {
+        data.id = uuid();
+        data.userName = (!data.userName || !data.userName.trim()) ? null : data.userName;
+        data.body = (!data.body || !data.body.trim()) ? null : data.body;
+        data.contacts = (!data.contacts || !data.contacts.trim()) ? null : data.contacts;
+
+        if (!data.userName || !data.body) {
+          response.createDataMessage('Некорректные данные');
+          reject(response);
+          return;
+        }
+
+        dbService.userExists(data.userName)
+          .then(res => {
+            if (res.exists) {
+              dbService.addFeedback(data)
+                .then(() => {
+                  response.createSuccessMessage();
+                  resolve(response);
+                })
+                .catch(() => {
+                  response.createErrorMessage(defaultErrorMessage);
+                  reject(response);
+                });
+            }
+            else {
+              dbService.addFeedbackWithUser(data)
+                .then(() => {
+                  response.createSuccessMessage();
+                  resolve(response);
+                })
+                .catch(() => {
+                  response.createErrorMessage(defaultErrorMessage);
+                  reject(response);
+                });
+            }
+          })
+          .catch(() => {
+            response.createErrorMessage(defaultErrorMessage);
+            reject(response);
+          });
+      });
+    },
+
     getFeedbackList(token) {
       const response = new ResponseMessage();
 
@@ -681,12 +728,6 @@ const restController = (() => {
             reject(response);
           });
       });
-    },
-
-    getPostsByTag(tag, type) {
-      const response = new ResponseMessage();
-
-
     }
   };
 })();

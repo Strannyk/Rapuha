@@ -1,8 +1,8 @@
-import coreMixin from '@/shared/mixins/core-mixin/core-mixin';
+import coreMixin from '@/shared/mixins/core-mixin';
 import ItemActionResultModal from '../../shared/components/item-action-result-modal/item-action-result-modal.vue';
 import ItemDeletingConfirmModal
   from '../../shared/components/item-deleting-confirm-modal/item-deleting-confirm-modal.vue';
-import editItemMixin from '../../shared/mixins/edit-item-mixin/edit-item-mixin';
+import editItemMixin from '../../shared/mixins/edit-item-mixin';
 import adminService from '../../services/admin-service';
 import authService from '../../../services/auth-service';
 
