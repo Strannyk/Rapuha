@@ -52,12 +52,31 @@ export default {
       const getPost = dataService.getPost.bind(this, title);
       getPost().then(res => this.handleGetPostsSuccess(res.body),
         () => this.handleActionError())
-        .catch(err => console.log(err))
-        .finally(() => this.$data.contentIsLoaded = true);
+        .catch(err => console.log(err));
     },
 
     handleGetPostsSuccess: function (response) {
-      this.$data.post = response.data;
+      if (response.data) {
+        this.$data.post = response.data;
+        this.$data.contentIsLoaded = true;
+        this.checkQueryParams();
+      }
+      else {
+        // todo: go to 404 page
+      }
+    },
+
+    checkQueryParams: function () {
+      const scrollToFeedbackQueryParam = 'feedback';
+
+      if (scrollToFeedbackQueryParam in this.$route.query) {
+        setTimeout(() => this.scrollToFeedbackForm());
+      }
+    },
+
+    scrollToFeedbackForm: function () {
+      const vueScrollTo = require('vue-scrollto');
+      vueScrollTo.scrollTo('#feedback-form', 500);
     }
   },
 

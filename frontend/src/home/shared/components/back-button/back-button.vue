@@ -1,6 +1,6 @@
 <template>
-    <button type="button" class="btn btn-primary btn-sm breadcrumb-button">
-        <router-link :to="'/' + path" class="back-link">
+    <router-link :to="'/' + path" class="back-link">
+        <button type="button" class="btn btn-primary btn-sm breadcrumb-button">
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                  viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve">
@@ -10,8 +10,8 @@
 			l16.124-16.12c10.492-10.492,10.492-27.572,0-38.06L198.608,246.104z"/></g>
                 </svg>
             {{wording}}
-        </router-link>
-    </button>
+        </button>
+    </router-link>
 </template>
 
 <script src="./back-button.js"></script>

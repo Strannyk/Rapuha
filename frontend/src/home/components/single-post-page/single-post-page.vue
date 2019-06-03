@@ -15,7 +15,9 @@
                 {{tag}}
             </router-link>
 
-            <user-feedback-form :postTitle="post.title"></user-feedback-form>
+            <div id="feedback-form">
+                <user-feedback-form :postTitle="post.title"></user-feedback-form>
+            </div>
         </div>
     </div>
 </template>
