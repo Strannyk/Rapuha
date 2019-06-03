@@ -14,6 +14,7 @@ import EditQuotePage from './admin/components/edit-quote-page/edit-quote-page.vu
 import CreatePostPage from './admin/components/create-post-page/create-post-page.vue';
 import EditPostPage from './admin/components/edit-post-page/edit-post-page.vue';
 import FeedbackListPage from './admin/components/feedback-list-page/feedback-list-page.vue';
+import NotFoundPage from './not-found-page.vue';
 
 Vue.use(Router);
 
@@ -200,6 +201,11 @@ export default new Router({
           }
         }
       ]
+    },
+    {
+      name: '404',
+      path: '*',
+      component: NotFoundPage
     }
   ]
 });
