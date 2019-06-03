@@ -62,7 +62,7 @@ export default {
         this.checkQueryParams();
       }
       else {
-        // todo: go to 404 page
+        this.goToNotFoundPage();
       }
     },
 

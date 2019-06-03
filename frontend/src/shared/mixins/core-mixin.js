@@ -18,6 +18,10 @@ export default {
 
     handleActionError: function () {
       alert('Ошибка сети');
+    },
+
+    goToNotFoundPage: function () {
+      this.$router.history.push({ name: '404' });
     }
   },
 
