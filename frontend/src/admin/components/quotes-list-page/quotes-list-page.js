@@ -31,7 +31,7 @@ export default {
     },
 
     editQuote: function (id) {
-      sessionStorage.setItem('quote_id', id);
+      sessionStorage.setItem('quoteId', id);
       this.$router.push({ name: 'editQuote' });
     }
   },

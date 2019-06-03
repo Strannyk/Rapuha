@@ -15,7 +15,7 @@
                 {{tag}}
             </router-link>
 
-            <div v-if="isAdmin" class="float-right">
+            <div v-if="isAdmin" class="float-right link-button-container">
                 <router-link :to="'/admin/edit/' + post.type + '/' + post.title.replace(/\?/g, '%3F')">
                     <button type="button" class="btn btn-outline-secondary btn-sm">
                         Редактировать

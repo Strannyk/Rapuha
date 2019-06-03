@@ -22,7 +22,7 @@
                 {{tag}}
             </router-link>
 
-            <div class="float-right link-button-group">
+            <div class="float-right link-button-container">
                 <router-link v-if="isAdmin"
                              :to="'/admin/edit/' + adminEditLinkPath + '/' + post.title.replace(/\?/g, '%3F')">
                     <button type="button" class="btn btn-outline-secondary btn-sm">

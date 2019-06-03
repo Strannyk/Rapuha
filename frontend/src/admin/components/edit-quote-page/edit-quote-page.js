@@ -21,11 +21,11 @@ export default {
 
   methods: {
     getQuoteId: function () {
-      return sessionStorage.getItem('quote_id');
+      return sessionStorage.getItem('quoteId');
     },
 
     eraseQuoteId: function () {
-      sessionStorage.removeItem('quote_id');
+      sessionStorage.removeItem('quoteId');
     },
 
     getDbData: function () {

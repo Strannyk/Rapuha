@@ -1,8 +1,12 @@
 import coreMixin from '@/shared/mixins/core-mixin';
+import authMixin from '@/shared/mixins/auth-mixin';
 import dataService from "@/services/data-service";
 
 export default {
-  mixins: [coreMixin],
+  mixins: [
+    coreMixin,
+    authMixin
+  ],
 
   data() {
     return {
@@ -26,6 +30,11 @@ export default {
       if (Array.isArray(quotes)) {
         this.$data.quotes = quotes;
       }
+    },
+
+    editAsAdmin: function (id) {
+      sessionStorage.setItem('quoteId', id);
+      this.$router.push({ name: 'editQuote' });
     }
   },
 

@@ -1,10 +1,14 @@
 import coreMixin from '@/shared/mixins/core-mixin';
+import authMixin from "@/shared/mixins/auth-mixin";
 import BackButton from '../../shared/components/back-button/back-button.vue';
 import dataService from "@/services/data-service";
 import authService from "@/services/auth-service";
 
 export default {
-  mixins: [coreMixin],
+  mixins: [
+    coreMixin,
+    authMixin
+  ],
 
   components: {
     BackButton
@@ -12,7 +16,6 @@ export default {
 
   data() {
     return {
-      isAdmin: authService.isAdmin(),
       postsType: null,
       selectedTag: null,
       posts: [],
@@ -100,6 +103,5 @@ export default {
 
   mounted() {
     this.init();
-    this.eventHub.$on('logOut', () => this.refreshIsAdmin());
   }
 }
