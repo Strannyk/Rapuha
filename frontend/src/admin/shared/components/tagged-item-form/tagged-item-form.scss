@@ -1,3 +1,15 @@
+.r-block-separate {
+  overflow: hidden;
+  border: solid 1px;
+  border-radius: 4px;
+  padding: 10px;
+
+  h4 {
+    display: inline-block;
+    padding-bottom: 10px;
+  }
+}
+
 .tag-items {
   margin-top: 10px;
 

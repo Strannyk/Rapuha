@@ -2,26 +2,18 @@
   max-width: 800px;
   margin: 20px auto;
   padding: 10px;
-
-  &.r-center {
-    text-align: center;
-  }
-}
-
-.r-block-separate {
-  overflow: hidden;
-  border: solid 1px;
-  border-radius: 4px;
-  padding: 10px;
-
-  h4 {
-    display: inline-block;
-    padding-bottom: 10px;
-  }
 }
 
 .r-button {
   margin: 16px 3px 5px;
+}
+
+.link-button-group {
+  margin-top: -10px;
+
+  a:not(:first-child) {
+    margin-left: 10px;
+  }
 }
 
 .form-button {

@@ -67,5 +67,9 @@ export default {
     goToQuotesList: function () {
       this.$router.push({ name: 'quotesList' });
     }
+  },
+
+  mounted() {
+    document.documentElement.scrollTop = 0;
   }
 }

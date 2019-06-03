@@ -257,6 +257,6 @@ export default {
 
   mounted() {
     this.init();
-    this.eventHub.$on('authorized', () => this.init());
+    this.eventHub.$on('logIn', () => this.init());
   }
 }

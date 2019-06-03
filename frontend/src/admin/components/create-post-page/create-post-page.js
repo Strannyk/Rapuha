@@ -90,5 +90,6 @@ export default {
   mounted() {
     const postType = this.$router.history.current.name;
     this.$data.postType = postType === 'createReflection' ? 'reflection' : 'story';
+    document.documentElement.scrollTop = 0;
   }
 }

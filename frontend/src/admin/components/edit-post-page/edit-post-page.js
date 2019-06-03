@@ -160,5 +160,6 @@ export default {
 
     this.$data.postType = postType === 'editReflection' ? 'reflection' : 'story';
     this.getDbData(postTitle);
+    document.documentElement.scrollTop = 0;
   }
 }

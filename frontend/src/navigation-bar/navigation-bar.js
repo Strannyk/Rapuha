@@ -15,7 +15,7 @@ export default {
 
     logOut: function () {
       authService.logOutAdmin();
-      this.refreshIsAdmin();
+      this.eventHub.$emit('logOut');
 
       if (this.$route.path.split('/')[1] === 'admin') {
         this.goToHomePage();
@@ -33,7 +33,7 @@ export default {
   },
 
   mounted() {
-    this.eventHub.$on('authorized', () => this.refreshIsAdmin());
-    this.eventHub.$on('loggingOut', () => this.refreshIsAdmin());
+    this.eventHub.$on('logIn', () => this.refreshIsAdmin());
+    this.eventHub.$on('logOut', () => this.refreshIsAdmin());
   }
 }

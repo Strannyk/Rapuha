@@ -4,8 +4,10 @@
             <back-button :path="postsType" :wording="backLinkWording"></back-button>
             <br><br>
         </div>
+
         <h2 v-html="titleWording + (selectedTag ? ' по тегу &laquo;' + selectedTag + '&raquo;' : '')"></h2>
         <br>
+
         <div v-for="post in posts" class="jumbotron">
             <div class="d-flex w-100 justify-content-between">
                 <router-link :to="'/post/' + post.title.replace(/\?/g, '%3F')">
@@ -19,16 +21,23 @@
             <router-link v-for="tag in post.tags" :to="'/' + postsType + '/tag/' + tag" class="r-tag-link">
                 {{tag}}
             </router-link>
-            <router-link :to="'/post/' + post.title.replace(/\?/g, '%3F') + '?feedback'">
-                <button type="button" class="btn btn-outline-secondary btn-sm float-right feedback-button">
-                    Комментировать
-                </button>
-            </router-link>
+
+            <div class="float-right link-button-group">
+                <router-link v-if="isAdmin"
+                             :to="'/admin/edit/' + adminEditLinkPath + '/' + post.title.replace(/\?/g, '%3F')">
+                    <button type="button" class="btn btn-outline-secondary btn-sm">
+                        Редактировать
+                    </button>
+                </router-link>
+                <router-link :to="'/post/' + post.title.replace(/\?/g, '%3F') + '?feedback'">
+                    <button type="button" class="btn btn-outline-secondary btn-sm">
+                        Комментировать
+                    </button>
+                </router-link>
+            </div>
         </div>
         <div v-if="!posts.length">&lt;Пусто&gt;</div>
     </div>
 </template>
 
 <script src="./posts-page.js"></script>
-
-<style scoped src="./posts-page.scss" lang="scss"></style>

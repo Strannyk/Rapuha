@@ -1,6 +1,7 @@
 import coreMixin from '@/shared/mixins/core-mixin';
 import BackButton from '../../shared/components/back-button/back-button.vue';
 import dataService from "@/services/data-service";
+import authService from "@/services/auth-service";
 
 export default {
   mixins: [coreMixin],
@@ -11,6 +12,7 @@ export default {
 
   data() {
     return {
+      isAdmin: authService.isAdmin(),
       postsType: null,
       selectedTag: null,
       posts: [],
@@ -36,6 +38,15 @@ export default {
         return 'Все рассказы';
       }
     },
+
+    adminEditLinkPath: function () {
+      if (this.$data.postsType === 'reflections') {
+        return 'reflection';
+      }
+      else if (this.$data.postsType === 'stories') {
+        return 'story';
+      }
+    }
   },
 
   methods: {
@@ -70,6 +81,10 @@ export default {
       }
     },
 
+    refreshIsAdmin: function () {
+      this.$data.isAdmin = authService.isAdmin();
+    },
+
     blurLinks: function () {
       const links = document.querySelectorAll('.r-tag-link');
       links.forEach(link => link.blur());
@@ -85,5 +100,6 @@ export default {
 
   mounted() {
     this.init();
+    this.eventHub.$on('logOut', () => this.refreshIsAdmin());
   }
 }

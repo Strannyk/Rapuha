@@ -57,7 +57,7 @@ export default {
         this.clearAuthModalValues();
 
         this.$data.isAdmin = true;
-        this.eventHub.$emit('authorized');
+        this.eventHub.$emit('logIn');
       }
       else if (error) {
         this.$data.authError = error;
@@ -72,9 +72,9 @@ export default {
       this.goToHomePage();
     },
 
-    onCloseAuthModel: function () {
+    onCloseAuthModal: function () {
       this.selectPath();
-      this.eventHub.$emit('loggingOut');
+      this.eventHub.$emit('logOut');
     },
 
     selectPath: function () {

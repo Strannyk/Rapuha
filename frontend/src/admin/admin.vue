@@ -8,7 +8,7 @@
                           :errorMessage="authError"
                           @submit="sendCredentials"
                           @focus="authError = null"
-                          @close="onCloseAuthModel">
+                          @close="onCloseAuthModal">
         </admin-auth-modal>
     </div>
 </template>

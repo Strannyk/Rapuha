@@ -113,6 +113,7 @@ export default {
 
   mounted() {
     this.getDbData();
+    document.documentElement.scrollTop = 0;
   },
 
   destroyed() {

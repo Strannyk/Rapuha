@@ -2,6 +2,7 @@ import coreMixin from '@/shared/mixins/core-mixin';
 import UserFeedbackForm from './user-feedback-form/user-feedback-form.vue';
 import BackButton from '../../shared/components/back-button/back-button.vue';
 import dataService from "@/services/data-service";
+import authService from "@/services/auth-service";
 
 export default {
   mixins: [coreMixin],
@@ -13,6 +14,7 @@ export default {
 
   data() {
     return {
+      isAdmin: authService.isAdmin(),
       post: null,
       contentIsLoaded: false
     };
@@ -77,10 +79,15 @@ export default {
     scrollToFeedbackForm: function () {
       const vueScrollTo = require('vue-scrollto');
       vueScrollTo.scrollTo('#feedback-form', 500);
+    },
+
+    refreshIsAdmin: function () {
+      this.$data.isAdmin = authService.isAdmin();
     }
   },
 
   mounted() {
     this.init();
+    this.eventHub.$on('logOut', () => this.refreshIsAdmin());
   }
 }
