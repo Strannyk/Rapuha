@@ -17,14 +17,14 @@ export default {
   },
 
   computed: {
-    postTypeWording: function () {
+    backLinkWording: function () {
       const postType = this.$data.post.type;
 
       if (postType === 'reflection') {
-        return 'Размышление';
+        return 'Все размышления';
       }
       else if (postType === 'story') {
-        return 'Рассказ';
+        return 'Все рассказы';
       }
     },
 
