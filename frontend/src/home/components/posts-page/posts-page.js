@@ -1,8 +1,13 @@
 import coreMixin from '@/shared/mixins/core-mixin';
+import BackButton from '../../shared/components/back-button/back-button.vue';
 import dataService from "@/services/data-service";
 
 export default {
   mixins: [coreMixin],
+
+  components: {
+    BackButton
+  },
 
   data() {
     return {
@@ -21,7 +26,16 @@ export default {
       else if (this.$data.postsType === 'stories') {
         return 'Рассказы';
       }
-    }
+    },
+
+    backLinkWording: function () {
+      if (this.$data.postsType === 'reflections') {
+        return 'Все размышления';
+      }
+      else if (this.$data.postsType === 'stories') {
+        return 'Все рассказы';
+      }
+    },
   },
 
   methods: {

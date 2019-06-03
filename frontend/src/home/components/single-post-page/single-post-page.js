@@ -1,12 +1,14 @@
 import coreMixin from '@/shared/mixins/core-mixin';
 import UserFeedbackForm from './user-feedback-form/user-feedback-form.vue';
+import BackButton from '../../shared/components/back-button/back-button.vue';
 import dataService from "@/services/data-service";
 
 export default {
   mixins: [coreMixin],
 
   components: {
-    UserFeedbackForm
+    UserFeedbackForm,
+    BackButton
   },
 
   data() {

@@ -1,5 +1,9 @@
 <template>
     <div class="r-block">
+        <div v-if="selectedTag">
+            <back-button :path="postsType" :wording="backLinkWording"></back-button>
+            <br><br>
+        </div>
         <h2 v-html="titleWording + (selectedTag ? ' по тегу &laquo;' + selectedTag + '&raquo;' : '')"></h2>
         <br>
         <div v-if="contentIsLoaded">
