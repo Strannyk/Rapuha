@@ -8,7 +8,7 @@
         <br>
         <div v-for="post in posts" class="jumbotron">
             <div class="d-flex w-100 justify-content-between">
-                <router-link :to="'/post/' + post.title">
+                <router-link :to="'/post/' + post.title.replace(/\?/g, '%3F')">
                     <h3>{{post.title}}</h3>
                 </router-link>
                 <small>{{post.creationDate}}</small>
@@ -19,7 +19,7 @@
             <router-link v-for="tag in post.tags" :to="'/' + postsType + '/tag/' + tag" class="r-tag-link">
                 {{tag}}
             </router-link>
-            <router-link :to="'/post/' + post.title + '?feedback'">
+            <router-link :to="'/post/' + post.title.replace(/\?/g, '%3F') + '?feedback'">
                 <button type="button" class="btn btn-outline-secondary btn-sm float-right feedback-button">
                     Комментировать
                 </button>

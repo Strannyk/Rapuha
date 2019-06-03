@@ -44,7 +44,7 @@ export default {
 
   methods: {
     init: function () {
-      const postTitle = this.$route.params.title;
+      const postTitle = this.$route.params.title.replace(/\?/g, '%3F');
       this.getPost(postTitle);
     },
 

@@ -25,7 +25,9 @@
                     </div>
                     <h6 class="card-subtitle mb-2 text-muted">{{feedback.contacts}}</h6>
                     <p class="card-text">{{feedback.body}}</p>
-                    <router-link :to="'/post/' + feedback.subject" class="card-link">{{feedback.subject}}</router-link>
+                    <router-link :to="'/post/' + feedback.subject.replace(/\?/g, '%3F')"
+                                 class="card-link">{{feedback.subject}}
+                    </router-link>
                     <div class="float-right">
                         <button ref="markButton"
                                 v-if="feedback.unread"
