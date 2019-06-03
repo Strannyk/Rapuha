@@ -51,7 +51,7 @@ export default {
 
   methods: {
     getPostTitle: function () {
-      return this.$router.history.current.params.title;
+      return this.$router.history.current.params.title.replace(/\?/g, '%3F');
     },
 
     getDbData: function (title) {

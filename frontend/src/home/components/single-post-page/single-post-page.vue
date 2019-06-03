@@ -11,7 +11,7 @@
             <br>
             <div v-html="post.body" class="lead"></div>
             <hr class="my-4">
-            <router-link :to="'/' + tagLinkPostTypePath + '/tag/' + tag" v-for="tag in post.tags" class="r-tag-link">
+            <router-link v-for="tag in post.tags" :to="'/' + tagLinkPostTypePath + '/tag/' + tag" class="r-tag-link">
                 {{tag}}
             </router-link>
 

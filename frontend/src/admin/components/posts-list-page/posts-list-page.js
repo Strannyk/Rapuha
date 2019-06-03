@@ -47,6 +47,8 @@ export default {
     },
 
     editPost: function (title) {
+      title = title.replace(/\?/g, '%3F');
+
       const path = this.$data.postsType === 'reflections' ? 'reflection' : 'story';
       this.$router.push('/admin/edit/' + path + '/' + title);
     }
