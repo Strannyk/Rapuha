@@ -17,7 +17,7 @@
                         class="btn btn-outline-secondary btn-sm float-right r-edit-button">Редактировать
                 </button>
             </div>
-            <div v-if="!quotes.length">&lt;Пусто&gt;</div>
+            <div v-if="!quotes.length">Здесь пока ничего нет</div>
         </div>
         <loader v-if="!contentIsLoaded"></loader>
     </div>

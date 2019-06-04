@@ -37,7 +37,7 @@
                     </router-link>
                 </div>
             </div>
-            <div v-if="!posts.length">&lt;Пусто&gt;</div>
+            <div v-if="!posts.length">Здесь пока ничего нет</div>
         </div>
         <loader v-if="!contentIsLoaded"></loader>
     </div>
