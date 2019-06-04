@@ -15,7 +15,8 @@ Vue.mixin({
 Vue.use(VueResource);
 Vue.config.productionTip = false;
 Vue.config.silent = true;
-Vue.http.options.root = 'http://127.0.0.1:3000/';
+Vue.config.devtools = false;
+Vue.http.options.root = 'http://127.0.0.1:3300/';
 
 new Vue({
   router,

@@ -51,7 +51,7 @@
                                 :disabled="disabled"
                                 v-on:click="close"
                                 class="btn btn-secondary"
-                                data-dismiss="modal">Отмена
+                                data-dismiss="modal">Закрыть
                         </button>
                     </div>
                 </div>
