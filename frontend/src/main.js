@@ -16,7 +16,7 @@ Vue.use(VueResource);
 Vue.config.productionTip = false;
 Vue.config.silent = true;
 Vue.config.devtools = false;
-Vue.http.options.root = 'http://127.0.0.1:3000/';
+Vue.http.options.root = '/api/';
 
 new Vue({
   router,

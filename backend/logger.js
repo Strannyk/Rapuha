@@ -1,5 +1,5 @@
 const loggerOptions = {
-  logDirectory: '/log',
+  logDirectory: '/var/log/rapuha',
   fileNamePattern: 'roll-<DATE>.log',
   dateFormat: 'YYYY.MM.DD'
 };
