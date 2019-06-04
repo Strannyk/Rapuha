@@ -22,7 +22,7 @@
                 <tr v-for="(post, index) in postsTitles"
                     class="r-row"
                     :class="index % 2 === 0 ? 'table-primary' : null"
-                    v-on:dblclick="editPost(post.title)">
+                    v-on:click="editPost(post.title)">
                     <td>{{post.title}}</td>
                     <td>{{post.creationDate}}</td>
                 </tr>

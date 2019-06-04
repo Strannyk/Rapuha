@@ -8,7 +8,7 @@
                 <button type="button" class="btn btn-primary">Создать цитату</button>
             </router-link>
             <blockquote v-for="quote in quotes"
-                        v-on:dblclick="editQuote(quote.id)"
+                        v-on:click="editQuote(quote.id)"
                         class="r-quote blockquote">
                 <p class="mb-0" v-html="quote.body"></p>
                 <footer v-if="quote.author" class="blockquote-footer">

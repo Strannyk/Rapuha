@@ -2,10 +2,10 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <router-link to="/" class="navbar-brand home-link">Rapuha</router-link>
-            <button class="navbar-toggler" type="button">
+            <button v-on:click="toggleMobileMenu(false)" class="navbar-toggler" type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse">
+            <div  v-on:click="closeMobileMenu" class="collapse navbar-collapse">
                 <ul class="navbar-nav" v-on:click="blurLinks">
                     <li v-if="isAdmin"
                         v-on:click="menuOpen = false"

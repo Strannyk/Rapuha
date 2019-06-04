@@ -18,3 +18,9 @@
 .r-logout {
   cursor: pointer;
 }
+
+@media(max-width: 991px) {
+  .dropdown-menu {
+    display: block;
+  }
+}

@@ -27,6 +27,19 @@ export default {
     blurLinks: function () {
       const links = document.querySelectorAll('.nav-link');
       links.forEach(link => link.blur());
+    },
+
+    toggleMobileMenu: function (force) {
+      if (force || document.querySelector('.navbar-collapse').style.display === 'block') {
+        document.querySelector('.navbar-collapse').style.display = 'none';
+      }
+      else {
+        document.querySelector('.navbar-collapse').style.display = 'block';
+      }
+    },
+
+    closeMobileMenu: function () {
+      this.toggleMobileMenu(true);
     }
   },
 
