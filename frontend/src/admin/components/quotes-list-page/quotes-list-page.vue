@@ -1,7 +1,7 @@
 <template>
     <div>
         <breadcrumbs :list="breadcrumbs"></breadcrumbs>
-        <div class="r-block">
+        <div class="r-block r-item">
             <h2>Цитаты</h2>
             <br>
             <router-link to="/admin/add/quote">

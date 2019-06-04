@@ -1,5 +1,5 @@
 <template>
-    <div class="r-block">
+    <div class="r-block r-item">
         <h2>{{titleWording}}</h2>
         <div class="form-group">
             <label class="col-form-label" for="r-title">Название</label>

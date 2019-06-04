@@ -1,5 +1,5 @@
 <template>
-    <div class="r-block">
+    <div class="r-block r-item">
         <h2 v-text="newQuote ? 'Новая цитата' : 'Редактирование цитаты'"></h2>
         <div class="form-group">
             <label class="col-form-label" for="r-author">Автор</label>

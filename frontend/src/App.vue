@@ -1,13 +1,15 @@
 <template>
-    <div id="app">
-        <navigation-bar></navigation-bar>
-        <back-to-top text="" visibleoffset="500">
-            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                 x="0px" y="0px"
-                 width="40px" height="40px" viewBox="0 0 444.819 444.819"
-                 style="enable-background:new 0 0 444.819 444.819;"
-                 fill="rgba(0, 0, 0, 0.6)"
-                 xml:space="preserve">
+    <div id="app" class="r-app">
+        <div class="r-content">
+            <navigation-bar></navigation-bar>
+
+            <back-to-top text="" visibleoffset="500">
+                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                     x="0" y="0"
+                     width="40px" height="40px" viewBox="0 0 444.819 444.819"
+                     style="enable-background:new 0 0 444.819 444.819;"
+                     fill="rgba(0, 0, 0, 0.6)"
+                     xml:space="preserve">
                 <g>
 	                <path d="M434.252,208.708L248.387,22.843c-7.042-7.043-15.693-10.564-25.977-10.564c-10.467,0-19.036,3.521-25.697,10.564
 		L10.848,208.708C3.615,215.94,0,224.604,0,234.692c0,9.897,3.619,18.459,10.848,25.693l21.411,21.409
@@ -18,8 +20,16 @@
 		C444.819,224.795,441.295,216.134,434.252,208.708z"/>
                 </g>
             </svg>
-        </back-to-top>
-        <router-view/>
+            </back-to-top>
+
+            <router-view/>
+        </div>
+
+        <footer class="r-footer navbar navbar-dark bg-primary py-3">
+            <div class="container">
+                <div class="r-footer-content text-muted">Footer content</div>
+            </div>
+        </footer>
     </div>
 </template>
 
