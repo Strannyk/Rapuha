@@ -81,7 +81,7 @@
             <button type="submit"
                     class="btn r-button"
                     :class="newItem ? 'btn-primary' : 'btn-outline-success'"
-                    :disabled="!data.tags.length || !data.title || !data.body || (!newItem && !dataIsChanged)"
+                    :disabled="!data.title || !data.body || (!newItem && !dataIsChanged)"
                     v-on:click="submit"
                     v-text="(newItem ? 'Создать ' : 'Сохранить ') + submitButtonWording"></button>
             <button v-if="!newItem"

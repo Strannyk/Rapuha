@@ -154,12 +154,6 @@ const restController = (() => {
           return;
         }
 
-        if (!Array.isArray(data.tags) || !data.tags.length) {
-          response.createErrorMessage(defaultErrorMessage);
-          reject(response);
-          return;
-        }
-
         title = title.trim();
         dbService.postExists(title)
           .then(res => {
@@ -246,12 +240,6 @@ const restController = (() => {
       return new Promise((resolve, reject) => {
         if (!tokenIsValid(token)) {
           response.createTokenExpiredMessage();
-          reject(response);
-          return;
-        }
-
-        if (!Array.isArray(data.tags) || !data.tags.length) {
-          response.createErrorMessage(defaultErrorMessage);
           reject(response);
           return;
         }
