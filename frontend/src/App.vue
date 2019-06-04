@@ -27,7 +27,7 @@
 
         <footer class="r-footer navbar navbar-dark bg-primary py-3">
             <div class="container">
-                <div class="r-footer-content text-muted">Footer content</div>
+                <div class="r-footer-content text-muted">&copy; Strannyk, 2019</div>
             </div>
         </footer>
     </div>
