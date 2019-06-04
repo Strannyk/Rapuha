@@ -1,8 +1,8 @@
 <template>
-    <div class="r-block">
-        <h2>Цитаты</h2>
-        <br>
-        <div v-if="contentIsLoaded">
+    <div>
+        <div v-if="contentIsLoaded" class="r-block">
+            <h2>Цитаты</h2>
+            <br>
             <div v-for="quote in quotes" :class="isAdmin ? 'is-admin' : ''" class="jumbotron">
                 <blockquote class="blockquote">
                     <p v-html="quote.body" class="lead mb-0"></p>
@@ -19,6 +19,7 @@
             </div>
             <div v-if="!quotes.length">&lt;Пусто&gt;</div>
         </div>
+        <loader v-if="!contentIsLoaded"></loader>
     </div>
 </template>
 

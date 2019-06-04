@@ -1,4 +1,5 @@
 import coreMixin from '@/shared/mixins/core-mixin';
+import Loader from '../../shared/components/loader/loader.vue';
 import authMixin from '@/shared/mixins/auth-mixin';
 import dataService from "@/services/data-service";
 
@@ -7,6 +8,10 @@ export default {
     coreMixin,
     authMixin
   ],
+
+  components: {
+    Loader
+  },
 
   data() {
     return {

@@ -1,6 +1,7 @@
 import coreMixin from '@/shared/mixins/core-mixin';
 import authMixin from "@/shared/mixins/auth-mixin";
 import BackButton from '../../shared/components/back-button/back-button.vue';
+import Loader from '../../shared/components/loader/loader.vue';
 import dataService from "@/services/data-service";
 import authService from "@/services/auth-service";
 
@@ -11,7 +12,8 @@ export default {
   ],
 
   components: {
-    BackButton
+    BackButton,
+    Loader
   },
 
   data() {

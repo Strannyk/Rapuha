@@ -2,6 +2,7 @@ import coreMixin from '@/shared/mixins/core-mixin';
 import authMixin from "@/shared/mixins/auth-mixin";
 import UserFeedbackForm from './user-feedback-form/user-feedback-form.vue';
 import BackButton from '../../shared/components/back-button/back-button.vue';
+import Loader from '../../shared/components/loader/loader.vue';
 import dataService from "@/services/data-service";
 import authService from "@/services/auth-service";
 
@@ -13,7 +14,8 @@ export default {
 
   components: {
     UserFeedbackForm,
-    BackButton
+    BackButton,
+    Loader
   },
 
   data() {
