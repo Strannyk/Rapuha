@@ -2,6 +2,7 @@ const uuid = require('uuid/v4');
 const dbService = require('../services/dbService');
 const jwt = require('./jwtController');
 const ResponseMessage = require('../objects/responseMessage');
+const logger = require('../logger');
 
 const restController = (() => {
   const tokenIsValid = token => jwt.verifyToken(token);
@@ -37,13 +38,15 @@ const restController = (() => {
                   response.createSuccessMessage();
                   resolve(response);
                 })
-                .catch(() => {
+                .catch(err => {
+                  logger.error(err);
                   response.createErrorMessage(defaultErrorMessage);
                   reject(response);
                 });
             }
           })
-          .catch(() => {
+          .catch(err => {
+            logger.error(err);
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });
@@ -65,7 +68,8 @@ const restController = (() => {
             response.createDataMessage(result);
             resolve(response);
           })
-          .catch(() => {
+          .catch(err => {
+            logger.error(err);
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });
@@ -87,7 +91,8 @@ const restController = (() => {
             response.createSuccessMessage();
             resolve(response);
           })
-          .catch(() => {
+          .catch(err => {
+            logger.error(err);
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });
@@ -109,7 +114,8 @@ const restController = (() => {
             response.createSuccessMessage();
             resolve(response);
           })
-          .catch(() => {
+          .catch(err => {
+            logger.error(err);
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });
@@ -130,7 +136,8 @@ const restController = (() => {
             response.createDataMessage(data);
             resolve(response);
           })
-          .catch(() => {
+          .catch(err => {
+            logger.error(err);
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });
@@ -167,13 +174,15 @@ const restController = (() => {
                   response.createSuccessMessage();
                   resolve(response);
                 })
-                .catch(() => {
+                .catch(err => {
+                  logger.error(err);
                   response.createErrorMessage(defaultErrorMessage);
                   reject(response);
                 });
             }
           })
-          .catch(() => {
+          .catch(err => {
+            logger.error(err);
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });
@@ -200,7 +209,8 @@ const restController = (() => {
             response.createDataMessage(post);
             resolve(response);
           })
-          .catch(() => {
+          .catch(err => {
+            logger.error(err);
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });
@@ -222,7 +232,8 @@ const restController = (() => {
             response.createSuccessMessage();
             resolve(response);
           })
-          .catch(() => {
+          .catch(err => {
+            logger.error(err);
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });
@@ -259,7 +270,8 @@ const restController = (() => {
                 updatePost();
               }
             })
-            .catch(() => {
+            .catch(err => {
+              logger.error(err);
               response.createErrorMessage(defaultErrorMessage);
               reject(response);
             });
@@ -274,7 +286,8 @@ const restController = (() => {
               response.createSuccessMessage();
               resolve(response);
             })
-            .catch(() => {
+            .catch(err => {
+              logger.error(err);
               response.createErrorMessage(defaultErrorMessage);
               reject(response);
             });
@@ -300,7 +313,8 @@ const restController = (() => {
             response.createSuccessMessage();
             resolve(response);
           })
-          .catch(() => {
+          .catch(err => {
+            logger.error(err);
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });
@@ -324,7 +338,8 @@ const restController = (() => {
             response.createSuccessMessage();
             resolve(response);
           })
-          .catch(() => {
+          .catch(err => {
+            logger.error(err);
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });
@@ -349,7 +364,8 @@ const restController = (() => {
             response.createDataMessage(data);
             resolve(response);
           })
-          .catch(() => {
+          .catch(err => {
+            logger.error(err);
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });
@@ -372,7 +388,8 @@ const restController = (() => {
             response.createDataMessage(data);
             resolve(response);
           })
-          .catch(() => {
+          .catch(err => {
+            logger.error(err);
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });
@@ -394,7 +411,8 @@ const restController = (() => {
             response.createSuccessMessage();
             resolve(response);
           })
-          .catch(() => {
+          .catch(err => {
+            logger.error(err);
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });
@@ -424,7 +442,8 @@ const restController = (() => {
                   response.createSuccessMessage();
                   resolve(response);
                 })
-                .catch(() => {
+                .catch(err => {
+                  logger.error(err);
                   response.createErrorMessage(defaultErrorMessage);
                   reject(response);
                 });
@@ -435,13 +454,15 @@ const restController = (() => {
                   response.createSuccessMessage();
                   resolve(response);
                 })
-                .catch(() => {
+                .catch(err => {
+                  logger.error(err);
                   response.createErrorMessage(defaultErrorMessage);
                   reject(response);
                 });
             }
           })
-          .catch(() => {
+          .catch(err => {
+            logger.error(err);
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });
@@ -474,7 +495,8 @@ const restController = (() => {
             response.createDataMessage(data);
             resolve(response);
           })
-          .catch(() => {
+          .catch(err => {
+            logger.error(err);
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });
@@ -514,13 +536,15 @@ const restController = (() => {
                   response.createDataMessage(data);
                   resolve(response);
                 })
-                .catch(() => {
+                .catch(err => {
+                  logger.error(err);
                   response.createErrorMessage(defaultErrorMessage);
                   reject(response);
                 });
             }
           })
-          .catch(() => {
+          .catch(err => {
+            logger.error(err);
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });
@@ -562,13 +586,15 @@ const restController = (() => {
                   response.createDataMessage(data);
                   resolve(response);
                 })
-                .catch(() => {
+                .catch(err => {
+                  logger.error(err);
                   response.createErrorMessage(defaultErrorMessage);
                   reject(response);
                 });
             }
           })
-          .catch(() => {
+          .catch(err => {
+            logger.error(err);
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });
@@ -590,7 +616,8 @@ const restController = (() => {
             response.createSuccessMessage();
             resolve(response);
           })
-          .catch(() => {
+          .catch(err => {
+            logger.error(err);
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });
@@ -613,6 +640,7 @@ const restController = (() => {
             resolve(response);
           })
           .catch(err => {
+            logger.error(err);
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });
@@ -634,7 +662,8 @@ const restController = (() => {
             response.createSuccessMessage();
             resolve(response);
           })
-          .catch(() => {
+          .catch(err => {
+            logger.error(err);
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });
@@ -656,7 +685,8 @@ const restController = (() => {
             response.createSuccessMessage();
             resolve(response);
           })
-          .catch(() => {
+          .catch(err => {
+            logger.error(err);
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });
@@ -682,7 +712,8 @@ const restController = (() => {
             response.createDataMessage(result);
             resolve(response);
           })
-          .catch(() => {
+          .catch(err => {
+            logger.error(err);
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });
@@ -723,7 +754,8 @@ const restController = (() => {
             response.createDataMessage(result);
             resolve(response);
           })
-          .catch(() => {
+          .catch(err => {
+            logger.error(err);
             response.createErrorMessage(defaultErrorMessage);
             reject(response);
           });

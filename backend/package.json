@@ -19,6 +19,7 @@
     "multer": "^1.4.1",
     "pg-promise": "^8.6.4",
     "qs": "^6.7.0",
+    "simple-node-logger": "^18.12.22",
     "uuid": "^3.3.2"
   }
 }

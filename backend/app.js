@@ -3,7 +3,7 @@ const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const logger = require('morgan');
+const accessLogger = require('morgan');
 
 const indexRouter = require('./routes/index');
 const adminRouter = require('./routes/admin');
@@ -17,9 +17,9 @@ if (isProductionMode) {
   accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
 }
 
-const loggerOptions = isProductionMode ? { stream: accessLogStream } : null;
+const accessLoggerOptions = isProductionMode ? { stream: accessLogStream } : null;
 
-app.use(logger('dev', loggerOptions));
+app.use(accessLogger('dev', accessLoggerOptions));
 
 const corsOptions = {
   origin: 'http://127.0.0.1:8080',
