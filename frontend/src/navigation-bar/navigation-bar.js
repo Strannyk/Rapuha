@@ -1,18 +1,16 @@
+import authMixin from '@/shared/mixins/auth-mixin';
 import authService from '../services/auth-service';
 
 export default {
+  mixins: [authMixin],
+
   data() {
     return {
-      isAdmin: authService.isAdmin(),
       menuOpen: false
     };
   },
 
   methods: {
-    refreshIsAdmin: function () {
-      this.$data.isAdmin = authService.isAdmin();
-    },
-
     logOut: function () {
       authService.logOutAdmin();
       this.eventHub.$emit('logOut');
@@ -34,6 +32,5 @@ export default {
 
   mounted() {
     this.eventHub.$on('logIn', () => this.refreshIsAdmin());
-    this.eventHub.$on('logOut', () => this.refreshIsAdmin());
   }
 }
