@@ -33,7 +33,7 @@ const dbService = (() => {
     },
 
     addTag(tag) {
-      const query = 'INSERT INTO tags (tag_name) VALUES ($1)';
+      const query = 'INSERT INTO tags VALUES ($1)';
       return getDb().none(query, tag);
     },
 
@@ -149,7 +149,7 @@ const dbService = (() => {
     },
 
     addFeedbackWithUser(data) {
-      const userQuery = 'INSERT INTO users (user_name) VALUES ($1)';
+      const userQuery = 'INSERT INTO users VALUES ($1)';
 
       return getDb().tx(t => t.batch([
         t.none(userQuery, data.userName),
