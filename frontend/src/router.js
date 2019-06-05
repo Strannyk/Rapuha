@@ -34,22 +34,26 @@ export default new Router({
         {
           name: 'reflections',
           path: '/reflections',
-          component: PostsPage
-        },
-        {
-          name: 'reflectionsByTag',
-          path: '/reflections/tag/:tag',
-          component: PostsPage
+          component: PostsPage,
+          children: [
+            {
+              name: 'reflectionsByTag',
+              path: 'tag/:tag',
+              component: PostsPage
+            }
+          ]
         },
         {
           name: 'stories',
           path: '/stories',
-          component: PostsPage
-        },
-        {
-          name: 'storiesByTag',
-          path: '/stories/tag/:tag',
-          component: PostsPage
+          component: PostsPage,
+          children: [
+            {
+              name: 'storiesByTag',
+              path: 'tag/:tag',
+              component: PostsPage
+            }
+          ]
         },
         {
           name: 'quotes',
@@ -115,18 +119,20 @@ export default new Router({
               { name: 'Администрирование', href: '/admin/feed' },
               { name: 'Отзывы' }
             ]
-          }
-        },
-        {
-          name: 'listOfUserFeedback',
-          path: 'feedback/:user',
-          component: FeedbackListPage,
-          meta: {
-            breadcrumb: [
-              { name: 'Администрирование', href: '/admin/feed' },
-              { name: 'Отзывы', href: '/admin/feedback' }
-            ]
-          }
+          },
+          children: [
+            {
+              name: 'listOfUserFeedback',
+              path: ':user',
+              component: FeedbackListPage,
+              meta: {
+                breadcrumb: [
+                  { name: 'Администрирование', href: '/admin/feed' },
+                  { name: 'Отзывы', href: '/admin/feedback' }
+                ]
+              }
+            },
+          ]
         },
         {
           name: 'createQuote',
@@ -162,7 +168,7 @@ export default new Router({
               { name: 'Размышления', href: '/admin/reflections' },
               { name: 'Новое размышление' }
             ]
-          }
+          },
         },
         {
           name: 'editReflection',
