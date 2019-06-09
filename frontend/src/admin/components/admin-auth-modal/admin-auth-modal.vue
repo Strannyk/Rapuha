@@ -24,6 +24,7 @@
                                        v-model="credentials.login"
                                        class="form-control"
                                        :class="errorMessage ? 'is-invalid' : null"
+                                       v-on:keyup.enter="submit"
                                        v-on:focus="onFocus"
                                        id="r-login"
                                        autocomplete="off">

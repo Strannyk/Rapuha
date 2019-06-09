@@ -38,18 +38,17 @@ export default {
     },
 
     handleSaveSuccess: function (response) {
+      if (this.$data.postType === 'reflection') {
+        this.$data.createPostTitleWording = 'Создание размышления';
+        this.$data.createPostMessage = 'Размышление успешно создано';
+      }
+      else if (this.$data.postType === 'story') {
+        this.$data.createPostTitleWording = 'Создание рассказа';
+        this.$data.createPostMessage = 'Рассказ успешно создан';
+      }
+
       if (response.ok) {
         this.$data.createPostSuccess = true;
-
-        if (this.$data.postType === 'reflection') {
-          this.$data.createPostTitleWording = 'Создание размышления';
-          this.$data.createPostMessage = 'Размышление успешно создано';
-        }
-        else if (this.$data.postType === 'story') {
-          this.$data.createPostTitleWording = 'Создание рассказа';
-          this.$data.createPostMessage = 'Рассказ успешно создан';
-        }
-
         this.openResultModal();
       }
       else if (response.error) {

@@ -27,8 +27,10 @@ export default {
     },
 
     submit: function () {
-      this.$emit('submit', this.$data.credentials);
-      this.$refs.submitButton.blur();
+      if (this.$data.credentials.login && this.$data.credentials.password) {
+        this.$emit('submit', this.$data.credentials);
+        this.$refs.submitButton.blur();
+      }
     },
 
     clearCredentials: function () {
