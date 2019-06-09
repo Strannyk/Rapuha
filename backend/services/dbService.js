@@ -1,4 +1,6 @@
-const pgp = require("pg-promise")(/*options*/);
+const pgp = require("pg-promise")({
+  capSQL: true
+});
 const options = require('../options');
 
 const dbService = (() => {
@@ -69,18 +71,29 @@ const dbService = (() => {
 
     addPost(title, data) {
       const postQuery = 'INSERT INTO posts (title, body, type, creation_date) VALUES ($1, $2, $3, $4)';
-      const postTagsQuery = 'INSERT INTO posts_tags (title, tag_name) VALUES ($1, $2)';
 
       return getDb().tx(t => {
         const queries = [];
         const firstQuery = t.none(postQuery, [title, data.body, data.type, data.date]);
+        const postsTagColumnSet = new pgp.helpers.ColumnSet([
+          'title',
+          'tag_name'
+        ], { table: 'posts_tags' });
+        const postsTagsData = [];
 
         queries.push(firstQuery);
 
         for (const tag of data.tags) {
-          const query = t.none(postTagsQuery, [title, tag]);
-          queries.push(query);
+          postsTagsData.push({
+            title: title,
+            tag_name: tag
+          });
         }
+
+        const postsTagInsert = pgp.helpers.insert(postsTagsData, postsTagColumnSet);
+        const postTagsQuery = t.none(postsTagInsert);
+
+        queries.push(postTagsQuery);
 
         return t.batch(queries);
       });

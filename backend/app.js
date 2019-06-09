@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -20,14 +19,6 @@ if (isProductionMode) {
 const accessLoggerOptions = isProductionMode ? { stream: accessLogStream } : null;
 
 app.use(accessLogger('dev', accessLoggerOptions));
-
-const corsOptions = {
-  origin: 'http://127.0.0.1:8080',
-  optionsSuccessStatus: 200
-};
-
-// app.use(cors(corsOptions));
-app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

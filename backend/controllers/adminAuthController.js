@@ -27,13 +27,11 @@ const adminAuthController = (() => {
         dbService.getPasswordHash(login)
           .then(data => {
             bcrypt.compare(password, data.admin_password, (err, res) => {
-              const result = err || res;
-              const response = result ? authService.getSuccessResponse() : authService.getErrorResponse();
+              const response = res ? authService.getSuccessResponse() : authService.getErrorResponse();
               resolve(response);
             });
-          }).catch(() => {
-          reject(authService.getErrorResponse());
-        });
+          }).catch(() => reject(authService.getErrorResponse())
+        );
       });
     }
   };
