@@ -43,7 +43,7 @@
   .delete.icon {
     display: inline-block;
     position: relative;
-    width: 12px;
+    width: 12px !important;
     height: 12px;
 
     &:before {
@@ -67,7 +67,7 @@
   background-color: #3A3F44;
 }
 
-.ui.dropdown .menu > .item:hover {
+.form-group .ui.dropdown .menu > .item:hover {
   color: #fff !important;
   background: #52575C !important;
 }
